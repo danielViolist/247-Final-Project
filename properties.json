@@ -1,0 +1,37 @@
+{"properties":[
+	{
+		"name": "The Lofts",
+		"address": "211 Main Street",
+		"zip": 29201,
+		"city": "Columbia",
+		"state": "SC",
+		"description": "The Lofts is cool. Live here! (easy ethernet not included)",
+		"condition": "good",
+		"room": 218,
+		"amenities": ["Bathroom", "Refrigerator", "Oven", "Dishwasher"],
+		"price": 720.00,
+		"reviews": [1]
+		"type": "apartment",
+		"id": 1,
+		"canSubLease": 1,
+		"lease": "Lease information goes here. I'm not going to type this out right now because that's a lot of work lol.",
+		"payments": "Credit, Debit, PayPal, Cash"
+	},{
+		"name": "Nyles's Places",
+		"address": "211 Some Street",
+		"zip": 29201,
+		"city": "Columbia",
+		"state": "SC",
+		"description": "The best place to live!",
+		"condition": "excellent",
+		"room": 218,
+		"amenities": ["All"],
+		"price": 420.00,
+		"reviews": [2],
+		"type": "house",
+		"id": 2,
+		"canSubLease": 0,
+		"lease": "Lease information goes here. I'm not going to type this out right now because that's a lot of work lol.",
+		"payments": ["Credit", "Debit", "PayPal", "Cash", "Donuts"]
+	}
+]}

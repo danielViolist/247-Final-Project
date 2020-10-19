@@ -1,0 +1,1 @@
+enum PropertyType {APARTMENT, CONDO, HOUSE};

@@ -1,0 +1,1 @@
+enum PropertyType {CASH, CHECK, CREDIT, DEBIT};

@@ -1,0 +1,14 @@
+{"reviews":[
+	{
+		"id": 1,
+		"author": 1,
+		"rating": 5.0,
+		"description": "The Lofts is a pretty cool place! The WiFi that they have kinda sucks, but you can finesse better WiFi if you have your own router, and you can also use ethernet if you have around 50 feet of cableage."
+	},{
+		"id": 2,
+		"author": 1,
+		"rating": 3.7,
+		"description": "This place slaps. Straight up."
+
+	}
+]}

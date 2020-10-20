@@ -18,6 +18,7 @@ public class Property {
 	private boolean canSubLease;
 	private Lease lease;
 	private ArrayList<PaymentType> acceptedPayments;
+	private boolean isLeased;
 	
 	public Property(String address, String zipCode, String city, String state, String description, String condition,
 			int roomNumber, ArrayList<String> amenities, double price, PropertyType propertyType) {
@@ -31,14 +32,48 @@ public class Property {
 		this.amenities = amenities;
 		this.price = price;
 		this.propertyType = propertyType;
+		this.isLeased = false;
+	}
+	
+	public ArrayList<PaymentType> getAcceptedPayments() {
+		return acceptedPayments;
+	}
+	
+	public void addPaymentType(PaymentType type) {
+		for (PaymentType payment : acceptedPayments) {
+			if (type == payment) {
+				return;
+			}
+		}
+		acceptedPayments.add(type);
+	}
+	
+	public void createLease() {
+		//TODO
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public int getID() {
+		return propertyID;
+	}
+	
+	public void setPropertyID(int id) {
+		//TODO
 	}
 	
 	public boolean canSubLease() {
-		return false;//must complete
+		return canSubLease;
 	}
 	
 	public boolean isLeased() {
-		return false;//must complete
+		return isLeased;
 	}
 	
 	public void removeReveiw(Review review) {
@@ -105,8 +140,8 @@ public class Property {
 		this.roomNumber = roomNumber;
 	}
 
-	public String getAmenities() {
-		return ""; //must complete
+	public ArrayList<String> getAmenities() {
+		return amenities; 
 	}
 
 	public void setAmenities(String amenities) {
@@ -121,19 +156,16 @@ public class Property {
 		this.price = price;
 	}
 
-	public String getReviews() {
-		return ""; //must complete
+	public ArrayList<Review> getReviews() {
+		return reviews;
 	}
 
-	
-
-	public String getPropertyType() {
-		return ""; //must complete
+	public PropertyType getPropertyType() {
+		return propertyType; 
 	}
 
 	public void setPropertyType(PropertyType propertyType) {
 		this.propertyType = propertyType;
 	}
-	
 	
 }

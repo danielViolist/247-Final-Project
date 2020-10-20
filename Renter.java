@@ -9,10 +9,11 @@ public class Renter extends User {
 	private Seller seller;
 	
 	public Renter(String username, String password, String email, String userID, String phoneNumber, String name,
-			String bio) {
+			String bio, String uscID, boolean isSeller) {
 		super(username, password, email, userID, phoneNumber, name, bio);
+		this.uscID = uscID;
 		favorites = new ArrayList<Property>();
-		this.isSeller = false;
+		this.isSeller = isSeller;
 	}
 
 	public String getUscID() {
@@ -23,12 +24,12 @@ public class Renter extends User {
 		this.uscID = uscID;
 	}
 
-	public String getFavorites() {
-		return "";
+	public ArrayList<Property> getFavorites() {
+		return favorites;
 	}
 	
 	public void addFavorite(Property property) {
-		this.favorites.add(property);
+		favorites.add(property);
 	}
 
 	public void removeFavorite(Property property) {

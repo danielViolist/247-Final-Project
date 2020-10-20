@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public abstract class User {
 
@@ -14,7 +13,6 @@ public abstract class User {
 
 	public User(String username, String password, String email, String userID, String phoneNumber, String name,
 			String bio) {
-		super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -22,7 +20,7 @@ public abstract class User {
 		this.phoneNumber = phoneNumber;
 		this.name = name;
 		this.bio = bio;
-		contactInfo = new ArrayList<String>();
+		this.contactInfo = new ArrayList<String>();
 	}
 
 	public String getUsername() {
@@ -58,11 +56,18 @@ public abstract class User {
 	}
 
 	public void setUsername(String username) {
+		//TODO: Verify that the username has not already been taken
 		this.username = username;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public boolean setPassword(String password) {
+		if (password.length() >= 8) {
+			this.password = password;
+			return true;
+		} else {
+			this.password = "password";
+			return false;
+		}
 	}
 
 	public void setEmail(String email) {
@@ -70,6 +75,7 @@ public abstract class User {
 	}
 
 	public void setUserID(String userID) {
+		//TODO: Verify that the ID has not already been used using database
 		this.userID = userID;
 	}
 
@@ -88,19 +94,13 @@ public abstract class User {
 	public void setContactInfo(ArrayList<String> contactInfo) {
 		this.contactInfo = contactInfo;
 	}
+	
+	public void addContactInfo(String info) {
+		contactInfo.add(info);
+	}
 
-	public void giveReview(Property property) {
-		Scanner scnr = new Scanner(System.in);
-		
-		System.out.println("What rating would you like to give (0-5)?");
-		double reviewRating = scnr.nextDouble();
-		
-		System.out.println("Write your review: ");
-		String reveiwDescription = scnr.nextLine();
-		scnr.close();
-		
-		Review userReview = new Review(this.name, reviewRating, reveiwDescription);
-		property.addReview(userReview);
+	public void giveReview(Property property, Review review) {
+		property.addReview(review);
 	}
 
 }

@@ -5,6 +5,10 @@ public class UserInterface {
 	private Database database;
 	private Menu menus;
 
+	public UserInterface() {
+		menus = new Menu();
+	}
+	
 	public void outputMenu(String menu) {
 		menus = new Menu();
 		if (menu.equals("login"))

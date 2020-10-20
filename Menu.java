@@ -26,11 +26,15 @@ public class Menu {
 	}
 	
 	private void setLoginMenu() {
-		this.loginMenu = "You need to login. Please enter your login credentials (username and password):\n";
+		this.loginMenu = "Please enter your login credentials (username and password):\n";
 	}
 
 	private void setWelcomeMenu() {
-		this.welcomeMenu = "\t\tWelcome to the UofSC Off-Campus Housing Finder!\n";
+		this.welcomeMenu = "\t\tWelcome to the UofSC Off-Campus Housing Finder!\n"
+				         + "Please select from the following:\n"
+				         + "\t1. Login\n"
+				         + "\t2. Continue as Guest\n"
+				         + "\t3. Exit";
 	}
 
 	private void setLeaveMenu() {

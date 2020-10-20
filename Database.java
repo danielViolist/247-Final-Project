@@ -6,7 +6,7 @@ public class Database {
 	public void createRenter(String username, String password, String email, 
 			String phoneNumber, String name, String bio, String uscID) {
 	
-		Renter  newRenter = new Renter (username, password, email, uscID, phoneNumber, name, bio);
+		Renter  newRenter = new Renter(username, password, email, uscID, phoneNumber, name, bio, uscID, false);
 		// json needed
 	}
 	
@@ -19,9 +19,9 @@ public class Database {
 	public void createRenterSeller(String username, String password, String email, 
 			String uscID, String phoneNumber, String name, String bio) {
 		
-		Renter  newRenterSeller = new Renter (username, password, email, uscID, phoneNumber, name, bio);
+		Renter  newRenterSeller = new Renter(username, password, email, uscID, phoneNumber, name, bio, uscID, true);
 		newRenterSeller.makeSeller();
-		// call isSeller method
+		//json
 	}
 	
 	public void removeUser(int UserID) {

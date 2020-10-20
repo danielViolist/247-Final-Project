@@ -21,7 +21,7 @@ public class Main {
 	public static void run() {
 		while(true) {
 			ui.outputMenu("welcome");
-			System.out.println("Selection: ");
+			System.out.println("(1) login \n(2) Trending Properties \n(3) Exit \nSelection:");
 			int selection = s.nextInt();
 			s.nextLine();
 			switch (selection) {

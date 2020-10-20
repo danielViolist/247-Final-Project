@@ -4,8 +4,9 @@ public class UserInterface {
 	private User currentUser;
 	private Database database;
 	private Menu menus;
-	
+
 	public void outputMenu(String menu) {
+		menus = new Menu();
 		if (menu.equals("login"))
 			System.out.println(menus.getLoginMenu());
 		else if (menu.equals("welcome"))

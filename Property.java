@@ -17,7 +17,7 @@ public class Property {
 	private String name;
 	private boolean canSubLease;
 	private Lease lease;
-	private ArrayList<String> acceptedPayments;
+	private ArrayList<PaymentType> acceptedPayments;
 	private boolean isLeased;
 	
 	public Property(String address, String zipCode, String city, String state, String description, String condition,
@@ -35,8 +35,17 @@ public class Property {
 		this.isLeased = false;
 	}
 	
-	public ArrayList<String> getAcceptedPayments() {
+	public ArrayList<PaymentType> getAcceptedPayments() {
 		return acceptedPayments;
+	}
+	
+	public void addPaymentType(PaymentType type) {
+		for (PaymentType payment : acceptedPayments) {
+			if (type == payment) {
+				return;
+			}
+		}
+		acceptedPayments.add(type);
 	}
 	
 	public void createLease() {
@@ -159,6 +168,4 @@ public class Property {
 		this.propertyType = propertyType;
 	}
 	
-	//TODO: Add an 'addPaymentType' method
-
 }

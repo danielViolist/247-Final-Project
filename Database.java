@@ -1,22 +1,19 @@
 
 public class Database {
 
-
-	// possibly have methods return strings announcing that the action will be
-	//possibly will have to reconstruct according to her examples where we have renters and sellers.
-	// performed
-
-	public void createRenter(String username, String password, String email, String phoneNumber, String name,
-			String bio, String uscID) {
-
-		Renter newRenter = new Renter(username, password, email, uscID, phoneNumber, name, bio);
+	// possibly have methods return strings announcing that the action will be performed
+	
+	public void createRenter(String username, String password, String email, 
+			String phoneNumber, String name, String bio, String uscID) {
+	
+		Renter  newRenter = new Renter(username, password, email, uscID, phoneNumber, name, bio, uscID, false);
 		// json needed
 	}
-
-	public void createSeller(String username, String password, String email, String userID, String phoneNumber,
-			String name, String bio) {
-		Seller newSeller = new Seller(username, password, email, userID, phoneNumber, name, bio);
-		// json needed
+	
+	public void createSeller(String username, String password, String email, String userID, String phoneNumber, String name,
+			String bio) {
+		Seller newSeller = new Seller( username, password, email, userID, phoneNumber, name, bio);
+		//json needed
 	}
 	
 	public void createRenterSeller(String username, String password, String email, 
@@ -25,22 +22,21 @@ public class Database {
 		Renter  newRenterSeller = new Renter(username, password, email, uscID, phoneNumber, name, bio, uscID, true);
 		newRenterSeller.makeSeller();
 		//json
-
 	}
-
+	
 	public void removeUser(int UserID) {
 		// json
 	}
-
+	
 	public void saveProperty(Property property) {
-		// json
+		//json
 	}
-
+	
 	public void deleteProperty(int prpoertyID) {
-		// json
+		//json
 	}
-
+	
 	public boolean verifyUserLogin(String username, String password) {
-		return false; // implement logic
+		return false; //implement logic
 	}
 }

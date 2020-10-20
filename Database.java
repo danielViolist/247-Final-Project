@@ -1,14 +1,7 @@
 
 public class Database {
 
-<<<<<<< HEAD
-	// possibly have methods return strings announcing that the action will be performed
-	
-	public void createRenter(String username, String password, String email, 
-			String phoneNumber, String name, String bio, String uscID) {
-	
-		Renter  newRenter = new Renter(username, password, email, uscID, phoneNumber, name, bio, uscID, false);
-=======
+
 	// possibly have methods return strings announcing that the action will be
 	//possibly will have to reconstruct according to her examples where we have renters and sellers.
 	// performed
@@ -17,7 +10,6 @@ public class Database {
 			String bio, String uscID) {
 
 		Renter newRenter = new Renter(username, password, email, uscID, phoneNumber, name, bio);
->>>>>>> first-sprint-Nyles
 		// json needed
 	}
 

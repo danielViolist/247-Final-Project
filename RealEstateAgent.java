@@ -16,6 +16,10 @@ public class RealEstateAgent extends User {
 		listings.add(property);
 	}
 	
+	public ArrayList<Property> getListings() {
+		return listings;
+	}
+	
 	public String showListings() {
 		return ""; //must complete
 	}

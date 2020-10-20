@@ -30,7 +30,7 @@ public class Menu {
 	}
 
 	private void setWelcomeMenu() {
-		this.welcomeMenu = "\\t\\tWelcome to the UofSC Off-Campus Housing Finder!\\n";
+		this.welcomeMenu = "\t\tWelcome to the UofSC Off-Campus Housing Finder!\n";
 	}
 
 	private void setLeaveMenu() {

@@ -2,6 +2,7 @@
 public class Database {
 
 	// possibly have methods return strings announcing that the action will be
+	//possibly will have to reconstruct according to her examples where we have renters and sellers.
 	// performed
 
 	public void createRenter(String username, String password, String email, String phoneNumber, String name,

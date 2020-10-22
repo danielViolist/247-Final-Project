@@ -5,7 +5,7 @@ public class Lease {
 	private Date endDate;
 	private Renter signer;
 	
-	public Lease(Date startDate, Date endDate, Renter signer) {
+	public Lease(Renter signer, Date startDate, Date endDate) {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.signer = signer;

@@ -24,15 +24,22 @@ public class Database {
 		//json
 	}
 	
-	public void removeUser(int UserID) {
+	/*
+	 * *************************
+	 * 
+	 * These should all return false if they failed in some way!
+	 * 
+	 * *************************
+	 */
+	public boolean removeUser(int UserID) {
 		// json
 	}
 	
-	public void saveProperty(Property property) {
+	public boolean saveProperty(Property property) {
 		//json
 	}
 	
-	public void deleteProperty(int prpoertyID) {
+	public boolean deleteProperty(int prpoertyID) {
 		//json
 	}
 	

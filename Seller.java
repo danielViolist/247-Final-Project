@@ -12,7 +12,7 @@ public class Seller extends User {
 	
 	public void addProperty(String address, String zipCode, String city, String state, String description, String condition,
 			int roomNumber, ArrayList<String> amenities, double price, PropertyType propertyType) {
-		Property temp = new Property(address,  zipCode,  city,  state,  description,  condition, roomNumber, amenities, price, propertyType);
+		Property temp = new Property(this, address,  zipCode,  city,  state,  description,  condition, roomNumber, amenities, price, propertyType);
 		properties.add(temp);
 	}
 	

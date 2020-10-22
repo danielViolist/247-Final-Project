@@ -193,5 +193,15 @@ public class Property {
 		acceptedPayments.add(type);
 		return true;
 	}
+	
+	public boolean addAmenitiy(String amenity) {
+		for (String ameni : amenities) {
+			if (amenity.equalsIgnoreCase(ameni)) {
+				return false;
+			}
+		}
+		amenities.add(amenity);
+		return true;
+	}
 
 }

@@ -1,14 +1,14 @@
 
 public class Review {
 	
-	private String author;
 	private double rating;
 	private String description;
+	private String author;
 	
-	public Review(String author, double rating, String description) {
-		this.author = author;
+	public Review(Renter renter, double rating, String description) {
 		this.rating = setRating(rating);
 		this.description = description;
+		author = renter.getName();
 	}
 	
 	private double setRating(double rating) {

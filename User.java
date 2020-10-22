@@ -5,13 +5,13 @@ public abstract class User {
 	private String username;
 	private String password;
 	private String email;
-	private String userID;
+	private int userID;
 	private String phoneNumber;
 	private String name;
 	private String bio;
 	private ArrayList<String> contactInfo;
 
-	public User(String username, String password, String email, String userID, String phoneNumber, String name,
+	public User(String username, String password, String email, int userID, String phoneNumber, String name,
 			String bio) {
 		this.username = username;
 		this.password = password;
@@ -35,7 +35,7 @@ public abstract class User {
 		return email;
 	}
 
-	public String getUserID() {
+	public int getUserID() {
 		return userID;
 	}
 
@@ -74,7 +74,7 @@ public abstract class User {
 		this.email = email;
 	}
 
-	public void setUserID(String userID) {
+	public void setUserID(int userID) {
 		//TODO: Verify that the ID has not already been used using database
 		this.userID = userID;
 	}

@@ -4,10 +4,9 @@ public class Seller extends User {
 
 	private ArrayList<Property> properties;
 	
-	public Seller(String username, String password, String email, String userID, String phoneNumber, String name,
-			String bio) {
+	public Seller(String username, String password, String email, int userID, String phoneNumber, String name, String bio, ArrayList<Property> properties) {
 		super(username, password, email, userID, phoneNumber, name, bio);
-		properties = new ArrayList<Property>();
+		this.properties = properties;
 	}
 	
 	public void addProperty(String address, String zipCode, String city, String state, String description, String condition,

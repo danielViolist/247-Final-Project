@@ -1,6 +1,6 @@
 
 public class Lease {
-
+	
 	private Date startDate;
 	private Date endDate;
 	private Renter signer;
@@ -12,8 +12,9 @@ public class Lease {
 	}
 	
 	public String toString() {
-		return "This lease belongs to " + signer.getName() 
-		+". Its start date is " + startDate.toString()  + ". Its end date is "+
-		endDate.toString();
+		return "Lessee:\t " + signer.getName() 
+		     + "\nStart Date:\t " + startDate.toString()
+		     + "\nEnd Date:\t " + endDate.toString();
 	}
+
 }

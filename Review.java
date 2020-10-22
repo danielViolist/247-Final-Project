@@ -37,6 +37,13 @@ public class Review {
 		return ret + "\t" + description;
 	}
 	
+	/**
+	 * This compares two Reviews. If both Reviews have the same author, true is returned. 
+	 * Otherwise, false is returned.
+	 * The comparison is case insensitive. (That is - NOT case sensitive.)
+	 * @param review Other review to compare with
+	 * @return
+	 */
 	public boolean equals(Review review) {
 		return author.equalsIgnoreCase(review.getAuthor());
 	}

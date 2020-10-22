@@ -11,7 +11,7 @@ public class Review {
 		this.description = description;
 	}
 	
-	public double setRating(double rating) {
+	private double setRating(double rating) {
 		if (rating >= 0 && rating <= 5) {
 			 return rating;
 		} else {
@@ -19,9 +19,25 @@ public class Review {
 		}
 	}
 	
+	public String getAuthor() {
+		return author;
+	}
+	
+	public double getRating() {
+		return rating;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
 	public String toString() {
 		String ret = author + " rating: " + rating + "⭐'s. \n";
 		ret += author + " says the following about this property:\n";
 		return ret + "\t" + description;
+	}
+	
+	public boolean equals(Review review) {
+		return author.equalsIgnoreCase(review.getAuthor());
 	}
 }

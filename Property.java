@@ -20,7 +20,6 @@ public class Property {
 	private Lease lease;
 	private ArrayList<PaymentType> acceptedPayments;
 	private boolean isLeased;
-	private String leaseTemplate;
 	
 	public Property(Seller seller, String address, String zipCode, String city, String state, String description, String condition,
 			int roomNumber, ArrayList<String> amenities, double price, PropertyType propertyType) {
@@ -35,11 +34,8 @@ public class Property {
 		this.amenities = amenities;
 		this.price = price;
 		this.propertyType = propertyType;
+		lease = null;
 		this.isLeased = false;
-		this.leaseTemplate = "Lessee:\t <Renter>"
-				           + "\nStart Date:\t <Date>"
-				           + "\nEnd Date:\t <Date>"
-				           + "\nLessor:\t <Seller>";;
 	}
 // =========================================================================================================================
 	public ArrayList<PaymentType> getAcceptedPayments() {
@@ -154,14 +150,15 @@ public class Property {
 		this.propertyType = propertyType;
 	}
 	
-	public String getLeaseTemplate() {
-		return leaseTemplate;
+	public String getLease() {
+		return lease.toString() + "\nLessor: " + seller.getName();
 	}
 	
 // ====================================================================================================================
 	public boolean createLease(Renter renter, Date startDate, Date endDate) {
 		if (!isLeased) {
 			lease = new Lease(renter, startDate, endDate);
+			isLeased = true;
 			return true;
 		} 
 		return false;

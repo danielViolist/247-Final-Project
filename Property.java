@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 
 public class Property {
-
+	
+	private Seller seller;
 	private String address;
 	private String zipCode;
 	private String city;
@@ -19,9 +20,11 @@ public class Property {
 	private Lease lease;
 	private ArrayList<PaymentType> acceptedPayments;
 	private boolean isLeased;
+	private String leaseTemplate;
 	
-	public Property(String address, String zipCode, String city, String state, String description, String condition,
+	public Property(Seller seller, String address, String zipCode, String city, String state, String description, String condition,
 			int roomNumber, ArrayList<String> amenities, double price, PropertyType propertyType) {
+		this.seller = seller;
 		this.address = address;
 		this.zipCode = zipCode;
 		this.city = city;
@@ -33,23 +36,14 @@ public class Property {
 		this.price = price;
 		this.propertyType = propertyType;
 		this.isLeased = false;
+		this.leaseTemplate = "Lessee:\t <Renter>"
+				           + "\nStart Date:\t <Date>"
+				           + "\nEnd Date:\t <Date>"
+				           + "\nLessor:\t <Seller>";;
 	}
-	
+// =========================================================================================================================
 	public ArrayList<PaymentType> getAcceptedPayments() {
 		return acceptedPayments;
-	}
-	
-	public void addPaymentType(PaymentType type) {
-		for (PaymentType payment : acceptedPayments) {
-			if (type == payment) {
-				return;
-			}
-		}
-		acceptedPayments.add(type);
-	}
-	
-	public void createLease() {
-		//TODO
 	}
 	
 	public String getName() {
@@ -74,14 +68,6 @@ public class Property {
 	
 	public boolean isLeased() {
 		return isLeased;
-	}
-	
-	public void removeReveiw(Review review) {
-		//must complete
-	}
-	
-	public void addReview(Review review){
-		//must complete
 	}
 
 	public String getAddress() {
@@ -168,4 +154,47 @@ public class Property {
 		this.propertyType = propertyType;
 	}
 	
+	public String getLeaseTemplate() {
+		return leaseTemplate;
+	}
+	
+// ====================================================================================================================
+	public boolean createLease(Renter renter, Date startDate, Date endDate) {
+		if (!isLeased) {
+			lease = new Lease(renter, startDate, endDate);
+			return true;
+		} 
+		return false;
+	}
+	
+	public boolean removeReveiw(Renter renter) {
+		for (Review review: reviews) {
+			if (review.getAuthor().equalsIgnoreCase(renter.getName())) {
+				reviews.remove(review);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean addReview(Review review){
+		for (Review rev : reviews) {
+			if (review.equals(rev)) /* This checks if there is already a review with the same author */{
+				return false;
+			}
+		}
+		reviews.add(review);
+		return true;
+	}
+	
+	public boolean addPaymentType(PaymentType type) {
+		for (PaymentType payment : acceptedPayments) {
+			if (type == payment) {
+				return false;
+			}
+		}
+		acceptedPayments.add(type);
+		return true;
+	}
+
 }

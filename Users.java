@@ -19,19 +19,19 @@ public class Users {
 		return userList;
 	}
 
-	public void createRenter(String username, String password, String email, int userID, String phoneNumber, String name,
+	public void addRenter(String username, String password, String email, int userID, String phoneNumber, String name,
 			String bio, String uscID) {
 		userList.add(new Renter(username, password, email, userID, phoneNumber, name, bio, uscID));
 		Database.saveUsers();
 	}
 
-	public void createSeller(String username, String password, String email, int userID, String phoneNumber, String name,
+	public void addSeller(String username, String password, String email, int userID, String phoneNumber, String name,
 			String bio, ArrayList<Property> properties){ 
 		userList.add(new Seller(username, password, email, userID, phoneNumber, name, bio, properties));
 		Database.saveUsers();
 	}
 
-	public void createRenterSeller(String username, String password, String email, int userID, String phoneNumber,
+	public void addRenterSeller(String username, String password, String email, int userID, String phoneNumber,
 			String name, String bio, String uscID, boolean isSeller, Seller seller) {
 		userList.add(new Renter(username, password, email, userID, phoneNumber, name, bio, uscID, true, seller));
 		Database.saveUsers();

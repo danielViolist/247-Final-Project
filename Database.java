@@ -16,10 +16,10 @@ public class Database extends JSONConstants{
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter(USERS_FILE)) {
+        try (FileWriter usersFile = new FileWriter(USERS_FILE)) {
  
-            file.write(usersJSON.toJSONString());
-            file.flush();
+        	usersFile.write(usersJSON.toJSONString());
+        	usersFile.flush();
  
         } catch (IOException e) {
             e.printStackTrace();
@@ -27,7 +27,25 @@ public class Database extends JSONConstants{
 	}
 	
 	public static void saveProperties() {
-		//json
+		
+		Properties properties = Properties.getInstance();
+		ArrayList<Property> propertiesList = properties.getPeople();
+		JSONArray usersJSON = new JSONArray();
+		
+		//creating all the json objects
+		for(int i=0; i< propertiesList.size(); i++) {
+			usersJSON.add(getPropertyJSON(propertiesList.get(i)));
+		}
+		
+		//Write JSON file
+        try (FileWriter propertiesFile = new FileWriter(PROPERTIES_FILE)) {
+ 
+        	propertiesFile.write(usersJSON.toJSONString());
+        	propertiesFile.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 	
 	public static void saveReviews() {
@@ -66,6 +84,31 @@ public class Database extends JSONConstants{
         return userDetails;
 	}
 	
+	public static JSONObject getPropertyJSON(Property property) {
+		JSONObject propertyDetails = new JSONObject();
+		propertyDetails.put(ID, property.getID());
+		propertyDetails.put(PROPERTIES_NAME, property.getName());
+		propertyDetails.put(PROPERTIES_ADDRESS, property.getAddress());
+		propertyDetails.put(PROPERTIES_ZIP, property.getZipCode());
+		propertyDetails.put(PROPERTIES_CITY, property.getCity());
+		propertyDetails.put(PROPERTIES_STATE, property.getState());
+		//propertyDetails.put(PROPERTIES_OWNER, property.getOwner());
+		propertyDetails.put(PROPERTIES_DESCRIPTION, property.getDescription());
+		propertyDetails.put(PROPERTIES_CONDITION, property.getCondition());
+		propertyDetails.put(PROPERTIES_ROOM, property.getRoomNumber());
+		propertyDetails.put(PROPERTIES_AMENITIES, property.getAmenities());
+		propertyDetails.put(PROPERTIES_PRICE, property.getPrice());
+		propertyDetails.put(PROPERTIES_REVIEWS, property.getReviews());
+		propertyDetails.put(PROPERTIES_TYPE, property.getPropertyType());
+		propertyDetails.put(PROPERTIES_SUB, property.isLeased());
+		propertyDetails.put(PROPERTIES_LEASE, property.getLease());
+		propertyDetails.put(PROPERTIES_REVIEWS, property.getReviews());
+		propertyDetails.put(PROPERTIES_PAYMENTS, property.getAcceptedPayments());
+		
+        
+		
+        return propertyDetails;
+	}
 	/*
 	 * *************************
 	 * 

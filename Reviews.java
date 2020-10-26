@@ -16,7 +16,7 @@ public class Reviews {
 		return reviews;
 	}
 
-	public ArrayList<Review> getPeople() {
+	public ArrayList<Review> getReviews() {
 		return reviewList;
 	}
 

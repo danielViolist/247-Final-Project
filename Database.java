@@ -29,7 +29,7 @@ public class Database extends JSONConstants{
 	public static void saveProperties() {
 		
 		Properties properties = Properties.getInstance();
-		ArrayList<Property> propertiesList = properties.getPeople();
+		ArrayList<Property> propertiesList = properties.getProperties();
 		JSONArray usersJSON = new JSONArray();
 		
 		//creating all the json objects
@@ -49,7 +49,25 @@ public class Database extends JSONConstants{
 	}
 	
 	public static void saveReviews() {
-		//json
+		
+		Reviews reviews = Reviews.getInstance();
+		ArrayList<Review> reviewsList = reviews.getReviews();
+		JSONArray reviewsJSON = new JSONArray();
+		
+		//creating all the json objects
+		for(int i=0; i< reviewsList.size(); i++) {
+			reviewsJSON.add(getReviewJSON(reviewsList.get(i)));
+		}
+		
+		//Write JSON file
+        try (FileWriter reviewsFile = new FileWriter(REVIEWS_FILE)) {
+ 
+        	reviewsFile.write(reviewsJSON.toJSONString());
+        	reviewsFile.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 	
 	public static JSONObject getUserJSON(User user) {
@@ -105,10 +123,20 @@ public class Database extends JSONConstants{
 		propertyDetails.put(PROPERTIES_REVIEWS, property.getReviews());
 		propertyDetails.put(PROPERTIES_PAYMENTS, property.getAcceptedPayments());
 		
-        
-		
         return propertyDetails;
 	}
+	
+	public static JSONObject getReviewJSON(Review review) {
+		JSONObject reviewDetails = new JSONObject();
+		//reviewDetails.put(ID, review.getID());
+		reviewDetails.put(REVIEWS_AUTHOR, review.getAuthor());
+		reviewDetails.put(REVIEWS_RATING, review.getRating());
+		reviewDetails.put(REVIEWS_DESCRIPTION, review.getDescription());
+		
+        return reviewDetails;
+	}
+	
+	
 	/*
 	 * *************************
 	 * 

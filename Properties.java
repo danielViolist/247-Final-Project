@@ -16,7 +16,7 @@ public class Properties {
 		return properties;
 	}
 
-	public ArrayList<Property> getPeople() {
+	public ArrayList<Property> getProperties() {
 		return propertyList;
 	}
 

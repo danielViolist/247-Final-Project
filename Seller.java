@@ -16,4 +16,8 @@ public class Seller extends User {
 	public ArrayList<Property> getProperties() {
 		return properties;
 	}
+	
+	public boolean equals(Seller seller) {
+		return this.getName().equals(seller.getName());
+	}
 }

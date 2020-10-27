@@ -1,9 +1,9 @@
 {"users":[
 	{
+		"id": 1,
 		"username": "cSwiggitySwooty",
 		"password": "sup3rS3cure",
 		"email": "colinsa@email.sc.edu",
-		"id": 1,
 		"phone": "8465123456",
 		"name": "Colin Anderson",
 		"bio": "Computer Science and Math Major at UofSC, class of 2023",
@@ -12,10 +12,10 @@
 		"uscid": "A64236897",
 		"favorites": ["The Lofts"]
 	},{
+		"id": 2,
 		"username": "danielViolist",
 		"password": "2kewl4u",
 		"email": "rochesw@email.sc.edu",
-		"id": 2,
 		"phone": "8348621864",
 		"name": "Daniel Rochester",
 		"bio": "Computer Science and Math Major at UofSC, class of 2023",
@@ -25,10 +25,10 @@
 		"agency": "Big Brain Buying",
 		"listings": ["Real Smart Complex", "Intelligent Housing"]
 	},{
+		"id": 3,
 		"username": "ngeiger",
 		"password": "c4nth4ckm3",
 		"email": "ngeiger@email.sc.edu",
-		"id": 3,
 		"phone": "8465123456",
 		"name": "Nyles Geiger",
 		"bio": "Computer Science Major at UofSC",

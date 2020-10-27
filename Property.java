@@ -52,10 +52,10 @@ public class Property {
 		     + "\n\tProperty Type: " + propertyType
 		     + "\n\tCurrently Leased: ";
 		if (isLeased) {
-			ret += "Yes";
+			ret += "Yes\n";
 		}
 		else { 
-			ret += "No";
+			ret += "No\n";
 		}
 		return ret;
 	}

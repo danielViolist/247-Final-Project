@@ -37,7 +37,7 @@ public class Property {
 		lease = null;
 		this.isLeased = false;
 	}
-	
+
 	public String toString() {
 		String ret = "Seller: " + seller
 				   + "\n\tAddress: " + address + city + ", " + state + zipCode
@@ -60,7 +60,15 @@ public class Property {
 		return ret;
 	}
 	
+	public boolean equals(Property property) {
+		return this.seller.equals(property.getSeller()) && this.getAddress().equals(property.getAddress()); 
+	}
+	
 // =========================================================================================================================
+	public Seller getSeller() {
+		return seller;
+	}
+	
 	public ArrayList<PaymentType> getAcceptedPayments() {
 		return acceptedPayments;
 	}

@@ -20,12 +20,15 @@ public class RealEstateAgent extends User {
 	}
 	
 	public String showListings() {
-		return ""; //must complete
+		String ret = this.getName() + "'s Current Listings:\n";
+		for (Property listing : listings) {
+			ret += listing.toString() + "\n---------------------------------------------------------\n";
+		}
+		return ret;
 	}
 
 	public String getNameOfAgency() {
 		return nameOfAgency;
 	}
-	
-	
+
 }

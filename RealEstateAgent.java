@@ -11,8 +11,19 @@ public class RealEstateAgent extends User {
 		this.listings = listings;
 	}
 	
-	public void listProperty (Property property) {
+	/**
+	 * Adds a property to list. The property must be unique.
+	 * @param property Property to list.
+	 * @return Returns true of successful. Return false if the property already exists in listings.
+	 */
+	public boolean listProperty (Property property) {
+		for (Property listing : listings) {
+			if (listing.equals(property)) {
+				return false;
+			}
+		}
 		listings.add(property);
+		return true;
 	}
 	
 	public ArrayList<Property> getListings() {
@@ -22,7 +33,7 @@ public class RealEstateAgent extends User {
 	public String showListings() {
 		String ret = this.getName() + "'s Current Listings:\n";
 		for (Property listing : listings) {
-			ret += listing.toString() + "\n---------------------------------------------------------\n";
+			ret += listing.toString() + "\n====================================================================\n";
 		}
 		return ret;
 	}

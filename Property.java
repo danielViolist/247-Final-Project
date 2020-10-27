@@ -37,6 +37,29 @@ public class Property {
 		lease = null;
 		this.isLeased = false;
 	}
+	
+	public String toString() {
+		String ret = "Seller: " + seller
+				   + "\n\tAddress: " + address + city + ", " + state + zipCode
+				   + "\n\tDescription: " + description
+				   + "\n\tCondition: " + condition
+				   + "\n\tNumber of rooms: " + roomNumber
+				   + "\n\tAmenities:\n";
+		for (String amenity : amenities) {
+			ret += "\t\t-" + amenity;
+		}
+		ret += "\n\tPrice: $" + price
+		     + "\n\tProperty Type: " + propertyType
+		     + "\n\tCurrently Leased: ";
+		if (isLeased) {
+			ret += "Yes";
+		}
+		else { 
+			ret += "No";
+		}
+		return ret;
+	}
+	
 // =========================================================================================================================
 	public ArrayList<PaymentType> getAcceptedPayments() {
 		return acceptedPayments;

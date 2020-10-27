@@ -51,8 +51,19 @@ public class Renter extends User {
 		return true;
 	}
 
-	public void removeFavorite(Property property) {
-		favorites.remove(property);
+	/**
+	 * Removes a property from favorites.
+	 * @param property Property to remove
+	 * @return Returns true if successful; false otherwise.
+	 */
+	public boolean removeFavorite(Property property) {
+		for (Property favorite : favorites) {
+			if (favorite.equals(property)) {
+				favorites.remove(property);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void makeSeller() {

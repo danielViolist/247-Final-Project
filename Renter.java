@@ -51,4 +51,11 @@ public class Renter extends User {
 		this.isSeller = true;
 	}
 
+	public Seller getSeller() {
+		if (isSeller) {
+			return seller;
+		}
+		return null;
+	}
+	
 }

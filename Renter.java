@@ -68,6 +68,7 @@ public class Renter extends User {
 
 	public void makeSeller() {
 		this.isSeller = true;
+		seller = new Seller(this);
 	}
 
 	public Seller getSeller() {

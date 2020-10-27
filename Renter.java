@@ -7,23 +7,20 @@ public class Renter extends User {
 	private boolean isSeller;
 	private Seller seller;
 
-	public Renter(String username, String password, String email, int userID, String phoneNumber, String name,
-			String bio, String uscID) {
+	public Renter(String username, String password, String email, int userID, String phoneNumber, String name, String bio, String uscID) {
 		super(username, password, email, userID, phoneNumber, name, bio);
 		this.uscID = uscID;
 		favorites = new ArrayList<Property>();
 		this.isSeller = false;
-		// Renter (Regular)
+		seller = null;
 	}
 	
-	public Renter(String username, String password, String email, int userID, String phoneNumber, String name,
-			String bio, String uscID, boolean isSeller, Seller seller) {
+	public Renter(String username, String password, String email, int userID, String phoneNumber, String name, String bio, String uscID, boolean isSeller, Seller seller) {
 		super(username, password, email, userID, phoneNumber, name, bio);
 		this.uscID = uscID;
 		favorites = new ArrayList<Property>();
 		this.isSeller = isSeller;
 		this.seller = seller;
-		//Renter Seller
 	}
 	
 

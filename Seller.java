@@ -17,6 +17,14 @@ public class Seller extends User {
 		return properties;
 	}
 	
+	public String showProperties() {
+		String ret = this.getName() + "'s Properties:\n";
+		for (Property property : properties) {
+			ret += property.toString() + "\n====================================================================\n\n";
+		}
+		return ret;
+	}
+	
 	public boolean equals(Seller seller) {
 		return this.getName().equals(seller.getName());
 	}

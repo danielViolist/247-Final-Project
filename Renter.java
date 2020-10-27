@@ -39,8 +39,19 @@ public class Renter extends User {
 		return favorites;
 	}
 
-	public void addFavorite(Property property) {
+	/**
+	 * Adds a property to the user's favorites. The property must be unique.
+	 * @param property The property to add to favorites.
+	 * @return Returns true if successful; false otherwise.
+	 */
+	public boolean addFavorite(Property property) {
+		for (Property favorite : favorites) {
+			if (favorite.equals(property)) {
+				return false;
+			}
+		}
 		favorites.add(property);
+		return true;
 	}
 
 	public void removeFavorite(Property property) {
@@ -57,5 +68,7 @@ public class Renter extends User {
 		}
 		return null;
 	}
+	
+	
 	
 }

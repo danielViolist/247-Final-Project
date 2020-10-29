@@ -8,9 +8,8 @@ import org.json.simple.JSONObject;
 public class DataWriter extends JSONConstants {
 	
 	@SuppressWarnings("unchecked")
-	public static void writeRenter(Renter r) throws IOException {
+	public static void writeRenter(Renter r) {
 		if(DataReader.userExists(r.getUserID())) {
-			//Update information, don't create a new JSON thing.
 			JSONArray users = DataReader.getUsersJSON();
 			for(int i = 0; i < users.size(); i++) {
 				JSONObject someUser = (JSONObject)users.get(i);
@@ -44,14 +43,14 @@ public class DataWriter extends JSONConstants {
 							properties.add(p.getID());
 						}
 					}
-					try (FileWriter file = new FileWriter(USERS_FILE, true)) {
-						file.write(someUser.toJSONString());
-						file.flush();
-					} catch(IOException e) {
-						e.printStackTrace();
-					}
-					return;
 				}
+			}
+			try (FileWriter file = new FileWriter(USERS_FILE)) {
+				file.write(users.toJSONString());
+				file.flush();
+				file.close();
+			} catch(IOException e) {
+				e.printStackTrace();
 			}
 		}
 		JSONObject renter = new JSONObject();
@@ -87,6 +86,7 @@ public class DataWriter extends JSONConstants {
 		try (FileWriter file = new FileWriter(USERS_FILE, true)) {
 			file.write(renter.toJSONString());
 			file.flush();
+			file.close();
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -95,9 +95,37 @@ public class DataWriter extends JSONConstants {
 	@SuppressWarnings("unchecked")
 	public static void writeSeller(Seller s) {
 		if(DataReader.userExists(s.getUserID())) {
-			//Update information, don't create a new JSON thing.
-			
-			return;
+			JSONArray users = DataReader.getUsersJSON();
+			for(int i = 0; i < users.size(); i++) {
+				JSONObject someUser = (JSONObject)users.get(i);
+				if(Integer.parseInt(someUser.get("id").toString()) == s.getUserID()) {
+					someUser.replace(USERS_PASSWORD, s.getPassword());
+					someUser.replace(USERS_EMAIL, s.getEmail());
+					someUser.replace(USERS_PHONE, s.getPhoneNumber());
+					someUser.replace(USERS_NAME, s.getName());
+					someUser.replace(USERS_BIO, s.getBio());
+					someUser.remove(USERS_CONTACTS);
+					JSONArray contacts = new JSONArray();
+					ArrayList<String> renterContacts = s.getContactInfo();
+					for(String cont : renterContacts) {
+						contacts.add(cont);
+					}
+					someUser.replace(USERS_CONTACTS, contacts);
+					someUser.remove(USERS_PROPERTIES);
+					JSONArray properties = new JSONArray();
+					ArrayList<Property> sellerProperties = s.getProperties();
+					for(Property p : sellerProperties) {
+						properties.add(p.getID());
+					}
+				}
+			}
+			try (FileWriter file = new FileWriter(USERS_FILE)) {
+				file.write(users.toJSONString());
+				file.flush();
+				file.close();
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
 		}
 		JSONObject seller = new JSONObject();
 		seller.put(ID, s.getUserID());
@@ -123,6 +151,7 @@ public class DataWriter extends JSONConstants {
 		try (FileWriter file = new FileWriter(USERS_FILE, true)) {
 			file.write(seller.toJSONString());
 			file.flush();
+			file.close();
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -132,8 +161,38 @@ public class DataWriter extends JSONConstants {
 	public static void writeRE(RealEstateAgent re) {
 		if(DataReader.userExists(re.getUserID())) {
 			//Update information, don't create a new JSON thing.
-			
-			return;
+			JSONArray users = DataReader.getUsersJSON();
+			for(int i = 0; i < users.size(); i++) {
+				JSONObject someUser = (JSONObject)users.get(i);
+				if(Integer.parseInt(someUser.get("id").toString()) == re.getUserID()) {
+					someUser.replace(USERS_PASSWORD, re.getPassword());
+					someUser.replace(USERS_EMAIL, re.getEmail());
+					someUser.replace(USERS_PHONE, re.getPhoneNumber());
+					someUser.replace(USERS_NAME, re.getName());
+					someUser.replace(USERS_BIO, re.getBio());
+					someUser.remove(USERS_CONTACTS);
+					JSONArray contacts = new JSONArray();
+					ArrayList<String> renterContacts = re.getContactInfo();
+					for(String cont : renterContacts) {
+						contacts.add(cont);
+					}
+					someUser.replace(USERS_CONTACTS, contacts);
+					someUser.replace(USERS_AGENCY, re.getNameOfAgency());
+					someUser.remove(USERS_LISTINGS);
+					JSONArray listings = new JSONArray();
+					ArrayList<Property> reListings = re.getListings();
+					for(Property p : reListings) {
+						listings.add(p.getID());
+					}
+				}
+			}
+			try (FileWriter file = new FileWriter(USERS_FILE, true)) {
+				file.write(users.toJSONString());
+				file.flush();
+				file.close();
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
 		}
 		JSONObject agent = new JSONObject();
 		agent.put(ID, re.getUserID());
@@ -144,8 +203,8 @@ public class DataWriter extends JSONConstants {
 		agent.put(USERS_NAME, re.getName());
 		agent.put(USERS_BIO, re.getBio());
 		JSONArray contacts = new JSONArray();
-		ArrayList<String> sellerContacts = re.getContactInfo();
-		for(String cont : sellerContacts) {
+		ArrayList<String> reContacts = re.getContactInfo();
+		for(String cont : reContacts) {
 			contacts.add(cont);
 		}
 		agent.put(USERS_CONTACTS, contacts);
@@ -160,6 +219,7 @@ public class DataWriter extends JSONConstants {
 		try (FileWriter file = new FileWriter(USERS_FILE, true)) {
 			file.write(agent.toJSONString());
 			file.flush();
+			file.close();
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -230,6 +290,7 @@ public class DataWriter extends JSONConstants {
 		try (FileWriter file = new FileWriter(REVIEWS_FILE, true)) {
 			file.write(review.toJSONString());
 			file.flush();
+			file.close();
 		} catch(IOException e) {
 			e.printStackTrace();
 		}

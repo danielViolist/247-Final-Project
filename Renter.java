@@ -38,6 +38,7 @@ public class Renter extends User {
 
 	/**
 	 * Adds a property to the user's favorites. The property must be unique.
+	 * The property in favorites is then updated in the DB.
 	 * @param property The property to add to favorites.
 	 * @return Returns true if successful; false otherwise.
 	 */
@@ -48,11 +49,13 @@ public class Renter extends User {
 			}
 		}
 		favorites.add(property);
+		DataWriter.writeRenter(this);
 		return true;
 	}
 
 	/**
 	 * Removes a property from favorites.
+	 * This is then updated in the DB.
 	 * @param property Property to remove
 	 * @return Returns true if successful; false otherwise.
 	 */
@@ -60,6 +63,7 @@ public class Renter extends User {
 		for (Property favorite : favorites) {
 			if (favorite.equals(property)) {
 				favorites.remove(property);
+				DataWriter.writeRenter(this);
 				return true;
 			}
 		}
@@ -67,8 +71,11 @@ public class Renter extends User {
 	}
 
 	public void makeSeller() {
-		this.isSeller = true;
-		seller = new Seller(this);
+		if (!isSeller) {
+			this.isSeller = true;
+			seller = new Seller(this);
+			DataWriter.writeRenter(this);
+		}
 	}
 
 	public Seller getSeller() {

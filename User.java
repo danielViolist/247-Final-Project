@@ -55,11 +55,6 @@ public abstract class User {
 		return contactInfo;
 	}
 
-	public void setUsername(String username) {
-		//TODO: Verify that the username has not already been taken
-		this.username = username;
-	}
-
 	public boolean setPassword(String password) {
 		if (password.length() >= 8) {
 			this.password = password;

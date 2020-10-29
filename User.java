@@ -74,11 +74,6 @@ public abstract class User {
 		this.email = email;
 	}
 
-	public void setUserID(int userID) {
-		//TODO: Verify that the ID has not already been used using database
-		this.userID = userID;
-	}
-
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}

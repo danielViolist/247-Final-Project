@@ -17,7 +17,6 @@ public class Property {
 	private int propertyID;
 	private String name;
 	private boolean canSubLease;
-	private Lease lease;
 	private ArrayList<PaymentType> acceptedPayments;
 	private boolean isLeased;
 	
@@ -34,7 +33,6 @@ public class Property {
 		this.amenities = amenities;
 		this.price = price;
 		this.propertyType = propertyType;
-		lease = null;
 		this.isLeased = false;
 	}
 
@@ -181,20 +179,7 @@ public class Property {
 		this.propertyType = propertyType;
 	}
 	
-	public String getLease() {
-		return lease.toString() + "\nLessor: " + seller.getName();
-	}
-	
 // ====================================================================================================================
-	public boolean createLease(Renter renter, Date startDate, Date endDate) {
-		if (!isLeased) {
-			lease = new Lease(renter, startDate, endDate);
-			isLeased = true;
-			return true;
-		} 
-		return false;
-	}
-	
 	public boolean removeReveiw(Renter renter) {
 		for (Review review: reviews) {
 			if (review.getAuthor().equalsIgnoreCase(renter.getName())) {

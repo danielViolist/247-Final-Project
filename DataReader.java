@@ -8,6 +8,42 @@ import org.json.simple.parser.JSONParser;
 
 public class DataReader extends JSONConstants {
 	
+	public static JSONArray getUsersJSON() {
+		try {
+			FileReader read = new FileReader(USERS_FILE);
+			JSONArray ret = (JSONArray)new JSONParser().parse(read);
+			read.close();
+			return ret;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static JSONArray getPropertiesJSON() {
+		try {
+			FileReader read = new FileReader(PROPERTIES_FILE);
+			JSONArray ret = (JSONArray)new JSONParser().parse(read);
+			read.close();
+			return ret;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static JSONArray getReviewsJSON() {
+		try {
+			FileReader read = new FileReader(REVIEWS_FILE);
+			JSONArray ret = (JSONArray)new JSONParser().parse(read);
+			read.close();
+			return ret;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static ArrayList<User> loadUsers() {
 		ArrayList<User> users = new ArrayList<User>();
@@ -15,7 +51,6 @@ public class DataReader extends JSONConstants {
 		try {
 			FileReader read = new FileReader(USERS_FILE);
 			JSONArray usersJSON = (JSONArray)new JSONParser().parse(read);
-			
 			for(int i = 0; i < usersJSON.size(); i++) {
 				JSONObject userJSON = (JSONObject)usersJSON.get(i);
 				int id = Integer.parseInt((String)userJSON.get(ID));

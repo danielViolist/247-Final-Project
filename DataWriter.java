@@ -37,7 +37,6 @@ public class DataWriter extends JSONConstants {
 			favorites.add(prop.getID());
 		}
 		renter.put(USERS_FAVORITES, favorites);
-		//Write to file
 		try (FileWriter file = new FileWriter(USERS_FILE)) {
 			file.write(renter.toJSONString());
 			file.flush();
@@ -82,7 +81,6 @@ public class DataWriter extends JSONConstants {
 			properties.add(prop.getID());
 		}
 		renterSeller.put(USERS_PROPERTIES, properties);
-		//Write to file
 		try (FileWriter file = new FileWriter(USERS_FILE)) {
 			file.write(renterSeller.toJSONString());
 			file.flush();
@@ -120,7 +118,6 @@ public class DataWriter extends JSONConstants {
 			properties.add(prop.getID());
 		}
 		seller.put(USERS_PROPERTIES, properties);
-		//Write to file
 		try (FileWriter file = new FileWriter(USERS_FILE)) {
 			file.write(seller.toJSONString());
 			file.flush();
@@ -159,7 +156,6 @@ public class DataWriter extends JSONConstants {
 			listings.add(prop.getID());
 		}
 		agent.put(USERS_LISTINGS, listings);
-		//Write to file
 		try (FileWriter file = new FileWriter(USERS_FILE)) {
 			file.write(agent.toJSONString());
 			file.flush();
@@ -231,11 +227,9 @@ public class DataWriter extends JSONConstants {
 		
 		JSONObject review = new JSONObject();
 		review.put(ID, r.getID());
-		//REVIEW.getAuthor() should return a User.
 		review.put(REVIEWS_AUTHOR, r.getAuthorID());
 		review.put(REVIEWS_RATING, r.getRating());
 		review.put(REVIEWS_DESCRIPTION, r.getDescription());
-		//Write to file
 		try (FileWriter file = new FileWriter(REVIEWS_FILE)) {
 			file.write(review.toJSONString());
 			file.flush();

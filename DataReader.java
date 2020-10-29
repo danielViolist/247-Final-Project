@@ -59,7 +59,6 @@ public class DataReader extends JSONConstants {
 						listings.add(iterat.next());
 					}
 				}
-				//Create the dudes and populate the array
 				if(type.equals("R")) {
 					Renter r = new Renter(username, password, email, id, phone, name, bio, uscid);
 					for(int j = 0; j < favorites.size(); j++) {
@@ -68,53 +67,32 @@ public class DataReader extends JSONConstants {
 					}
 					users.add(r);
 				} else if(type.equals("E")) {
-					//Create all the freaking properties from the property id's
 					ArrayList<Property> listingsProperty = new ArrayList<Property>();
-					for(int k = 0; k < listings.size(); k++) {
-						int listID = Integer.parseInt(listings.get(k));
+					for(int j = 0; j < listings.size(); j++) {
+						int listID = Integer.parseInt(listings.get(j));
 						listingsProperty.add(getProperty(listID));
 					}
 					users.add(new RealEstateAgent(username, password, email, id, phone, name, bio, agency, listingsProperty));
 				} else if(type.equals("S")) {
 					ArrayList<Property> propertiesProperty = new ArrayList<Property>();
 					for(int j = 0; j < properties.size(); j++) {
-						//TODO: Call the property parser and get the property with the corresponding property id
+						int propID = Integer.parseInt(properties.get(j));
+						propertiesProperty.add(getProperty(propID));
 					}
 					users.add(new Seller(username, password, email, id, phone, name, bio, propertiesProperty));
 				} else if(type.equals("RS")) {
 					ArrayList<Property> propertiesProperty = new ArrayList<Property>();
 					for(int j = 0; j < properties.size(); j++) {
-						//TODO: Call the property parser and get the property with the corresponding property id
+						int propID = Integer.parseInt(properties.get(j));
+						propertiesProperty.add(getProperty(propID));
 					}
-					users.add(new Renter(username, password, email, id, phone, name, bio, uscid, true, new Seller(username, password, email, id, phone, name, bio, propertiesProperty)));
-				}
-				
-				/* 
-				    Create this constructor in Renter for this function to use (and another one all the way up to just USCID
-				  	public Renter(String username, String password, String email, int userID, String phoneNumber, String name, String bio, String uscID, boolean isSeller, Seller seller) {
-						super(username, password, email, userID, phoneNumber, name, bio);
-						this.uscID = uscID;
-						favorites = new ArrayList<Property>();
-						this.isSeller = isSeller;
-					this.seller = seller;
+					Renter rs = new Renter(username, password, email, id, phone, name, bio, uscid, true, new Seller(username, password, email, id, phone, name, bio, propertiesProperty));
+					for(int j = 0; j < favorites.size(); j++) {
+						int favID = Integer.parseInt(favorites.get(j));
+						rs.addFavorite(getProperty(favID));
 					}
-				 
-				
-				    Also create this constructor pls and thx
-				  	public RealEstateAgent(String username, String password, String email, int userID, String phoneNumber, String name,	String bio, String nameOfAgency, ArrayList<Property> listings) {
-						super(username, password, email, userID, phoneNumber, name, bio);
-						this.nameOfAgency = nameOfAgency;
-						this.listings = listings;
-					}
-				 
-				
-				    This constructor, too
-				  	public Seller(String username, String password, String email, int userID, String phoneNumber, String name, String bio, ArrayList<Property> properties) {
-						super(username, password, email, userID, phoneNumber, name, bio);
-						this.properties = properties;
-					}
-				 */
-				
+					users.add(rs);
+				}				
 			}
 			read.close();
 			return users;
@@ -158,8 +136,8 @@ public class DataReader extends JSONConstants {
 					reviews.add(it.next());
 				}
 				String type = (String)propJSON.get(PROPERTIES_TYPE);
-				boolean subLease = (Integer.parseInt((String)propJSON.get(PROPERTIES_SUB)) == 1);
-				String lease = (String)propJSON.get(PROPERTIES_LEASE);
+				//boolean subLease = (Integer.parseInt((String)propJSON.get(PROPERTIES_SUB)) == 1);
+				//String lease = (String)propJSON.get(PROPERTIES_LEASE);
 				ArrayList<String> payments = new ArrayList<String>();
 				JSONArray payJSON = (JSONArray)propJSON.get(PROPERTIES_REVIEWS);
 				Iterator<String> itera = payJSON.iterator();
@@ -172,7 +150,10 @@ public class DataReader extends JSONConstants {
 				} else if(type.equals("condo")) {
 					propType = PropertyType.CONDO;
 				}
-				properties.add(new Property((Seller)getUser(owner), address, zip, city, state, description, condition, room, amenities, price, propType));
+				Property p = new Property((Seller)getUser(owner), address, zip, city, state, description, condition, room, amenities, price, propType);
+				p.setPropertyID(id);
+				p.setName(name);
+				properties.add(p);
 			}
 			read.close();
 			return properties;
@@ -193,7 +174,9 @@ public class DataReader extends JSONConstants {
 				int author = Integer.parseInt((String)revJSON.get(REVIEWS_AUTHOR));
 				double rating = Double.parseDouble((String)revJSON.get(REVIEWS_RATING));
 				String description = (String)revJSON.get(REVIEWS_DESCRIPTION);
-				reviews.add(new Review((Renter)getUser(author), rating, description));
+				Review rev = new Review((Renter)getUser(author), rating, description);
+				rev.setID(id);
+				reviews.add(rev);
 			}
 			read.close();
 			return reviews;
@@ -247,8 +230,14 @@ public class DataReader extends JSONConstants {
 	
 	public static Property getProperty(int id) {
 		if(propertyExists(id)) {
-			
+			ArrayList<Property> props = loadProperties();
+			for(Property p : props) {
+				if(p.getID() == id) {
+					return p;
+				}
+			}
 		}
+		return null;
 	}
 	
 	public static Review getReview(int id) {

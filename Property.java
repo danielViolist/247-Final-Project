@@ -184,6 +184,7 @@ public class Property {
 		for (Review review: reviews) {
 			if (review.getAuthor().equalsIgnoreCase(renter.getName())) {
 				reviews.remove(review);
+				PropertyAPI.createProperty(this);
 				return true;
 			}
 		}
@@ -197,6 +198,7 @@ public class Property {
 			}
 		}
 		reviews.add(review);
+		PropertyAPI.createProperty(this);
 		return true;
 	}
 	
@@ -207,6 +209,7 @@ public class Property {
 			}
 		}
 		acceptedPayments.add(type);
+		PropertyAPI.createProperty(this);
 		return true;
 	}
 	
@@ -217,6 +220,7 @@ public class Property {
 			}
 		}
 		amenities.add(amenity);
+		PropertyAPI.createProperty(this);
 		return true;
 	}
 

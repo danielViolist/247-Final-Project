@@ -17,6 +17,7 @@ public class UserAPI {
 	 * @return Returns the user if successful; null otherwise. 
 	 */
 	public static User userLogin(String username, String password) {
+		check();
 		for (User user : users) {
 			if (user.getUsername().equalsIgnoreCase(username) && user.getPassword().equals(password)) {
 				loggedInUsers.add(user);
@@ -38,6 +39,7 @@ public class UserAPI {
 	 * @return ArrayList of logged-in users.
 	 */
 	public static ArrayList<User> getUsers() {
+		check();
 		return loggedInUsers;
 	}
 	
@@ -47,6 +49,7 @@ public class UserAPI {
 	 * @return True if successful. False if the user was not found to be logged in.
  	 */
 	public static boolean logoutUser(User user) {
+		check();
 		for (User person : loggedInUsers) {
 			if (person.equals(user)) {
 				loggedInUsers.remove(person);
@@ -62,6 +65,7 @@ public class UserAPI {
 	 * @return True if the user is currently logged in; false otherwise.
 	 */
 	public static boolean isLoggedIn(User user) {
+		check();
 		for (User person : users) {
 			if (person.equals(user)) 
 				return true;
@@ -70,6 +74,7 @@ public class UserAPI {
 	}
 	
 	public static int getNewUserID() {
+		check();
 		Random r = new Random();
 		int rand = r.nextInt();
 		while (DataReader.userExists(rand)) {
@@ -83,7 +88,9 @@ public class UserAPI {
 	 * @param renter Renter to add
 	 */
 	public static void createRenter(Renter renter) {	
+		check();
 		DataWriter.writeRenter(renter);
+		users.add(renter);
 	}
 	
 	/**
@@ -91,7 +98,9 @@ public class UserAPI {
 	 * @param seller Seller to add
 	 */
 	public static void createSeller(Seller seller) {
+		check();
 		DataWriter.writeSeller(seller);
+		users.add(seller);
 	}
 	
 	/**
@@ -99,6 +108,16 @@ public class UserAPI {
 	 * @param RealEstateAgent to add
 	 */
 	public static void createRE(RealEstateAgent re) {
+		check();
 		DataWriter.writeRE(re);
+		users.add(re);
+	}
+	
+	private static void check() {
+		if (users == null) 
+			users = DataReader.loadUsers();
+		if (loggedInUsers == null) 
+			loggedInUsers = new ArrayList<User>();
 	}
 }
+

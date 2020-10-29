@@ -8,18 +8,57 @@ import org.json.simple.JSONObject;
 public class DataWriter extends JSONConstants {
 	
 	@SuppressWarnings("unchecked")
-	public static void writeRenter(Renter r) {
+	public static void writeRenter(Renter r) throws IOException {
 		if(DataReader.userExists(r.getUserID())) {
 			//Update information, don't create a new JSON thing.
-			
-			return;
+			JSONArray users = DataReader.getUsersJSON();
+			for(int i = 0; i < users.size(); i++) {
+				JSONObject someUser = (JSONObject)users.get(i);
+				if(Integer.parseInt(someUser.get("id").toString()) == r.getUserID()) {
+					someUser.replace(USERS_PASSWORD, r.getPassword());
+					someUser.replace(USERS_EMAIL, r.getEmail());
+					someUser.replace(USERS_PHONE, r.getPhoneNumber());
+					someUser.replace(USERS_NAME, r.getName());
+					someUser.replace(USERS_BIO, r.getBio());
+					someUser.remove(USERS_CONTACTS);
+					JSONArray contacts = new JSONArray();
+					ArrayList<String> renterContacts = r.getContactInfo();
+					for(String cont : renterContacts) {
+						contacts.add(cont);
+					}
+					someUser.replace(USERS_CONTACTS, contacts);
+					someUser.remove(USERS_FAVORITES);
+					JSONArray favorites = new JSONArray();
+					ArrayList<Property> renterFavorites = r.getFavorites();
+					for(Property p : renterFavorites) {
+						favorites.add(p.getID());
+					}
+					someUser.put(USERS_FAVORITES, favorites);
+					if(r.getSeller() != null) {
+						someUser.replace(USERS_TYPE, "RS");
+						someUser.remove(USERS_PROPERTIES);
+						Seller s = r.getSeller();
+						JSONArray properties = new JSONArray();
+						ArrayList<Property> sellerProperties = s.getProperties();
+						for(Property p : sellerProperties) {
+							properties.add(p.getID());
+						}
+					}
+					try (FileWriter file = new FileWriter(USERS_FILE, true)) {
+						file.write(someUser.toJSONString());
+						file.flush();
+					} catch(IOException e) {
+						e.printStackTrace();
+					}
+					return;
+				}
+			}
 		}
-
 		JSONObject renter = new JSONObject();
+		renter.put(ID, r.getUserID());
 		renter.put(USERS_USERNAME, r.getUsername());
 		renter.put(USERS_PASSWORD, r.getPassword());
 		renter.put(USERS_EMAIL,  r.getEmail());
-		renter.put(ID, r.getUserID());
 		renter.put(USERS_PHONE, r.getPhoneNumber());
 		renter.put(USERS_NAME, r.getName());
 		renter.put(USERS_BIO, r.getBio());
@@ -37,52 +76,16 @@ public class DataWriter extends JSONConstants {
 			favorites.add(prop.getID());
 		}
 		renter.put(USERS_FAVORITES, favorites);
-		try (FileWriter file = new FileWriter(USERS_FILE)) {
+		if(r.getSeller() != null) {
+			JSONArray properties = new JSONArray();
+			ArrayList<Property> renterSellerProperties = r.getSeller().getProperties();
+			for(Property prop : renterSellerProperties) {
+				properties.add(prop.getID());
+			}
+			renter.put(USERS_PROPERTIES, properties);
+		}
+		try (FileWriter file = new FileWriter(USERS_FILE, true)) {
 			file.write(renter.toJSONString());
-			file.flush();
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static void writeRS(Renter rs) {
-		if(DataReader.userExists(rs.getUserID())) {
-			//Update information, don't create a new JSON thing.
-			
-			return;
-		}
-
-		JSONObject renterSeller = new JSONObject();
-		renterSeller.put(USERS_USERNAME, rs.getUsername());
-		renterSeller.put(USERS_PASSWORD, rs.getPassword());
-		renterSeller.put(USERS_EMAIL,  rs.getEmail());
-		renterSeller.put(ID, rs.getUserID());
-		renterSeller.put(USERS_PHONE, rs.getPhoneNumber());
-		renterSeller.put(USERS_NAME, rs.getName());
-		renterSeller.put(USERS_BIO, rs.getBio());
-		JSONArray contacts = new JSONArray();
-		ArrayList<String> renterSellerContacts = rs.getContactInfo();
-		for(String cont : renterSellerContacts) {
-			contacts.add(cont);
-		}
-		renterSeller.put(USERS_CONTACTS, contacts);
-		renterSeller.put(USERS_TYPE, "RS");
-		renterSeller.put(USERS_USCID, rs.getUscID());
-		JSONArray favorites = new JSONArray();
-		ArrayList<Property> renterSellerFavorites = rs.getFavorites();
-		for(Property prop : renterSellerFavorites) {
-			favorites.add(prop.getID());
-		}
-		renterSeller.put(USERS_FAVORITES, favorites);
-		JSONArray properties = new JSONArray();
-		ArrayList<Property> renterSellerProperties = rs.getSeller().getProperties();
-		for(Property prop : renterSellerProperties) {
-			properties.add(prop.getID());
-		}
-		renterSeller.put(USERS_PROPERTIES, properties);
-		try (FileWriter file = new FileWriter(USERS_FILE)) {
-			file.write(renterSeller.toJSONString());
 			file.flush();
 		} catch(IOException e) {
 			e.printStackTrace();
@@ -96,12 +99,11 @@ public class DataWriter extends JSONConstants {
 			
 			return;
 		}
-		
 		JSONObject seller = new JSONObject();
+		seller.put(ID, s.getUserID());
 		seller.put(USERS_USERNAME, s.getUsername());
 		seller.put(USERS_PASSWORD, s.getPassword());
 		seller.put(USERS_EMAIL,  s.getEmail());
-		seller.put(ID, s.getUserID());
 		seller.put(USERS_PHONE, s.getPhoneNumber());
 		seller.put(USERS_NAME, s.getName());
 		seller.put(USERS_BIO, s.getBio());
@@ -118,7 +120,7 @@ public class DataWriter extends JSONConstants {
 			properties.add(prop.getID());
 		}
 		seller.put(USERS_PROPERTIES, properties);
-		try (FileWriter file = new FileWriter(USERS_FILE)) {
+		try (FileWriter file = new FileWriter(USERS_FILE, true)) {
 			file.write(seller.toJSONString());
 			file.flush();
 		} catch(IOException e) {
@@ -133,12 +135,11 @@ public class DataWriter extends JSONConstants {
 			
 			return;
 		}
-		
 		JSONObject agent = new JSONObject();
+		agent.put(ID, re.getUserID());
 		agent.put(USERS_USERNAME, re.getUsername());
 		agent.put(USERS_PASSWORD, re.getPassword());
 		agent.put(USERS_EMAIL,  re.getEmail());
-		agent.put(ID, re.getUserID());
 		agent.put(USERS_PHONE, re.getPhoneNumber());
 		agent.put(USERS_NAME, re.getName());
 		agent.put(USERS_BIO, re.getBio());
@@ -156,7 +157,7 @@ public class DataWriter extends JSONConstants {
 			listings.add(prop.getID());
 		}
 		agent.put(USERS_LISTINGS, listings);
-		try (FileWriter file = new FileWriter(USERS_FILE)) {
+		try (FileWriter file = new FileWriter(USERS_FILE, true)) {
 			file.write(agent.toJSONString());
 			file.flush();
 		} catch(IOException e) {
@@ -171,7 +172,6 @@ public class DataWriter extends JSONConstants {
 			
 			return;
 		}
-
 		JSONObject property = new JSONObject();
 		property.put(ID, p.getID());
 		property.put(PROPERTIES_NAME, p.getName());
@@ -208,8 +208,7 @@ public class DataWriter extends JSONConstants {
 			payments.add(pay);
 		}
 		property.put(PROPERTIES_PAYMENTS, payments);
-		//Write to file
-		try (FileWriter file = new FileWriter(PROPERTIES_FILE)) {
+		try (FileWriter file = new FileWriter(PROPERTIES_FILE, true)) {
 			file.write(property.toJSONString());
 			file.flush();
 		} catch(IOException e) {
@@ -220,17 +219,15 @@ public class DataWriter extends JSONConstants {
 	@SuppressWarnings("unchecked")
 	public static void writeReview(Review r) {
 		if(DataReader.reviewExists(r.getID())) {
-			JSONObject review = new JSONObject();
 			
 			return;
 		}
-		
 		JSONObject review = new JSONObject();
 		review.put(ID, r.getID());
 		review.put(REVIEWS_AUTHOR, r.getAuthorID());
 		review.put(REVIEWS_RATING, r.getRating());
 		review.put(REVIEWS_DESCRIPTION, r.getDescription());
-		try (FileWriter file = new FileWriter(REVIEWS_FILE)) {
+		try (FileWriter file = new FileWriter(REVIEWS_FILE, true)) {
 			file.write(review.toJSONString());
 			file.flush();
 		} catch(IOException e) {

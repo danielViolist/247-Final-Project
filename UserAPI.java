@@ -77,4 +77,28 @@ public class UserAPI {
 		}
 		return rand;
 	}
+	
+	/**
+	 * This adds a Renter user to the DB.
+	 * @param renter Renter to add
+	 */
+	public void createUser(Renter renter) {
+		DataWriter.writeRenter(renter);
+	}
+	
+	/**
+	 * This adds a Seller user to the DB.
+	 * @param seller Seller to add
+	 */
+	public void createSeller(Seller seller) {
+		DataWriter.writeSeller(seller);
+	}
+	
+	/**
+	 * This adds a RealEstateAgent user to the DB.
+	 * @param RealEstateAgent to add
+	 */
+	public void createRE(RealEstateAgent re) {
+		DataWriter.writeRE(re);
+	}
 }

@@ -52,6 +52,7 @@ public class DataWriter extends JSONConstants {
 			} catch(IOException e) {
 				e.printStackTrace();
 			}
+			return;
 		}
 		JSONObject renter = new JSONObject();
 		renter.put(ID, r.getUserID());
@@ -126,6 +127,7 @@ public class DataWriter extends JSONConstants {
 			} catch(IOException e) {
 				e.printStackTrace();
 			}
+			return;
 		}
 		JSONObject seller = new JSONObject();
 		seller.put(ID, s.getUserID());
@@ -193,6 +195,7 @@ public class DataWriter extends JSONConstants {
 			} catch(IOException e) {
 				e.printStackTrace();
 			}
+			return;
 		}
 		JSONObject agent = new JSONObject();
 		agent.put(ID, re.getUserID());
@@ -229,7 +232,47 @@ public class DataWriter extends JSONConstants {
 	public static void writeProperty(Property p) {
 		if(DataReader.propertyExists(p.getID())) {
 			//Update information, don't create a new JSON thing.
-			
+			JSONArray props = DataReader.getPropertiesJSON();
+			for(int i = 0; i < props.size(); i++) {
+				JSONObject someProp = (JSONObject)props.get(i);
+				if(Integer.parseInt(someProp.get("id").toString()) == p.getID()) {
+					someProp.replace(PROPERTIES_NAME, p.getName());
+					someProp.replace(PROPERTIES_DESCRIPTION, p.getDescription());
+					someProp.replace(PROPERTIES_CONDITION, p.getCondition());
+					someProp.replace(PROPERTIES_ROOM, p.getRoomNumber());
+					JSONArray amenities = new JSONArray();
+					ArrayList<String> propertyAmenities = p.getAmenities();
+					for(String amen : propertyAmenities) {
+						amenities.add(amen);
+					}
+					someProp.replace(PROPERTIES_AMENITIES, amenities);
+					someProp.replace(PROPERTIES_PRICE, p.getPrice());
+					JSONArray reviews = new JSONArray();
+					ArrayList<Review> propertyReviews = p.getReviews();
+					for(Review r : propertyReviews) {
+						reviews.add(r.getID());
+					}
+					someProp.replace(PROPERTIES_REVIEWS, reviews);
+					if(p.canSubLease()) {
+						someProp.replace(PROPERTIES_SUB, 1);
+					} else {
+						someProp.replace(PROPERTIES_SUB, 0);
+					}
+					JSONArray payments = new JSONArray();
+					ArrayList<PaymentType> propertyPayments = p.getAcceptedPayments();
+					for(PaymentType pay : propertyPayments) {
+						payments.add(pay);
+					}
+					someProp.replace(PROPERTIES_PAYMENTS, payments);
+				}
+			}
+			try (FileWriter file = new FileWriter(PROPERTIES_FILE)) {
+				file.write(props.toJSONString());
+				file.flush();
+				file.close();
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
 			return;
 		}
 		JSONObject property = new JSONObject();
@@ -279,7 +322,19 @@ public class DataWriter extends JSONConstants {
 	@SuppressWarnings("unchecked")
 	public static void writeReview(Review r) {
 		if(DataReader.reviewExists(r.getID())) {
-			
+			JSONArray revs = DataReader.getReviewsJSON();
+			for(int i = 0; i < revs.size(); i++) {
+				JSONObject someRev = (JSONObject)revs.get(i);
+				someRev.replace(REVIEWS_RATING, r.getRating());
+				someRev.replace(REVIEWS_DESCRIPTION, r.getDescription());
+			}
+			try (FileWriter file = new FileWriter(REVIEWS_FILE)) {
+				file.write(revs.toJSONString());
+				file.flush();
+				file.close();
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
 			return;
 		}
 		JSONObject review = new JSONObject();

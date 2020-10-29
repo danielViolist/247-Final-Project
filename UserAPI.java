@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class UserAPI {
 	private ArrayList<User> users;
@@ -18,7 +19,6 @@ public class UserAPI {
 	public User userLogin(String username, String password) {
 		for (User user : users) {
 			if (user.getUsername().equalsIgnoreCase(username) && user.getPassword().equals(password)) {
-				users.remove(user);
 				loggedInUsers.add(user);
 				if (user.getClass().getName().equalsIgnoreCase("renter")) 
 					return (Renter) user;
@@ -49,7 +49,6 @@ public class UserAPI {
 	public boolean logoutUser(User user) {
 		for (User person : loggedInUsers) {
 			if (person.equals(user)) {
-				users.add(person);
 				loggedInUsers.remove(person);
 				return true;
 			}
@@ -68,5 +67,14 @@ public class UserAPI {
 				return true;
 		}
 		return false;
+	}
+	
+	public int getNewUserID() {
+		Random r = new Random();
+		int rand = r.nextInt();
+		while (DataReader.userExists(rand)) {
+			rand = r.nextInt();
+		}
+		return rand;
 	}
 }

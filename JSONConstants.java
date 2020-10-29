@@ -17,6 +17,11 @@ public abstract class JSONConstants {
 	protected static final String USERS_AGENCY = "agency";
 	protected static final String USERS_LISTINGS = "listings";
 	protected static final String USERS_PROPERTIES = "properties";
+	protected static final String RENTER = "R";
+	protected static final String SELLER = "S";
+	protected static final String RENTER_SELLER = "RS";
+	protected static final String REAL_ESTATE = "RE";
+	
 	
 	protected static final String PROPERTIES_FILE = "src/properties.json";
 	protected static final String PROPERTIES_NAME = "name";

@@ -69,7 +69,7 @@ public class DataReader extends JSONConstants {
 				String type = (String)userJSON.get(USERS_TYPE);
 				String uscid = (String)userJSON.get(USERS_USCID);
 				ArrayList<String> favorites = new ArrayList<String>();
-				if(type.contains("R")) {
+				if(type.contains(RENTER)) {
 					JSONArray favoritesJSON = (JSONArray)userJSON.get(USERS_FAVORITES);
 					Iterator<String> iter = favoritesJSON.iterator();
 					while(iter.hasNext()) {
@@ -77,7 +77,7 @@ public class DataReader extends JSONConstants {
 					}
 				}
 				ArrayList<String> properties = new ArrayList<String>();
-				if(type.contains("S")) {
+				if(type.contains(SELLER)) {
 					JSONArray propertiesJSON = (JSONArray)userJSON.get(USERS_PROPERTIES);
 					Iterator<String> itera = propertiesJSON.iterator();
 					while(itera.hasNext()) {
@@ -86,7 +86,7 @@ public class DataReader extends JSONConstants {
 				}
 				String agency = "";
 				ArrayList<String> listings = new ArrayList<String>();
-				if(type.contains("E")) {
+				if(type.contains(REAL_ESTATE)) {
 					agency = (String)userJSON.get(USERS_AGENCY);
 					JSONArray listingsJSON = (JSONArray)userJSON.get(USERS_LISTINGS);
 					Iterator<String> iterat = listingsJSON.iterator();
@@ -94,28 +94,28 @@ public class DataReader extends JSONConstants {
 						listings.add(iterat.next());
 					}
 				}
-				if(type.equals("R")) {
+				if(type.equals(RENTER)) {
 					Renter r = new Renter(username, password, email, id, phone, name, bio, uscid);
 					for(int j = 0; j < favorites.size(); j++) {
 						int favID = Integer.parseInt(favorites.get(j));
 						r.addFavorite(getProperty(favID));
 					}
 					users.add(r);
-				} else if(type.equals("E")) {
+				} else if(type.equals(REAL_ESTATE)) {
 					ArrayList<Property> listingsProperty = new ArrayList<Property>();
 					for(int j = 0; j < listings.size(); j++) {
 						int listID = Integer.parseInt(listings.get(j));
 						listingsProperty.add(getProperty(listID));
 					}
 					users.add(new RealEstateAgent(username, password, email, id, phone, name, bio, agency, listingsProperty));
-				} else if(type.equals("S")) {
+				} else if(type.equals(SELLER)) {
 					ArrayList<Property> propertiesProperty = new ArrayList<Property>();
 					for(int j = 0; j < properties.size(); j++) {
 						int propID = Integer.parseInt(properties.get(j));
 						propertiesProperty.add(getProperty(propID));
 					}
 					users.add(new Seller(username, password, email, id, phone, name, bio, propertiesProperty));
-				} else if(type.equals("RS")) {
+				} else if(type.equals(RENTER_SELLER)) {
 					ArrayList<Property> propertiesProperty = new ArrayList<Property>();
 					for(int j = 0; j < properties.size(); j++) {
 						int propID = Integer.parseInt(properties.get(j));
@@ -171,7 +171,7 @@ public class DataReader extends JSONConstants {
 					reviews.add(it.next());
 				}
 				String type = (String)propJSON.get(PROPERTIES_TYPE);
-				//boolean subLease = (Integer.parseInt((String)propJSON.get(PROPERTIES_SUB)) == 1);
+				//boolean sub = (Integer.parseInt((String)propJSON.get(PROPERTIES_SUB)) == 1);
 				//String lease = (String)propJSON.get(PROPERTIES_LEASE);
 				ArrayList<String> payments = new ArrayList<String>();
 				JSONArray payJSON = (JSONArray)propJSON.get(PROPERTIES_REVIEWS);
@@ -286,8 +286,5 @@ public class DataReader extends JSONConstants {
 			}
 		}
 		return null;
-	}
-	
-	
-	
+	}	
 }

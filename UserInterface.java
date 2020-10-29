@@ -10,7 +10,6 @@ public class UserInterface {
 	}
 	
 	public void outputMenu(String menu) {
-		menus = new Menu();
 		if (menu.equals("login"))
 			System.out.println(menus.getLoginMenu());
 		else if (menu.equals("welcome"))
@@ -27,5 +26,7 @@ public class UserInterface {
 			System.out.println(menus.getAddPropertyMenu());
 		else if (menu.equals("loginSuccess"))
 			System.out.println(menus.getLoginSuccessMenu());
+		else if (menu.equals("createUser"))
+			System.out.println(menus.getCreateUserMenu());
 	}
 }

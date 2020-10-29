@@ -13,6 +13,7 @@ public class Menu {
 	private String topPropertiesMenu;
 	private String addPropertyMenu;
 	private String loginSuccessMenu;
+	private String createUserMenu;
 	
 	public Menu() {
 		setLoginMenu();
@@ -23,6 +24,7 @@ public class Menu {
 		setTopPropertiesMenu();
 		setAddPropertyMenu();
 		setLoginSuccessMenu();
+		setCreateUserMenu();
 	}
 	
 	private void setLoginMenu() {
@@ -33,8 +35,11 @@ public class Menu {
 		this.welcomeMenu = "\t\tWelcome to the UofSC Off-Campus Housing Finder!\n"
 				         + "Please select from the following:\n"
 				         + "\t1. Login\n"
-				         + "\t2. Continue as Guest\n"
-				         + "\t3. Exit";
+				         + "\t2. Create an account\n"
+				         + "\t3. Continue as Guest\n"
+				         + "\t4. Show most popular listings\n"
+				         + "\t5. Add a property listing\n"
+				         + "\t6. Exit";
 	}
 
 	private void setLeaveMenu() {
@@ -74,6 +79,18 @@ public class Menu {
 	private void setLoginSuccessMenu() {
 		this.loginSuccessMenu = "****** Welcome! ******\n You have successfully logged in.\n";
 	}
+	
+	private void setCreateUserMenu() {
+		this.createUserMenu = "To create an account, please enter the following information:\n"
+				+ "\t- Name"
+	            + "\t- Username"
+	            + "\t- Password"
+	            + "\t- Email"
+	            + "\t- Phone number"
+	            + "\t- Bio"
+	            + "\t- Contact information"
+	            + "\t- Type of account (Renter, Seller, Real Estate Agent)";
+	}
 
 	public String getLoginMenu() {
 		return loginMenu;
@@ -98,6 +115,9 @@ public class Menu {
 	}
 	public String getLoginSuccessMenu() {
 		return loginSuccessMenu;
+	}
+	public String getCreateUserMenu() {
+		return createUserMenu;
 	}
 	
 }

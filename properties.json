@@ -1,4 +1,4 @@
-{"properties":[
+"properties":[
 	{
 		"id": 1,
 		"name": "The Lofts",
@@ -34,4 +34,4 @@
 		"lease": "Lease information goes here. I'm not going to type this out right now because that's a lot of work lol.",
 		"payments": ["Credit", "Debit", "PayPal", "Cash", "Donuts"]
 	}
-]}
+]

@@ -102,5 +102,9 @@ public abstract class User {
 	public void giveReview(Property property, Review review) {
 		property.addReview(review);
 	}
+	
+	public boolean equals(User user) {
+		return user.getUsername().equals(this.getUsername());
+	}
 
 }

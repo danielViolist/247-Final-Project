@@ -8,6 +8,7 @@ import org.json.simple.parser.JSONParser;
 
 public class DataReader extends JSONConstants {
 	
+	@SuppressWarnings("unchecked")
 	public static ArrayList<User> loadUsers() {
 		ArrayList<User> users = new ArrayList<User>();
 		
@@ -60,12 +61,18 @@ public class DataReader extends JSONConstants {
 				}
 				//Create the dudes and populate the array
 				if(type.equals("R")) {
-					users.add(new Renter(username, password, email, id, phone, name, bio, uscid));
+					Renter r = new Renter(username, password, email, id, phone, name, bio, uscid);
+					for(int j = 0; j < favorites.size(); j++) {
+						int favID = Integer.parseInt(favorites.get(j));
+						r.addFavorite(getProperty(favID));
+					}
+					users.add(r);
 				} else if(type.equals("E")) {
 					//Create all the freaking properties from the property id's
 					ArrayList<Property> listingsProperty = new ArrayList<Property>();
-					for(int j = 0; j < listings.size(); j++) {
-						//TODO: Call the property parser and get the property with the corresponding property id
+					for(int k = 0; k < listings.size(); k++) {
+						int listID = Integer.parseInt(listings.get(k));
+						listingsProperty.add(getProperty(listID));
 					}
 					users.add(new RealEstateAgent(username, password, email, id, phone, name, bio, agency, listingsProperty));
 				} else if(type.equals("S")) {
@@ -79,36 +86,37 @@ public class DataReader extends JSONConstants {
 					for(int j = 0; j < properties.size(); j++) {
 						//TODO: Call the property parser and get the property with the corresponding property id
 					}
-					Seller s = new Seller(username, password, email, id, phone, name, bio, propertiesProperty);
-					users.add(new Renter(username, password, email, id, phone, name, bio, uscid, true, s));
+					users.add(new Renter(username, password, email, id, phone, name, bio, uscid, true, new Seller(username, password, email, id, phone, name, bio, propertiesProperty)));
 				}
 				
-				
-				/* Create this constructor in Renter for this function to use (and another one all the way up to just USCID
-				 * 	public Renter(String username, String password, String email, int userID, String phoneNumber, String name, String bio, String uscID, boolean isSeller, Seller seller) {
+				/* 
+				    Create this constructor in Renter for this function to use (and another one all the way up to just USCID
+				  	public Renter(String username, String password, String email, int userID, String phoneNumber, String name, String bio, String uscID, boolean isSeller, Seller seller) {
 						super(username, password, email, userID, phoneNumber, name, bio);
 						this.uscID = uscID;
 						favorites = new ArrayList<Property>();
 						this.isSeller = isSeller;
 					this.seller = seller;
 					}
-				 */
+				 
 				
-				/* Also create this constructor pls and thx
-				 * 	public RealEstateAgent(String username, String password, String email, int userID, String phoneNumber, String name,	String bio, String nameOfAgency, ArrayList<Property> listings) {
+				    Also create this constructor pls and thx
+				  	public RealEstateAgent(String username, String password, String email, int userID, String phoneNumber, String name,	String bio, String nameOfAgency, ArrayList<Property> listings) {
 						super(username, password, email, userID, phoneNumber, name, bio);
 						this.nameOfAgency = nameOfAgency;
 						this.listings = listings;
 					}
-				 */
+				 
 				
-				/* This constructor, too
-				 * 	public Seller(String username, String password, String email, int userID, String phoneNumber, String name, String bio, ArrayList<Property> properties) {
+				    This constructor, too
+				  	public Seller(String username, String password, String email, int userID, String phoneNumber, String name, String bio, ArrayList<Property> properties) {
 						super(username, password, email, userID, phoneNumber, name, bio);
 						this.properties = properties;
 					}
 				 */
+				
 			}
+			read.close();
 			return users;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -116,6 +124,7 @@ public class DataReader extends JSONConstants {
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static ArrayList<Property> loadProperties() {
 		ArrayList<Property> properties = new ArrayList<Property>();
 		
@@ -163,8 +172,9 @@ public class DataReader extends JSONConstants {
 				} else if(type.equals("condo")) {
 					propType = PropertyType.CONDO;
 				}
-				properties.add(new Property(DataReader.getSeller(owner), address, zip, city, state, description, condition, room, amenities, price, propType));
+				properties.add(new Property((Seller)getUser(owner), address, zip, city, state, description, condition, room, amenities, price, propType));
 			}
+			read.close();
 			return properties;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -183,32 +193,74 @@ public class DataReader extends JSONConstants {
 				int author = Integer.parseInt((String)revJSON.get(REVIEWS_AUTHOR));
 				double rating = Double.parseDouble((String)revJSON.get(REVIEWS_RATING));
 				String description = (String)revJSON.get(REVIEWS_DESCRIPTION);
-				reviews.add(new Review(getRenter(author), rating, description));
+				reviews.add(new Review((Renter)getUser(author), rating, description));
 			}
-			return reviews;			
+			read.close();
+			return reviews;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 	
-	public static Renter getRenter(int id) {
-		//TODO: Get a Renter object (or a Renter/Seller) from a renter id
-		return null;
+	public static boolean userExists(int id) {
+		ArrayList<User> users = loadUsers();
+		for(User u : users) {
+			if(u.getUserID() == id) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
-	public static Seller getSeller(int id) {
-		//TODO: Get a Seller object (or a Renter/Seller) from a seller id
+	public static boolean propertyExists(int id) {
+		ArrayList<Property> props = loadProperties();
+		for(Property p : props) {
+			if(p.getID() == id) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean reviewExists(int id) {
+		ArrayList<Review> revs = loadReviews();
+		for(Review r : revs) {
+			if(r.getID() == id) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static User getUser(int id) {
+		if(userExists(id)) {
+			ArrayList<User> users = loadUsers();
+			for(User u : users) {
+				if(u.getUserID() == id) {
+					return u;
+				}
+			}
+		}
 		return null;
 	}
 	
 	public static Property getProperty(int id) {
-		//TODO: Get a Property object from a property id
-		return null;
+		if(propertyExists(id)) {
+			
+		}
 	}
 	
 	public static Review getReview(int id) {
-		//TODO: Get a Review object from a review id
+		if(reviewExists(id)) {
+			//Get information
+			ArrayList<Review> revs = loadReviews();
+			for(Review r : revs) {
+				if(r.getID() == id) {
+					return r;
+				}
+			}
+		}
 		return null;
 	}
 	

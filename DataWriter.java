@@ -1,18 +1,19 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 public class DataWriter extends JSONConstants {
 	
 	@SuppressWarnings("unchecked")
 	public static void writeRenter(Renter r) {
-		//See if there exists something with that ID
-		//If there does, delete it and put this in its place
+		if(DataReader.userExists(r.getUserID())) {
+			//Update information, don't create a new JSON thing.
+			
+			return;
+		}
 
 		JSONObject renter = new JSONObject();
 		renter.put(USERS_USERNAME, r.getUsername());
@@ -47,8 +48,11 @@ public class DataWriter extends JSONConstants {
 	
 	@SuppressWarnings("unchecked")
 	public static void writeRS(Renter rs) {
-		//See if there exists something with that ID
-		//If there does, delete it and put this in its place
+		if(DataReader.userExists(rs.getUserID())) {
+			//Update information, don't create a new JSON thing.
+			
+			return;
+		}
 
 		JSONObject renterSeller = new JSONObject();
 		renterSeller.put(USERS_USERNAME, rs.getUsername());
@@ -89,9 +93,12 @@ public class DataWriter extends JSONConstants {
 	
 	@SuppressWarnings("unchecked")
 	public static void writeSeller(Seller s) {
-		//See if there exists something with that ID
-		//If there does, delete it and put this in its place
-
+		if(DataReader.userExists(s.getUserID())) {
+			//Update information, don't create a new JSON thing.
+			
+			return;
+		}
+		
 		JSONObject seller = new JSONObject();
 		seller.put(USERS_USERNAME, s.getUsername());
 		seller.put(USERS_PASSWORD, s.getPassword());
@@ -124,8 +131,11 @@ public class DataWriter extends JSONConstants {
 	
 	@SuppressWarnings("unchecked")
 	public static void writeRE(RealEstateAgent re) {
-		//See if there exists something with that ID
-		//If there does, delete it and put this in its place
+		if(DataReader.userExists(re.getUserID())) {
+			//Update information, don't create a new JSON thing.
+			
+			return;
+		}
 		
 		JSONObject agent = new JSONObject();
 		agent.put(USERS_USERNAME, re.getUsername());
@@ -160,8 +170,11 @@ public class DataWriter extends JSONConstants {
 	
 	@SuppressWarnings("unchecked")
 	public static void writeProperty(Property p) {
-		//See if there exists something with that ID
-		//If there does, delete it and put this in its place
+		if(DataReader.propertyExists(p.getID())) {
+			//Update information, don't create a new JSON thing.
+			
+			return;
+		}
 
 		JSONObject property = new JSONObject();
 		property.put(ID, p.getID());
@@ -210,8 +223,11 @@ public class DataWriter extends JSONConstants {
 	
 	@SuppressWarnings("unchecked")
 	public static void writeReview(Review r) {
-		//See if there exists something with that ID
-		//If there does, delete it and put this in its place
+		if(DataReader.reviewExists(r.getID())) {
+			JSONObject review = new JSONObject();
+			
+			return;
+		}
 		
 		JSONObject review = new JSONObject();
 		review.put(ID, r.getID());

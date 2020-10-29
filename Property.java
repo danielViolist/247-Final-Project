@@ -46,7 +46,7 @@ public class Property {
 				   + "\n\tNumber of rooms: " + roomNumber
 				   + "\n\tAmenities:\n";
 		for (String amenity : amenities) {
-			ret += "\t\t-" + amenity;
+			ret += "\t\t-" + amenity + "\n";
 		}
 		ret += "\n\tPrice: $" + price
 		     + "\n\tProperty Type: " + propertyType

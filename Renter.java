@@ -7,23 +7,20 @@ public class Renter extends User {
 	private boolean isSeller;
 	private Seller seller;
 
-	public Renter(String username, String password, String email, int userID, String phoneNumber, String name,
-			String bio, String uscID) {
+	public Renter(String username, String password, String email, int userID, String phoneNumber, String name, String bio, String uscID) {
 		super(username, password, email, userID, phoneNumber, name, bio);
 		this.uscID = uscID;
 		favorites = new ArrayList<Property>();
 		this.isSeller = false;
-		// Renter (Regular)
+		seller = null;
 	}
 	
-	public Renter(String username, String password, String email, int userID, String phoneNumber, String name,
-			String bio, String uscID, boolean isSeller, Seller seller) {
+	public Renter(String username, String password, String email, int userID, String phoneNumber, String name, String bio, String uscID, boolean isSeller, Seller seller) {
 		super(username, password, email, userID, phoneNumber, name, bio);
 		this.uscID = uscID;
 		favorites = new ArrayList<Property>();
 		this.isSeller = isSeller;
 		this.seller = seller;
-		//Renter Seller
 	}
 	
 
@@ -39,16 +36,48 @@ public class Renter extends User {
 		return favorites;
 	}
 
-	public void addFavorite(Property property) {
+	/**
+	 * Adds a property to the user's favorites. The property must be unique.
+	 * @param property The property to add to favorites.
+	 * @return Returns true if successful; false otherwise.
+	 */
+	public boolean addFavorite(Property property) {
+		for (Property favorite : favorites) {
+			if (favorite.equals(property)) {
+				return false;
+			}
+		}
 		favorites.add(property);
+		return true;
 	}
 
-	public void removeFavorite(Property property) {
-		favorites.remove(property);
+	/**
+	 * Removes a property from favorites.
+	 * @param property Property to remove
+	 * @return Returns true if successful; false otherwise.
+	 */
+	public boolean removeFavorite(Property property) {
+		for (Property favorite : favorites) {
+			if (favorite.equals(property)) {
+				favorites.remove(property);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void makeSeller() {
 		this.isSeller = true;
+		seller = new Seller(this);
 	}
 
+	public Seller getSeller() {
+		if (isSeller) {
+			return seller;
+		}
+		return null;
+	}
+	
+	
+	
 }

@@ -33,7 +33,7 @@ public class RealEstateAgent extends User {
 	public String showListings() {
 		String ret = this.getName() + "'s Current Listings:\n";
 		for (Property listing : listings) {
-			ret += listing.toString() + "\n====================================================================\n";
+			ret += listing.toString() + "\n====================================================================\n\n";
 		}
 		return ret;
 	}

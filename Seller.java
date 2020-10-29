@@ -9,12 +9,31 @@ public class Seller extends User {
 		this.properties = properties;
 	}
 	
+	public Seller(Renter renter) {
+		super(renter.getUsername(), renter.getPassword(), renter.getEmail(), renter.getUserID(), renter.getPhoneNumber(), renter.getName(), renter.getBio());
+		properties = new ArrayList<Property>();
+	}
+	
 	public void addProperty(String address, String zipCode, String city, String state, String description, String condition, int roomNumber, ArrayList<String> amenities, double price, PropertyType propertyType) {
 		properties.add(new Property(this, address,  zipCode,  city,  state,  description,  condition, roomNumber, amenities, price, propertyType));
+		DataWriter.writeSeller(this);
+	}
+	
+	public void addProperty(Property property) {
+		properties.add(property);
+		DataWriter.writeSeller(this);
 	}
 	
 	public ArrayList<Property> getProperties() {
 		return properties;
+	}
+	
+	public String showProperties() {
+		String ret = this.getName() + "'s Properties:\n";
+		for (Property property : properties) {
+			ret += property.toString() + "\n====================================================================\n\n";
+		}
+		return ret;
 	}
 	
 	public boolean equals(Seller seller) {

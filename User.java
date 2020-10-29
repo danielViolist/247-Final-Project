@@ -55,11 +55,6 @@ public abstract class User {
 		return contactInfo;
 	}
 
-	public void setUsername(String username) {
-		//TODO: Verify that the username has not already been taken
-		this.username = username;
-	}
-
 	public boolean setPassword(String password) {
 		if (password.length() >= 8) {
 			this.password = password;
@@ -72,11 +67,6 @@ public abstract class User {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public void setUserID(int userID) {
-		//TODO: Verify that the ID has not already been used using database
-		this.userID = userID;
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
@@ -101,6 +91,10 @@ public abstract class User {
 
 	public void giveReview(Property property, Review review) {
 		property.addReview(review);
+	}
+	
+	public boolean equals(User user) {
+		return user.getUsername().equals(this.getUsername());
 	}
 
 }

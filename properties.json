@@ -14,7 +14,6 @@
 		"reviews": [1],
 		"type": "apartment",
 		"canSubLease": 1,
-		"lease": "Lease information goes here. I'm not going to type this out right now because that's a lot of work lol.",
 		"payments": ["Credit, Debit, Cash"]
 	},{
 		"id": 2,
@@ -31,8 +30,7 @@
 		"reviews": [2],
 		"type": "house",
 		"canSubLease": 0,
-		"lease": "Lease information goes here. I'm not going to type this out right now because that's a lot of work lol.",
-		"payments": ["Credit", "Debit", "Check", "Cash",]
+		"payments": ["Credit", "Debit", "Check", "Cash"]
 	}
 	{
 		"id": 3,
@@ -48,7 +46,6 @@
 		"reviews": [3],
 		"type": "condo",
 		"canSubLease": 0,
-		"lease": "Lease goes here.",
 		"payments": ["Credit", "Debit", "Check", "Cash"]
 	}
 ]

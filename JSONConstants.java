@@ -37,7 +37,7 @@ public abstract class JSONConstants {
 	protected static final String PROPERTIES_REVIEWS = "reviews";
 	protected static final String PROPERTIES_TYPE = "type";
 	protected static final String PROPERTIES_SUB = "canSubLease";
-	protected static final String PROPERTIES_LEASE = "lease";
+	//protected static final String PROPERTIES_LEASE = "lease";
 	protected static final String PROPERTIES_PAYMENTS = "payments";
 	protected static final String PROPERTIES_OWNER = "owner";
 	

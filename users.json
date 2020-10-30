@@ -10,7 +10,7 @@
 		"contacts": ["Github: https://github.com/cSwiggitySwooty"],
 		"type": "R",
 		"uscid": "A64236897",
-		"favorites": ["The Lofts"]
+		"favorites": [1]
 	},{
 		"id": 2,
 		"username": "danielViolist",
@@ -23,7 +23,7 @@
 		"type": "RE",
 		"uscid": "A13498654",
 		"agency": "Big Brain Buying",
-		"listings": ["Real Smart Complex", "Intelligent Housing"]
+		"listings": [3]
 	},{
 		"id": 3,
 		"username": "ngeiger",
@@ -36,6 +36,6 @@
 		"type": "RS",
 		"uscid": "A87651234",
 		"favorites": ["Honors"],
-		"properties": ["Nyles's Places"]
+		"properties": [2]
 	}
 ]

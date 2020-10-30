@@ -173,11 +173,23 @@ public class DataReader extends JSONConstants {
 				String type = (String)propJSON.get(PROPERTIES_TYPE);
 				//boolean sub = (Integer.parseInt((String)propJSON.get(PROPERTIES_SUB)) == 1);
 				//String lease = (String)propJSON.get(PROPERTIES_LEASE);
-				ArrayList<String> payments = new ArrayList<String>();
+				ArrayList<PaymentType> payments = new ArrayList<PaymentType>();
 				JSONArray payJSON = (JSONArray)propJSON.get(PROPERTIES_REVIEWS);
 				Iterator<String> itera = payJSON.iterator();
 				while(itera.hasNext()) {
-					payments.add(itera.next());
+					String paymentType = itera.next();
+					if(paymentType.equalsIgnoreCase("CASH")) {
+						payments.add(PaymentType.CASH);
+					}
+					else if(paymentType.equalsIgnoreCase(PAYMENT_CHECK)) {
+						payments.add(PaymentType.CHECK);
+					}
+					else if(paymentType.equalsIgnoreCase(PAYMENT_DEBIT)) {
+						payments.add(PaymentType.DEBIT);
+					}
+					else if(paymentType.equalsIgnoreCase(PAYMENT_CREDIT)) {
+						payments.add(PaymentType.CREDIT);
+					}
 				}
 				PropertyType propType = PropertyType.APARTMENT;
 				if(type.equals("house")) {
@@ -186,6 +198,9 @@ public class DataReader extends JSONConstants {
 					propType = PropertyType.CONDO;
 				}
 				Property p = new Property((Seller)getUser(owner), address, zip, city, state, description, condition, room, amenities, price, propType);
+				for(PaymentType pay : payments) {
+					p.addPaymentType(pay);
+				}
 				p.setPropertyID(id);
 				p.setName(name);
 				properties.add(p);

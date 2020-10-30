@@ -46,4 +46,8 @@ public abstract class JSONConstants {
 	protected static final String REVIEWS_RATING = "rating";
 	protected static final String REVIEWS_DESCRIPTION = "description";
 	
+	protected static final String PAYMENT_CASH = "cash";
+	protected static final String PAYMENT_CHECK = "check";
+	protected static final String PAYMENT_DEBIT = "debit";
+	protected static final String PAYMENT_CREDIT = "credit";	
 }

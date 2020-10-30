@@ -15,7 +15,7 @@
 		"type": "apartment",
 		"canSubLease": 1,
 		"lease": "Lease information goes here. I'm not going to type this out right now because that's a lot of work lol.",
-		"payments": "Credit, Debit, PayPal, Cash"
+		"payments": ["Credit, Debit, Cash"]
 	},{
 		"id": 2,
 		"name": "Nyles's Places",
@@ -32,6 +32,23 @@
 		"type": "house",
 		"canSubLease": 0,
 		"lease": "Lease information goes here. I'm not going to type this out right now because that's a lot of work lol.",
-		"payments": ["Credit", "Debit", "PayPal", "Cash", "Donuts"]
+		"payments": ["Credit", "Debit", "Check", "Cash",]
+	}
+	{
+		"id": 3,
+		"name": "Some Place",
+		"zip": 29201,
+		"city": "Columbia",
+		"state": "SC",
+		"description": "This is a cool place. Live here."
+		"condition": "excellent",
+		"room": 343,
+		"amenities": ["Bathroom", "Kitchen"],
+		"price": 1000.00,
+		"reviews": [3],
+		"type": "condo",
+		"canSubLease": 0,
+		"lease": "Lease goes here.",
+		"payments": ["Credit", "Debit", "Check", "Cash"]
 	}
 ]

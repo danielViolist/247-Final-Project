@@ -19,58 +19,31 @@ public class Main {
 
 	public static void login() {
 		ui.outputMenu("login");
-		System.out.println("Username: ");
-		String username = s.nextLine();
-		System.out.println("\nPassword: ");
-		String password = s.nextLine();
-
-		if (UserAPI.userLogin(username, password) == null) {
-			System.out.println("Sorry. Unable to access the database at this time. Please try again later.");
-		} else {
-			setCurrentUser(UserAPI.userLogin(username, password));
-			ui.outputMenu("loginSuccess");
-		}
-
+		setCurrentUser(ui.userLogin());
 	}
 
-
 	public static void createUser(Boolean guessAccount) {
-		// TODO: generate userID
-		// TODO: continue code for each User type
-		// may have to create menu items for the creation of each type of account
-		System.out.println("Name:");
-		String name = s.nextLine();
-		System.out.println("Username:");
-		String username = s.nextLine();
-		System.out.println("Password:");
-		String password = s.nextLine();
-		System.out.println("Email:");
-		String email = s.nextLine();
-		System.out.println("Phone number:");
-		String phoneNumber = s.nextLine();
-		System.out.println("Bio:");
-		String bio = s.nextLine();
-		System.out.println("Contact info:");
-		ArrayList<String> contactInfo = new ArrayList<String>();
-		boolean done= false;
-		while (done == false) { // loop until user is done entering contents of contactInfo list
-			System.out.println(
-					"Enter \"done\" when all you are finished adding" + " contaacts");
-			String contact = s.nextLine();
-			if (contact.equalsIgnoreCase("done")) {
-				done = true;
-			} else {
-				contactInfo.add(contact);
-			}
+		s = new Scanner(System.in);
+		ui.outputMenu("creatUser");
+		if (guessAccount) {
+			setCurrentUser(ui.createUser(0));
+		} else {
+			int userTypeChoice = s.nextInt();
+			if (userTypeChoice < 0 || userTypeChoice > 3)
+				System.out.println("Please inter an acceptable value");
+			else
+				setCurrentUser(ui.createUser(userTypeChoice));
 		}
-		int userID = 5;
 
-		if(guessAccount) {
-			setCurrentUser(new Guest(username, password, email, userID, phoneNumber, name, bio));
-			return;
-		}else{
-			System.out.println("Type of account(Renter, Seller, Real estate agent):");
-			String accountType = s.nextLine();
+		if (currentUser instanceof Seller)
+			UserAPI.createSeller((Seller) currentUser);
+		if (currentUser instanceof RealEstateAgent)
+			UserAPI.createRE((RealEstateAgent) currentUser);
+		if (currentUser instanceof Renter && (((Renter) currentUser).getSeller() != null)) {
+			UserAPI.createRenter((Renter) currentUser);
+			UserAPI.createSeller((Seller) currentUser);
+		} else if (currentUser instanceof Renter) {
+			UserAPI.createRenter((Renter) currentUser);
 		}
 
 	}
@@ -96,8 +69,8 @@ public class Main {
 		ArrayList<String> amenities = new ArrayList<String>();
 		boolean done = false;
 		while (done == false) { // loop until user is done entering contents of amenities list
-			System.out.println(
-					"Enter \"done\" when all you are finished adding" + " amenities to this property listing");
+			System.out
+					.println("Enter \"done\" when all you are finished adding" + " amenities to this property listing");
 			String amenity = s.nextLine();
 			if (amenity.equalsIgnoreCase("done")) {
 				done = true;
@@ -139,35 +112,35 @@ public class Main {
 			int selection = s.nextInt();
 			s.nextLine();
 
-
 			if (currentUser instanceof Renter && (((Renter) currentUser).getSeller() != null)) {
+				ui.outputMenu("renterSellerUserMenu");
 				switch (selection) {
 				case 1:
 					ui.outputMenu("topProperties");
-					continue;
-				case 2: //TODO
+					break;
+				case 2: // TODO
 					ui.outputMenu("giveReview");
-					continue;
+					break;
 				case 3: // TODO
 					ui.outputMenu("renterViewFavorites");
-					continue;
-				case 4: //TODO
+					break;
+				case 4: // TODO
 					ui.outputMenu("addToFavorites");
-					continue;
-				case 5: //TODO
+					break;
+				case 5: // TODO
 					ui.outputMenu("rmFromFavorites");
-					continue;
-				case 6: //TODO
+					break;
+				case 6: // TODO
 					ui.outputMenu("addProperty");
-					continue;
-				case 7: //TODO
+					break;
+				case 7: // TODO
 					ui.outputMenu("showProperties");
-					continue;
+					break;
 				case 110:
 					ui.outputMenu("accountSettings");
-					//should include: get(name, phoneNumber, email, bio, username, contactinfo, 
-					//ID(s), ) set(contactinfo, bio, phoneNumber, password, Name)
-					continue;
+					// should include: get(name, phoneNumber, email, bio, username, contactinfo,
+					// ID(s), ) set(contactinfo, bio, phoneNumber, password, Name)
+					break;
 				case 120:
 					ui.outputMenu("leave");
 					System.exit(0);
@@ -176,27 +149,28 @@ public class Main {
 					break;
 				}
 			} else if (currentUser instanceof Renter) {
+				ui.outputMenu("renterUserMenu");
 				switch (selection) {
 				case 1:
 					ui.outputMenu("topProperties");
-					continue;
-				case 2: //TODO
+					break;
+				case 2: // TODO
 					ui.outputMenu("giveReview");
-					continue;
+					break;
 				case 3: // TODO
 					ui.outputMenu("renterViewFavorites");
-					continue;
-				case 4: //TODO
+					break;
+				case 4: // TODO
 					ui.outputMenu("addToFavorites");
-					continue;
-				case 5: //TODO
+					break;
+				case 5: // TODO
 					ui.outputMenu("rmFromFavorites");
-					continue;
+					break;
 				case 110:
 					ui.outputMenu("accountSettings");
-					//should include: get(name, phoneNumber, email, bio, username, contactinfo, 
-					//ID(s), ) set(contactinfo, bio, phoneNumber, password, Name)
-					continue;
+					// should include: get(name, phoneNumber, email, bio, username, contactinfo,
+					// ID(s), ) set(contactinfo, bio, phoneNumber, password, Name)
+					break;
 				case 120:
 					ui.outputMenu("leave");
 					System.exit(0);
@@ -210,19 +184,20 @@ public class Main {
 				switch (selection) {
 				case 1:
 					ui.outputMenu("topProperties");
-					continue;
-				case 2: //TODO
+					break;
+				case 2: // TODO
 					ui.outputMenu("giveReview");
-				case 3: //TODO
+					break;
+				case 3: // TODO
 					ui.outputMenu("addProperty");
-					continue;
-				case 4: //TODO
+					break;
+				case 4: // TODO
 					ui.outputMenu("showProperties");
-					continue;
+					break;
 				case 110:
 					ui.outputMenu("accountSettings");
-					//should include: get(name, phoneNumber, email, bio, username, contactinfo, 
-					//ID(s), ) set(contactinfo, bio, phoneNumber, password, Name)
+					// should include: get(name, phoneNumber, email, bio, username, contactinfo,
+					// ID(s), ) set(contactinfo, bio, phoneNumber, password, Name)
 				case 120:
 					ui.outputMenu("leave");
 					System.exit(0);
@@ -236,20 +211,20 @@ public class Main {
 				switch (selection) {
 				case 1:
 					ui.outputMenu("topProperties");
-					continue;
-				case 2: //TODO
+					break;
+				case 2: // TODO
 					ui.outputMenu("giveReview");
-					continue;
-				case 3: 
+					break;
+				case 3:
 					ui.outputMenu("addToListings");
-					continue;
+					break;
 				case 4:
 					ui.outputMenu("showListings");
-					continue;
+					break;
 				case 110:
 					ui.outputMenu("accountSettings");
-					//should include: get(name, phoneNumber, email, bio, username, contactinfo, 
-					//ID(s), ) set(contactinfo, bio, phoneNumber, password, Name)
+					// should include: get(name, phoneNumber, email, bio, username, contactinfo,
+					// ID(s), ) set(contactinfo, bio, phoneNumber, password, Name)
 				case 120:
 					ui.outputMenu("leave");
 					System.exit(0);
@@ -263,15 +238,15 @@ public class Main {
 				switch (selection) {
 				case 1:
 					ui.outputMenu("topProperties");
-					continue;
-				case 2: //TODO
+					break;
+				case 2: // TODO
 					ui.outputMenu("giveReview");
-					continue;
+					break;
 				case 110:
 					ui.outputMenu("accountSettings");
-					//should include: get(name, phoneNumber, email, bio, username, contactinfo, 
-					//ID(s), ) set(contactinfo, bio, phoneNumber, password, Name)
-					continue;
+					// should include: get(name, phoneNumber, email, bio, username, contactinfo,
+					// ID(s), ) set(contactinfo, bio, phoneNumber, password, Name)
+					break;
 				case 120:
 					ui.outputMenu("leave");
 					System.exit(0);
@@ -298,11 +273,11 @@ public class Main {
 				ui.outputMenu("topProperties");
 				break;
 			case 5:
-					 ui.outputMenu("leave");
-					 System.exit(0);
-				 default:
-					 System.out.println("Error: Please enter a number from 1 to 5.");
-					 break;
+				ui.outputMenu("leave");
+				System.exit(0);
+			default:
+				System.out.println("Error: Please enter a number from 1 to 5.");
+				break;
 			}
 		}
 	}

@@ -14,6 +14,7 @@ public class Menu {
 	private String addPropertyMenu;
 	private String loginSuccessMenu;
 	private String createUserMenu;
+	private String invalidInputMenu;
 	
 	public Menu() {
 		setLoginMenu();
@@ -25,6 +26,7 @@ public class Menu {
 		setAddPropertyMenu();
 		setLoginSuccessMenu();
 		setCreateUserMenu();
+		setInvalidInputMenu();
 	}
 	
 	private void setLoginMenu() {
@@ -91,6 +93,10 @@ public class Menu {
 	            + "\t- Contact information"
 	            + "\t- Type of account (Renter, Seller, Real Estate Agent)";
 	}
+	
+	private void setInvalidInputMenu() {
+		this.invalidInputMenu = "Please inter an acceptable value";
+	}
 
 	public String getLoginMenu() {
 		return loginMenu;
@@ -118,6 +124,9 @@ public class Menu {
 	}
 	public String getCreateUserMenu() {
 		return createUserMenu;
+	}
+	public String getInvalidInputMenu() {
+		return invalidInputMenu;
 	}
 	
 }

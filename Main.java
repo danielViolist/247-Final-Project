@@ -33,7 +33,7 @@ public class Main {
 
 	}
 
-	
+
 	public static void createUser(Boolean guessAccount) {
 		// TODO: generate userID
 		// TODO: continue code for each User type
@@ -64,18 +64,18 @@ public class Main {
 			}
 		}
 		int userID = 5;
-		
+
 		if(guessAccount) {
 			setCurrentUser(new Guest(username, password, email, userID, phoneNumber, name, bio));
 			return;
 		}else{
 			System.out.println("Type of account(Renter, Seller, Real estate agent):");
-		String accountType = s.nextLine();
+			String accountType = s.nextLine();
 		}
 
 	}
 
-	public static void addProperty() {
+	public static void addProperty(Seller sellerUser) {
 		System.out.println("Name:");
 		String name = s.nextLine();
 		System.out.println("Street Address:");
@@ -129,7 +129,7 @@ public class Main {
 			}
 		}
 
-		PropertyAPI.createProperty(new Property(currentUser, condition, condition, condition, condition, condition,
+		PropertyAPI.createProperty(new Property(sellerUser, condition, condition, condition, condition, condition,
 				condition, roomNumber, amenities, price, propertyType));
 	}
 
@@ -138,6 +138,150 @@ public class Main {
 			ui.outputMenu("welcome");
 			int selection = s.nextInt();
 			s.nextLine();
+
+
+			if (currentUser instanceof Renter && (((Renter) currentUser).getSeller() != null)) {
+				switch (selection) {
+				case 1:
+					ui.outputMenu("topProperties");
+					continue;
+				case 2: //TODO
+					ui.outputMenu("giveReview");
+					continue;
+				case 3: // TODO
+					ui.outputMenu("renterViewFavorites");
+					continue;
+				case 4: //TODO
+					ui.outputMenu("addToFavorites");
+					continue;
+				case 5: //TODO
+					ui.outputMenu("rmFromFavorites");
+					continue;
+				case 6: //TODO
+					ui.outputMenu("addProperty");
+					continue;
+				case 7: //TODO
+					ui.outputMenu("showProperties");
+					continue;
+				case 110:
+					ui.outputMenu("accountSettings");
+					//should include: get(name, phoneNumber, email, bio, username, contactinfo, 
+					//ID(s), ) set(contactinfo, bio, phoneNumber, password, Name)
+					continue;
+				case 120:
+					ui.outputMenu("leave");
+					System.exit(0);
+				default:
+					System.out.println("Error: Please enter a number from 1 to 5.");
+					break;
+				}
+			} else if (currentUser instanceof Renter) {
+				switch (selection) {
+				case 1:
+					ui.outputMenu("topProperties");
+					continue;
+				case 2: //TODO
+					ui.outputMenu("giveReview");
+					continue;
+				case 3: // TODO
+					ui.outputMenu("renterViewFavorites");
+					continue;
+				case 4: //TODO
+					ui.outputMenu("addToFavorites");
+					continue;
+				case 5: //TODO
+					ui.outputMenu("rmFromFavorites");
+					continue;
+				case 110:
+					ui.outputMenu("accountSettings");
+					//should include: get(name, phoneNumber, email, bio, username, contactinfo, 
+					//ID(s), ) set(contactinfo, bio, phoneNumber, password, Name)
+					continue;
+				case 120:
+					ui.outputMenu("leave");
+					System.exit(0);
+				default:
+					System.out.println("Error: Please enter a number from 1 to 5.");
+					break;
+				}
+			}
+
+			if (currentUser instanceof Seller) {
+				switch (selection) {
+				case 1:
+					ui.outputMenu("topProperties");
+					continue;
+				case 2: //TODO
+					ui.outputMenu("giveReview");
+				case 3: //TODO
+					ui.outputMenu("addProperty");
+					continue;
+				case 4: //TODO
+					ui.outputMenu("showProperties");
+					continue;
+				case 110:
+					ui.outputMenu("accountSettings");
+					//should include: get(name, phoneNumber, email, bio, username, contactinfo, 
+					//ID(s), ) set(contactinfo, bio, phoneNumber, password, Name)
+				case 120:
+					ui.outputMenu("leave");
+					System.exit(0);
+				default:
+					System.out.println("Error: Please enter a number from 1 to 5.");
+					break;
+				}
+			}
+
+			if (currentUser instanceof RealEstateAgent) {
+				switch (selection) {
+				case 1:
+					ui.outputMenu("topProperties");
+					continue;
+				case 2: //TODO
+					ui.outputMenu("giveReview");
+					continue;
+				case 3: 
+					ui.outputMenu("addToListings");
+					continue;
+				case 4:
+					ui.outputMenu("showListings");
+					continue;
+				case 110:
+					ui.outputMenu("accountSettings");
+					//should include: get(name, phoneNumber, email, bio, username, contactinfo, 
+					//ID(s), ) set(contactinfo, bio, phoneNumber, password, Name)
+				case 120:
+					ui.outputMenu("leave");
+					System.exit(0);
+				default:
+					System.out.println("Error: Please enter a number from 1 to 5.");
+					break;
+				}
+
+			}
+			if (currentUser instanceof Guest) {
+				switch (selection) {
+				case 1:
+					ui.outputMenu("topProperties");
+					continue;
+				case 2: //TODO
+					ui.outputMenu("giveReview");
+					continue;
+				case 110:
+					ui.outputMenu("accountSettings");
+					//should include: get(name, phoneNumber, email, bio, username, contactinfo, 
+					//ID(s), ) set(contactinfo, bio, phoneNumber, password, Name)
+					continue;
+				case 120:
+					ui.outputMenu("leave");
+					System.exit(0);
+				default:
+					System.out.println("Error: Please enter a number from 1 to 5.");
+					break;
+				}
+
+			}
+
 			switch (selection) {
 			case 1:
 				login();
@@ -153,86 +297,12 @@ public class Main {
 			case 4:
 				ui.outputMenu("topProperties");
 				break;
-			/*case 5:
-				if (currentUser instanceof Seller) {
-					ui.outputMenu("addProperty");
-					addProperty();
-				} else {
-					System.out.println("You must be a seller to create a property listing");
-				}
-				break;
-			case 6:
-				ui.outputMenu("writeReview");
-			//	writeReview();
-				break;
-			case 7:
-				ui.outputMenu("getReviews");
-			//	getReviews();
-				break;
-			case 8:
-				ui.outputMenu("showFavorites");
-			//	showFavorites();
-				//could merge with case 4
-				break;
-			case 9:
-				ui.outputMenu("addFavorite");
-			//	addFavorite();
-				//for renter
-				break;
-			case 10:
-				ui.outputMenu("showProperties");
-			//	showProperties();
-				//for sellers
-				break;
-			*/case 5:
-				ui.outputMenu("leave");
-				System.exit(0);
-			default:
-				System.out.println("Error: Please enter a number from 1 to 5.");
-				break;
-			}
-			
-			if (currentUser instanceof Renter && (((Renter) currentUser).getSeller() != null)) {
-				switch (selection) {
-				case 5:
-					ui.outputMenu("leave");
-					System.exit(0);
-				default:
-					System.out.println("Error: Please enter a number from 1 to 5.");
-					break;
-				}
-			} else if (currentUser instanceof Renter) {
-				switch (selection) {
-				case 5:
-					ui.outputMenu("leave");
-					System.exit(0);
-				default:
-					System.out.println("Error: Please enter a number from 1 to 5.");
-					break;
-				}
-			}
-
-			if (currentUser instanceof Seller) {
-				switch (selection) {
-				case 5:
-					ui.outputMenu("leave");
-					System.exit(0);
-				default:
-					System.out.println("Error: Please enter a number from 1 to 5.");
-					break;
-				}
-			}
-
-			if (currentUser instanceof RealEstateAgent) {
-				switch (selection) {
-				case 5:
-					ui.outputMenu("leave");
-					System.exit(0);
-				default:
-					System.out.println("Error: Please enter a number from 1 to 5.");
-					break;
-				}
-
+			case 5:
+					 ui.outputMenu("leave");
+					 System.exit(0);
+				 default:
+					 System.out.println("Error: Please enter a number from 1 to 5.");
+					 break;
 			}
 		}
 	}

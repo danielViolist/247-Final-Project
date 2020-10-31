@@ -153,7 +153,7 @@ public class DataReader extends JSONConstants {
 				String zip = String.valueOf(propJSON.get(PROPERTIES_ZIP));
 				String city = String.valueOf(propJSON.get(PROPERTIES_CITY));
 				String state = String.valueOf(propJSON.get(PROPERTIES_STATE));
-				int owner = Integer.parseInt(String.valueOf(propJSON.get(PROPERTIES_OWNER))); No properties currently have an owner in JSON
+				int owner = Integer.parseInt(String.valueOf(propJSON.get(PROPERTIES_OWNER))); //No properties currently have an owner in JSON
 				String description = String.valueOf(propJSON.get(PROPERTIES_DESCRIPTION));
 				String condition = String.valueOf(propJSON.get(PROPERTIES_CONDITION));
 				int room = Integer.parseInt(String.valueOf(propJSON.get(PROPERTIES_ROOM)));

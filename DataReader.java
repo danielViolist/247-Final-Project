@@ -168,7 +168,7 @@ public class DataReader extends JSONConstants {
 				JSONArray revJSON = (JSONArray)propJSON.get(PROPERTIES_REVIEWS);
 				Iterator<String> it = revJSON.iterator();
 				while(it.hasNext()) {
-					reviews.add(it.next());
+					reviews.add(String.valueOf(it.next()));
 				}
 				String type = String.valueOf(propJSON.get(PROPERTIES_TYPE));
 				//boolean sub = (Integer.parseInt(String.valueOf(propJSON.get(PROPERTIES_SUB)) == 1));
@@ -177,7 +177,7 @@ public class DataReader extends JSONConstants {
 				JSONArray payJSON = (JSONArray)propJSON.get(PROPERTIES_REVIEWS);
 				Iterator<String> itera = payJSON.iterator();
 				while(itera.hasNext()) {
-					String paymentType = itera.next();
+					String paymentType = String.valueOf(itera.next());
 					if(paymentType.equalsIgnoreCase("CASH")) {
 						payments.add(PaymentType.CASH);
 					}

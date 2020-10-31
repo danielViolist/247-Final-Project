@@ -25,7 +25,7 @@ public class Menu {
 		setTopPropertiesMenu();
 		setAddPropertyMenu();
 		setLoginSuccessMenu();
-		setCreateUserMenu();
+		setCreateUserMenu(false);
 		setInvalidInputMenu();
 	}
 	
@@ -40,7 +40,6 @@ public class Menu {
 				         + "\t2. Create an account\n"
 				         + "\t3. Continue as Guest\n"
 				         + "\t4. Show most popular listings\n"
-				         //+ "\t5. Add a property listing\n"
 				         + "\t5. Exit";
 	}
 
@@ -75,14 +74,15 @@ public class Menu {
 				             + "\t- List of Amenities"
 				             + "\t- Cost per Month"
 				             + "\t- Subleasing potential"
-				             + "\t- List of Accepted Payment Methods\n";
+				             + "\t- List of Accepted Payment Methods";
 	}
 
 	private void setLoginSuccessMenu() {
 		this.loginSuccessMenu = "****** Welcome! ******\n You have successfully logged in.\n";
 	}
 	
-	private void setCreateUserMenu() {
+	private void setCreateUserMenu(Boolean isGuest) {
+		if (isGuest)
 		this.createUserMenu = "To create an account, please enter the following information:\n"
 				+ "\t- Name"
 	            + "\t- Username"
@@ -90,8 +90,19 @@ public class Menu {
 	            + "\t- Email"
 	            + "\t- Phone number"
 	            + "\t- Bio"
-	            + "\t- Contact information"
-	            + "\t- Type of account (Renter, Seller, Real Estate Agent)";
+	            + "\t- Contact information";
+		else
+			this.createUserMenu = "To create an account, please enter the following information:\n"
+					+ "\t- Name"
+		            + "\t- Username"
+		            + "\t- Password"
+		            + "\t- Email"
+		            + "\t- Phone number"
+		            + "\t- Bio"
+		            + "\t- Contact information"
+		            +"\t- Type of account (Renter, Seller, Real Estate Agent)\n\n"
+		            +"\t- What type of account would you like to create?\n"
+		            +"(1)Renter, (2)Seller, (3) Renter/Seller (4)Real estate agent:";
 	}
 	
 	private void setInvalidInputMenu() {
@@ -122,7 +133,8 @@ public class Menu {
 	public String getLoginSuccessMenu() {
 		return loginSuccessMenu;
 	}
-	public String getCreateUserMenu() {
+	public String getCreateUserMenu(Boolean isGuest) {
+		setCreateUserMenu(isGuest);
 		return createUserMenu;
 	}
 	public String getInvalidInputMenu() {

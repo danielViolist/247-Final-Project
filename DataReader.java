@@ -53,27 +53,27 @@ public class DataReader extends JSONConstants {
 			JSONArray usersJSON = (JSONArray)new JSONParser().parse(read);
 			for(int i = 0; i < usersJSON.size(); i++) {
 				JSONObject userJSON = (JSONObject)usersJSON.get(i);
-				int id = Integer.parseInt((String)userJSON.get(ID));
-				String username = (String)userJSON.get(USERS_USERNAME);
-				String password = (String)userJSON.get(USERS_PASSWORD);
-				String email = (String)userJSON.get(USERS_EMAIL);
-				String phone = (String)userJSON.get(USERS_PHONE);
-				String name = (String)userJSON.get(USERS_NAME);
-				String bio = (String)userJSON.get(USERS_BIO);
+				int id = Integer.parseInt(String.valueOf(userJSON.get(ID)));
+				String username = String.valueOf((userJSON.get(USERS_USERNAME)));
+				String password = String.valueOf(userJSON.get(USERS_PASSWORD));
+				String email = String.valueOf(userJSON.get(USERS_EMAIL));
+				String phone = String.valueOf(userJSON.get(USERS_PHONE));
+				String name = String.valueOf(userJSON.get(USERS_NAME));
+				String bio = String.valueOf(userJSON.get(USERS_BIO));
 				ArrayList<String> contacts = new ArrayList<String>();
 				JSONArray contactsJSON = (JSONArray)userJSON.get(USERS_CONTACTS);
 				Iterator<String> it = contactsJSON.iterator();
 				while(it.hasNext()) {
 					contacts.add(it.next());
 				}
-				String type = (String)userJSON.get(USERS_TYPE);
-				String uscid = (String)userJSON.get(USERS_USCID);
+				String type = String.valueOf(userJSON.get(USERS_TYPE));
+				String uscid = String.valueOf(userJSON.get(USERS_USCID));
 				ArrayList<String> favorites = new ArrayList<String>();
 				if(type.contains(RENTER)) {
 					JSONArray favoritesJSON = (JSONArray)userJSON.get(USERS_FAVORITES);
 					Iterator<String> iter = favoritesJSON.iterator();
 					while(iter.hasNext()) {
-						favorites.add(iter.next());
+						favorites.add(String.valueOf(iter.next()));
 					}
 				}
 				ArrayList<String> properties = new ArrayList<String>();
@@ -147,32 +147,32 @@ public class DataReader extends JSONConstants {
 			
 			for(int i = 0; i < propertiesJSON.size(); i++) {
 				JSONObject propJSON = (JSONObject)propertiesJSON.get(i);
-				int id = Integer.parseInt((String)propJSON.get(ID));
-				String name = (String)propJSON.get(PROPERTIES_NAME);
-				String address = (String)propJSON.get(PROPERTIES_ADDRESS);
-				String zip = (String)propJSON.get(PROPERTIES_ZIP);
-				String city = (String)propJSON.get(PROPERTIES_CITY);
-				String state = (String)propJSON.get(PROPERTIES_STATE);
-				int owner = Integer.parseInt((String)propJSON.get(PROPERTIES_OWNER));
-				String description = (String)propJSON.get(PROPERTIES_DESCRIPTION);
-				String condition = (String)propJSON.get(PROPERTIES_CONDITION);
-				int room = Integer.parseInt((String)propJSON.get(PROPERTIES_ROOM));
+				int id = Integer.parseInt(String.valueOf(propJSON.get(ID)));
+				String name = String.valueOf(propJSON.get(PROPERTIES_NAME));
+				String address = String.valueOf(propJSON.get(PROPERTIES_ADDRESS));
+				String zip = String.valueOf(propJSON.get(PROPERTIES_ZIP));
+				String city = String.valueOf(propJSON.get(PROPERTIES_CITY));
+				String state = String.valueOf(propJSON.get(PROPERTIES_STATE));
+				int owner = Integer.parseInt(String.valueOf(propJSON.get(PROPERTIES_OWNER))); No properties currently have an owner in JSON
+				String description = String.valueOf(propJSON.get(PROPERTIES_DESCRIPTION));
+				String condition = String.valueOf(propJSON.get(PROPERTIES_CONDITION));
+				int room = Integer.parseInt(String.valueOf(propJSON.get(PROPERTIES_ROOM)));
 				ArrayList<String> amenities = new ArrayList<String>();
 				JSONArray amenJSON = (JSONArray)propJSON.get(PROPERTIES_AMENITIES);
 				Iterator<String> iter = amenJSON.iterator();
 				while(iter.hasNext()) {
 					amenities.add(iter.next());
 				}
-				double price = Double.parseDouble((String)propJSON.get(PROPERTIES_PRICE));
+				double price = Double.parseDouble(String.valueOf(propJSON.get(PROPERTIES_PRICE)));
 				ArrayList<String> reviews = new ArrayList<String>();
 				JSONArray revJSON = (JSONArray)propJSON.get(PROPERTIES_REVIEWS);
 				Iterator<String> it = revJSON.iterator();
 				while(it.hasNext()) {
 					reviews.add(it.next());
 				}
-				String type = (String)propJSON.get(PROPERTIES_TYPE);
-				//boolean sub = (Integer.parseInt((String)propJSON.get(PROPERTIES_SUB)) == 1);
-				//String lease = (String)propJSON.get(PROPERTIES_LEASE);
+				String type = String.valueOf(propJSON.get(PROPERTIES_TYPE));
+				//boolean sub = (Integer.parseInt(String.valueOf(propJSON.get(PROPERTIES_SUB)) == 1));
+				//String lease = String.valueOf(propJSON.get(PROPERTIES_LEASE));
 				ArrayList<PaymentType> payments = new ArrayList<PaymentType>();
 				JSONArray payJSON = (JSONArray)propJSON.get(PROPERTIES_REVIEWS);
 				Iterator<String> itera = payJSON.iterator();
@@ -220,10 +220,10 @@ public class DataReader extends JSONConstants {
 			JSONArray reviewsJSON = (JSONArray)new JSONParser().parse(read);
 			for(int i = 0; i < reviewsJSON.size(); i++) {
 				JSONObject revJSON = (JSONObject)reviewsJSON.get(i);
-				int id = Integer.parseInt((String)revJSON.get(ID));
-				int author = Integer.parseInt((String)revJSON.get(REVIEWS_AUTHOR));
-				double rating = Double.parseDouble((String)revJSON.get(REVIEWS_RATING));
-				String description = (String)revJSON.get(REVIEWS_DESCRIPTION);
+				int id = Integer.parseInt(String.valueOf(revJSON.get(ID)));
+				int author = Integer.parseInt(String.valueOf(revJSON.get(REVIEWS_AUTHOR)));
+				double rating = Double.parseDouble(String.valueOf(revJSON.get(REVIEWS_RATING)));
+				String description = String.valueOf(revJSON.get(REVIEWS_DESCRIPTION));
 				Review rev = new Review((Renter)getUser(author), rating, description);
 				rev.setID(id);
 				reviews.add(rev);

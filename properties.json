@@ -1,4 +1,4 @@
-"properties":[
+[
 	{
 		"id": 1,
 		"name": "The Lofts",
@@ -32,13 +32,13 @@
 		"canSubLease": 0,
 		"payments": ["Credit", "Debit", "Check", "Cash"]
 	}
-	{
+	,{
 		"id": 3,
 		"name": "Some Place",
 		"zip": 29201,
 		"city": "Columbia",
 		"state": "SC",
-		"description": "This is a cool place. Live here."
+		"description": "This is a cool place. Live here.",
 		"condition": "excellent",
 		"room": 343,
 		"amenities": ["Bathroom", "Kitchen"],

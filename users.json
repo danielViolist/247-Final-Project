@@ -1,41 +1,39 @@
-"users":[
-	{
-		"id": 1,
-		"username": "cSwiggitySwooty",
-		"password": "sup3rS3cure",
-		"email": "colinsa@email.sc.edu",
-		"phone": "8465123456",
-		"name": "Colin Anderson",
-		"bio": "Computer Science and Math Major at UofSC, class of 2023",
-		"contacts": ["Github: https://github.com/cSwiggitySwooty"],
-		"type": "R",
-		"uscid": "A64236897",
-		"favorites": [1]
-	},{
-		"id": 2,
-		"username": "danielViolist",
-		"password": "2kewl4u",
-		"email": "rochesw@email.sc.edu",
-		"phone": "8348621864",
-		"name": "Daniel Rochester",
-		"bio": "Computer Science and Math Major at UofSC, class of 2023",
-		"contacts": ["Github: https://github.com/danielViolist"],
-		"type": "RE",
-		"uscid": "A13498654",
-		"agency": "Big Brain Buying",
-		"listings": [3]
-	},{
-		"id": 3,
-		"username": "ngeiger",
-		"password": "c4nth4ckm3",
-		"email": "ngeiger@email.sc.edu",
-		"phone": "8465123456",
-		"name": "Nyles Geiger",
-		"bio": "Computer Science Major at UofSC",
-		"contacts": ["Github: https://github.com/uscNyles"],
-		"type": "RS",
-		"uscid": "A87651234",
-		"favorites": ["Honors"],
-		"properties": [2]
-	}
-]
+ [{
+ 	"id": 1,
+ 	"username": "cSwiggitySwooty",
+ 	"password": "sup3rS3cure",
+ 	"email": "colinsa@email.sc.edu",
+ 	"phone": "8465123456",
+ 	"name": "Colin Anderson",
+ 	"bio": "Computer Science and Math Major at UofSC, class of 2023",
+ 	"contacts": ["Github: https://github.com/cSwiggitySwooty"],
+ 	"type": "R",
+ 	"uscid": "A64236897",
+ 	"favorites": [1]
+ }, {
+ 	"id": 2,
+ 	"username": "danielViolist",
+ 	"password": "2kewl4u",
+ 	"email": "rochesw@email.sc.edu",
+ 	"phone": "8348621864",
+ 	"name": "Daniel Rochester",
+ 	"bio": "Computer Science and Math Major at UofSC, class of 2023",
+ 	"contacts": ["Github: https://github.com/danielViolist"],
+ 	"type": "RE",
+ 	"uscid": "A13498654",
+ 	"agency": "Big Brain Buying",
+ 	"listings": [3]
+ }, {
+ 	"id": 3,
+ 	"username": "ngeiger",
+ 	"password": "c4nth4ckm3",
+ 	"email": "ngeiger@email.sc.edu",
+ 	"phone": "8465123456",
+ 	"name": "Nyles Geiger",
+ 	"bio": "Computer Science Major at UofSC",
+ 	"contacts": ["Github: https://github.com/uscNyles"],
+ 	"type": "RS",
+ 	"uscid": "A87651234",
+ 	"favorites": ["Honors"],
+ 	"properties": [2]
+ }]

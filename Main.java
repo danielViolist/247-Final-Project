@@ -153,7 +153,7 @@ public class Main {
 			case 4:
 				ui.outputMenu("topProperties");
 				break;
-			case 5:
+			/*case 5:
 				if (currentUser instanceof Seller) {
 					ui.outputMenu("addProperty");
 					addProperty();
@@ -184,12 +184,55 @@ public class Main {
 			//	showProperties();
 				//for sellers
 				break;
-			case 11:
+			*/case 5:
 				ui.outputMenu("leave");
 				System.exit(0);
 			default:
-				System.out.println("Error: Please enter a number from 1 to 6. Temp: press 11 to quit");
+				System.out.println("Error: Please enter a number from 1 to 5.");
 				break;
+			}
+			
+			if (currentUser instanceof Renter && (((Renter) currentUser).getSeller() != null)) {
+				switch (selection) {
+				case 5:
+					ui.outputMenu("leave");
+					System.exit(0);
+				default:
+					System.out.println("Error: Please enter a number from 1 to 5.");
+					break;
+				}
+			} else if (currentUser instanceof Renter) {
+				switch (selection) {
+				case 5:
+					ui.outputMenu("leave");
+					System.exit(0);
+				default:
+					System.out.println("Error: Please enter a number from 1 to 5.");
+					break;
+				}
+			}
+
+			if (currentUser instanceof Seller) {
+				switch (selection) {
+				case 5:
+					ui.outputMenu("leave");
+					System.exit(0);
+				default:
+					System.out.println("Error: Please enter a number from 1 to 5.");
+					break;
+				}
+			}
+
+			if (currentUser instanceof RealEstateAgent) {
+				switch (selection) {
+				case 5:
+					ui.outputMenu("leave");
+					System.exit(0);
+				default:
+					System.out.println("Error: Please enter a number from 1 to 5.");
+					break;
+				}
+
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 [
 	{
 		"id": 1,
+		"owner": 1,
 		"name": "The Lofts",
 		"address": "211 Main Street",
 		"zip": 29201,
@@ -17,6 +18,7 @@
 		"payments": ["Credit, Debit, Cash"]
 	},{
 		"id": 2,
+		"owner": 3,
 		"name": "Nyles's Places",
 		"address": "211 Some Street",
 		"zip": 29201,
@@ -34,6 +36,7 @@
 	}
 	,{
 		"id": 3,
+		"owner": 2,
 		"name": "Some Place",
 		"zip": 29201,
 		"city": "Columbia",

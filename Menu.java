@@ -38,8 +38,8 @@ public class Menu {
 				         + "\t2. Create an account\n"
 				         + "\t3. Continue as Guest\n"
 				         + "\t4. Show most popular listings\n"
-				         + "\t5. Add a property listing\n"
-				         + "\t6. Exit";
+				         //+ "\t5. Add a property listing\n"
+				         + "\t5. Exit";
 	}
 
 	private void setLeaveMenu() {

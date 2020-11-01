@@ -34,7 +34,7 @@ public class Menu {
 	}
 
 	private void setWelcomeMenu() {
-		this.welcomeMenu = "\t\tWelcome to the UofSC Off-Campus Housing Finder!\n"
+		this.welcomeMenu = "\t\tWelcome to the UofSC Off-Campus Housing Finder!\n\n"
 				         + "Please select from the following:\n"
 				         + "\t1. Login\n"
 				         + "\t2. Create an account\n"

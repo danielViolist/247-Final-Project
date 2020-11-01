@@ -65,28 +65,29 @@ public class DataReader extends JSONConstants {
 					contacts.add(contactsJSON.get(j).toString());
 				}
 				String type = String.valueOf(userJSON.get(USERS_TYPE));
-				String uscid = String.valueOf(userJSON.get(USERS_USCID));
-				ArrayList<String> favorites = new ArrayList<String>();
-				if(type.contains(RENTER)) {
-					JSONArray favoritesJSON = (JSONArray)userJSON.get(USERS_FAVORITES);
-					for(int j = 0; j < favoritesJSON.size(); j++) {
-						favorites.add(favoritesJSON.get(j).toString());
-					}
-				}
-				ArrayList<String> properties = new ArrayList<String>();
-				if(type.contains(SELLER)) {
-					JSONArray propertiesJSON = (JSONArray)userJSON.get(USERS_PROPERTIES);
-					for(int j = 0; j < propertiesJSON.size(); j++) {
-						properties.add(propertiesJSON.get(j).toString());
-					}
-				}
 				String agency = "";
 				ArrayList<String> listings = new ArrayList<String>();
+				ArrayList<String> favorites = new ArrayList<String>();
+				ArrayList<String> properties = new ArrayList<String>();
 				if(type.contains(REAL_ESTATE)) {
 					agency = (String)userJSON.get(USERS_AGENCY);
 					JSONArray listingsJSON = (JSONArray)userJSON.get(USERS_LISTINGS);
 					for(int j = 0; j < listingsJSON.size(); j++) {
 						listings.add(listingsJSON.get(j).toString());
+					}
+				} else {
+					String uscid = String.valueOf(userJSON.get(USERS_USCID));
+					if(type.contains(RENTER)) {
+						JSONArray favoritesJSON = (JSONArray)userJSON.get(USERS_FAVORITES);
+						for(int j = 0; j < favoritesJSON.size(); j++) {
+							favorites.add(favoritesJSON.get(j).toString());
+						}
+					}
+					if(type.contains(SELLER)) {
+						JSONArray propertiesJSON = (JSONArray)userJSON.get(USERS_PROPERTIES);
+						for(int j = 0; j < propertiesJSON.size(); j++) {
+							properties.add(propertiesJSON.get(j).toString());
+						}
 					}
 				}
 				if(type.equals(RENTER)) {

@@ -87,7 +87,8 @@ public class UserAPI {
 	 * This adds a Renter user to the DB.
 	 * @param renter Renter to add
 	 */
-	public static void createRenter(Renter renter) {	
+	public static void createRenter(Renter renter) {
+		check();
 		DataWriter.writeRenter(renter);
 		users.add(renter);
 	}
@@ -97,6 +98,7 @@ public class UserAPI {
 	 * @param seller Seller to add
 	 */
 	public static void createSeller(Seller seller) {
+		check();
 		DataWriter.writeSeller(seller);
 		users.add(seller);
 	}

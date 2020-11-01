@@ -52,6 +52,15 @@ public class Renter extends User {
 		UserAPI.createRenter(this);
 		return true;
 	}
+	public boolean addFavoriteDB(Property property) {
+		for (Property favorite : favorites) {
+			if (favorite.equals(property)) {
+				return false;
+			}
+		}
+		favorites.add(property);
+		return true;
+	}
 
 	/**
 	 * Removes a property from favorites.

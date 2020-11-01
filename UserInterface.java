@@ -6,7 +6,6 @@ public class UserInterface {
 
 	private static Scanner s;
 	private static Random randNum;
-	private Database database;
 	private Menu menus;
 
 	public UserInterface() {
@@ -226,6 +225,6 @@ public class UserInterface {
 	}
 
 	private void deleteProperty(int id) {
-		database.deleteProperty(id);
+
 	}
 }

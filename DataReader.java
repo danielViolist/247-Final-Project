@@ -66,6 +66,7 @@ public class DataReader extends JSONConstants {
 				}
 				String type = String.valueOf(userJSON.get(USERS_TYPE));
 				String agency = "";
+				String uscid ="";
 				ArrayList<String> listings = new ArrayList<String>();
 				ArrayList<String> favorites = new ArrayList<String>();
 				ArrayList<String> properties = new ArrayList<String>();
@@ -76,7 +77,7 @@ public class DataReader extends JSONConstants {
 						listings.add(listingsJSON.get(j).toString());
 					}
 				} else {
-					String uscid = String.valueOf(userJSON.get(USERS_USCID));
+					 uscid = String.valueOf(userJSON.get(USERS_USCID));
 					if(type.contains(RENTER)) {
 						JSONArray favoritesJSON = (JSONArray)userJSON.get(USERS_FAVORITES);
 						for(int j = 0; j < favoritesJSON.size(); j++) {
@@ -91,6 +92,7 @@ public class DataReader extends JSONConstants {
 					}
 				}
 				if(type.equals(RENTER)) {
+					
 					Renter r = new Renter(username, password, email, id, phone, name, bio, uscid);
 					for(int j = 0; j < favorites.size(); j++) {
 						r.addFavoriteDB(getProperty(Integer.parseInt(favorites.get(j))));

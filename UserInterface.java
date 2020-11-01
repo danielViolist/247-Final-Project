@@ -15,7 +15,6 @@ public class UserInterface {
 	public void outputMenu(String menu) {
 		if (menu.equals("login")) {
 			System.out.println(menus.getLoginMenu());
-			userLogin();
 		} else if (menu.equals("welcome")) {
 			System.out.println(menus.getWelcomeMenu());
 		} else if (menu.equals("leave")) {
@@ -44,9 +43,9 @@ public class UserInterface {
 		String username = s.nextLine();
 		System.out.println("\nPassword: ");
 		String password = s.nextLine();
-
+		
 		if (UserAPI.userLogin(username, password) == null) {
-			System.out.println("Sorry. Unable to access the database at this time. Please try again later.");
+			System.out.println("Sorry. Unable to login at this time. Please check that the entered username and password are correct and try again.");
 			return null;
 		} else {
 			outputMenu("loginSuccess");

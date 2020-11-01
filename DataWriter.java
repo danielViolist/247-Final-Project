@@ -234,6 +234,7 @@ public class DataWriter extends JSONConstants {
 			for(int i = 0; i < props.size(); i++) {
 				JSONObject someProp = (JSONObject)props.get(i);
 				if(Integer.parseInt(someProp.get(ID).toString()) == p.getID()) {
+					someProp.replace(PROPERTIES_OWNER, p.getSeller().getUserID());
 					someProp.replace(PROPERTIES_NAME, p.getName());
 					someProp.replace(PROPERTIES_DESCRIPTION, p.getDescription());
 					someProp.replace(PROPERTIES_CONDITION, p.getCondition());
@@ -275,6 +276,7 @@ public class DataWriter extends JSONConstants {
 		}
 		JSONObject property = new JSONObject();
 		property.put(ID, p.getID());
+		property.put(PROPERTIES_OWNER, p.getSeller().getUserID());
 		property.put(PROPERTIES_NAME, p.getName());
 		property.put(PROPERTIES_ADDRESS, p.getAddress());
 		property.put(PROPERTIES_ZIP, p.getZipCode());

@@ -15,7 +15,7 @@
 		"reviews": [1],
 		"type": "apartment",
 		"canSubLease": 1,
-		"payments": ["Credit, Debit, Cash"]
+		"payments": ["Credit", "Debit", "Cash"]
 	},{
 		"id": 2,
 		"owner": 3,
@@ -46,7 +46,7 @@
 		"room": 343,
 		"amenities": ["Bathroom", "Kitchen"],
 		"price": 1000.00,
-		"reviews": [3],
+		"reviews": [],
 		"type": "condo",
 		"canSubLease": 0,
 		"payments": ["Credit", "Debit", "Check", "Cash"]

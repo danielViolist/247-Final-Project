@@ -20,7 +20,6 @@
  	"bio": "Computer Science and Math Major at UofSC, class of 2023",
  	"contacts": ["Github: https://github.com/danielViolist"],
  	"type": "RE",
- 	"uscid": "A13498654",
  	"agency": "Big Brain Buying",
  	"listings": [3]
  }, {
@@ -34,6 +33,6 @@
  	"contacts": ["Github: https://github.com/uscNyles"],
  	"type": "RS",
  	"uscid": "A87651234",
- 	"favorites": ["Honors"],
+ 	"favorites": [2],
  	"properties": [2]
  }]

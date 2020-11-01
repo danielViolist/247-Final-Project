@@ -1,0 +1,36 @@
+[
+    {
+        "id": 1,
+        "owner": 1,
+		"name": "The Lofts",
+		"address": "211 Main Street",
+		"zip": 29201,
+		"city": "Columbia",
+		"state": "SC",
+		"description": "The Lofts is cool. Live here! (easy ethernet not included)",
+		"reviews": [1],
+		"properties": [1],
+		"payments": ["Credit", "Debit", "Cash"]
+    },{
+        "id": 2,
+        "owner": 3,
+		"name": "Nyles's Places",
+		"address": "211 Some Street",
+		"zip": 29201,
+		"city": "Columbia",
+		"state": "SC",
+		"description": "The best place to live!",
+		"reviews": [2],
+    }, {
+        "id": 3,
+        "owner": 2,
+		"name": "Some Place",
+		"zip": 29201,
+		"city": "Columbia",
+		"state": "SC",
+		"description": "This is a cool place. Live here.",
+		"reviews": [],
+		"properties": [3],
+		"payments": ["Credit", "Debit", "Check", "Cash"]
+    }
+]

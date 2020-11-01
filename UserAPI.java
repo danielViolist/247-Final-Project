@@ -98,7 +98,6 @@ public class UserAPI {
 	 * @param seller Seller to add
 	 */
 	public static void createSeller(Seller seller) {
-		check();
 		DataWriter.writeSeller(seller);
 		users.add(seller);
 	}

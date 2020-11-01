@@ -36,17 +36,9 @@ public class UserInterface {
 		}
 	}
 
-	public User userLogin() {
-		s = new Scanner(System.in);
-
-		System.out.println("Username: ");
-		String username = s.nextLine();
-		System.out.println("\nPassword: ");
-		String password = s.nextLine();
-		
-		if (UserAPI.userLogin(username, password) == null) {
+	public User userLogin(String username, String password) {
+		if (UserAPI.userLogin(username, password) == null) 
 			return null;
-		}
 		else {
 			outputMenu("loginSuccess");
 			return (UserAPI.userLogin(username, password));

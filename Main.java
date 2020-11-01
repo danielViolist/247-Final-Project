@@ -24,7 +24,7 @@ public class Main {
 
 	public static void createUser(Boolean guessAccount) {
 		s = new Scanner(System.in);
-		ui.outputMenu("creatUser");
+		ui.outputMenu("createUser");
 		if (guessAccount) {
 			setCurrentUser(ui.createUser(0));
 		} else {

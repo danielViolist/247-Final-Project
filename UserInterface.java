@@ -217,14 +217,14 @@ public class UserInterface {
 	}
 
 	private void deleteUser(int id) {
-	//	database.deleteUser(id);
+		DataWriter.removeUser(id);
 	}
 
 	private void deleteReview(int id) {
-	//	database.deleteReview(id);
+		DataWriter.removeReview(id);
 	}
 
 	private void deleteProperty(int id) {
-
+		DataWriter.removeProperty(id);
 	}
 }

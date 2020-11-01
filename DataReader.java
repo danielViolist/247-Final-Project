@@ -1,6 +1,5 @@
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -44,7 +43,6 @@ public class DataReader extends JSONConstants {
 		return null;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public static ArrayList<User> loadUsers() {
 		ArrayList<User> users = new ArrayList<User>();
 		
@@ -62,26 +60,23 @@ public class DataReader extends JSONConstants {
 				String bio = String.valueOf(userJSON.get(USERS_BIO));
 				ArrayList<String> contacts = new ArrayList<String>();
 				JSONArray contactsJSON = (JSONArray)userJSON.get(USERS_CONTACTS);
-				Iterator<String> it = contactsJSON.iterator();
-				while(it.hasNext()) {
-					contacts.add(it.next());
+				for(int j = 0; j < contactsJSON.size(); j++) {
+					contacts.add(contactsJSON.get(j).toString());
 				}
 				String type = String.valueOf(userJSON.get(USERS_TYPE));
 				String uscid = String.valueOf(userJSON.get(USERS_USCID));
 				ArrayList<String> favorites = new ArrayList<String>();
 				if(type.contains(RENTER)) {
 					JSONArray favoritesJSON = (JSONArray)userJSON.get(USERS_FAVORITES);
-					Iterator<String> iter = favoritesJSON.iterator();
-					while(iter.hasNext()) {
-						favorites.add(String.valueOf(iter.next()));
+					for(int j = 0; j < favoritesJSON.size(); j++) {
+						favorites.add(favoritesJSON.get(j).toString());
 					}
 				}
 				ArrayList<String> properties = new ArrayList<String>();
 				if(type.contains(SELLER)) {
 					JSONArray propertiesJSON = (JSONArray)userJSON.get(USERS_PROPERTIES);
-					Iterator<String> itera = propertiesJSON.iterator();
-					while(itera.hasNext()) {
-						properties.add(itera.next());
+					for(int j = 0; j < propertiesJSON.size(); j++) {
+						properties.add(propertiesJSON.get(j).toString());
 					}
 				}
 				String agency = "";
@@ -89,42 +84,36 @@ public class DataReader extends JSONConstants {
 				if(type.contains(REAL_ESTATE)) {
 					agency = (String)userJSON.get(USERS_AGENCY);
 					JSONArray listingsJSON = (JSONArray)userJSON.get(USERS_LISTINGS);
-					Iterator<String> iterat = listingsJSON.iterator();
-					while(iterat.hasNext()) {
-						listings.add(iterat.next());
+					for(int j = 0; j < listingsJSON.size(); j++) {
+						listings.add(listingsJSON.get(j).toString());
 					}
 				}
 				if(type.equals(RENTER)) {
 					Renter r = new Renter(username, password, email, id, phone, name, bio, uscid);
 					for(int j = 0; j < favorites.size(); j++) {
-						int favID = Integer.parseInt(favorites.get(j));
-						r.addFavorite(getProperty(favID));
+						r.addFavorite(getProperty(Integer.parseInt(favorites.get(j))));
 					}
 					users.add(r);
 				} else if(type.equals(REAL_ESTATE)) {
 					ArrayList<Property> listingsProperty = new ArrayList<Property>();
 					for(int j = 0; j < listings.size(); j++) {
-						int listID = Integer.parseInt(listings.get(j));
-						listingsProperty.add(getProperty(listID));
+						listingsProperty.add(getProperty(Integer.parseInt(listings.get(j))));
 					}
 					users.add(new RealEstateAgent(username, password, email, id, phone, name, bio, agency, listingsProperty));
 				} else if(type.equals(SELLER)) {
 					ArrayList<Property> propertiesProperty = new ArrayList<Property>();
 					for(int j = 0; j < properties.size(); j++) {
-						int propID = Integer.parseInt(properties.get(j));
-						propertiesProperty.add(getProperty(propID));
+						propertiesProperty.add(getProperty(Integer.parseInt(properties.get(j))));
 					}
 					users.add(new Seller(username, password, email, id, phone, name, bio, propertiesProperty));
 				} else if(type.equals(RENTER_SELLER)) {
 					ArrayList<Property> propertiesProperty = new ArrayList<Property>();
 					for(int j = 0; j < properties.size(); j++) {
-						int propID = Integer.parseInt(properties.get(j));
-						propertiesProperty.add(getProperty(propID));
+						propertiesProperty.add(getProperty(Integer.parseInt(properties.get(j))));
 					}
 					Renter rs = new Renter(username, password, email, id, phone, name, bio, uscid, true, new Seller(username, password, email, id, phone, name, bio, propertiesProperty));
 					for(int j = 0; j < favorites.size(); j++) {
-						int favID = Integer.parseInt(favorites.get(j));
-						rs.addFavorite(getProperty(favID));
+						rs.addFavorite(getProperty(Integer.parseInt(favorites.get(j))));
 					}
 					users.add(rs);
 				}				
@@ -137,7 +126,6 @@ public class DataReader extends JSONConstants {
 		return null;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public static ArrayList<Property> loadProperties() {
 		ArrayList<Property> properties = new ArrayList<Property>();
 		
@@ -159,26 +147,23 @@ public class DataReader extends JSONConstants {
 				int room = Integer.parseInt(String.valueOf(propJSON.get(PROPERTIES_ROOM)));
 				ArrayList<String> amenities = new ArrayList<String>();
 				JSONArray amenJSON = (JSONArray)propJSON.get(PROPERTIES_AMENITIES);
-				Iterator<String> iter = amenJSON.iterator();
-				while(iter.hasNext()) {
-					amenities.add(iter.next());
+				for(int j = 0; j < amenJSON.size(); j++) {
+					amenities.add(amenJSON.get(j).toString());
 				}
 				double price = Double.parseDouble(String.valueOf(propJSON.get(PROPERTIES_PRICE)));
 				ArrayList<String> reviews = new ArrayList<String>();
 				JSONArray revJSON = (JSONArray)propJSON.get(PROPERTIES_REVIEWS);
-				Iterator<String> it = revJSON.iterator();
-				while(it.hasNext()) {
-					reviews.add(String.valueOf(it.next()));
+				for(int j = 0; j < revJSON.size(); j++) {
+					reviews.add(revJSON.get(j).toString());
 				}
 				String type = String.valueOf(propJSON.get(PROPERTIES_TYPE));
 				//boolean sub = (Integer.parseInt(String.valueOf(propJSON.get(PROPERTIES_SUB)) == 1));
 				//String lease = String.valueOf(propJSON.get(PROPERTIES_LEASE));
 				ArrayList<PaymentType> payments = new ArrayList<PaymentType>();
 				JSONArray payJSON = (JSONArray)propJSON.get(PROPERTIES_REVIEWS);
-				Iterator<String> itera = payJSON.iterator();
-				while(itera.hasNext()) {
-					String paymentType = String.valueOf(itera.next());
-					if(paymentType.equalsIgnoreCase("CASH")) {
+				for(int j = 0; j < payJSON.size(); j++) {
+					String paymentType = payJSON.get(j).toString();
+					if(paymentType.equalsIgnoreCase(PAYMENT_CASH)) {
 						payments.add(PaymentType.CASH);
 					}
 					else if(paymentType.equalsIgnoreCase(PAYMENT_CHECK)) {

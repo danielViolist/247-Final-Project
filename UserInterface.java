@@ -45,9 +45,9 @@ public class UserInterface {
 		String password = s.nextLine();
 		
 		if (UserAPI.userLogin(username, password) == null) {
-			System.out.println("Sorry. Unable to login at this time. Please check that the entered username and password are correct and try again.");
 			return null;
-		} else {
+		}
+		else {
 			outputMenu("loginSuccess");
 			return (UserAPI.userLogin(username, password));
 		}

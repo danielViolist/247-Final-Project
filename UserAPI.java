@@ -88,7 +88,6 @@ public class UserAPI {
 	 * @param renter Renter to add
 	 */
 	public static void createRenter(Renter renter) {	
-		check();
 		DataWriter.writeRenter(renter);
 		users.add(renter);
 	}

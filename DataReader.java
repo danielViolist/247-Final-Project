@@ -182,7 +182,7 @@ public class DataReader extends JSONConstants {
 				} else if(type.equals("condo")) {
 					propType = PropertyType.CONDO;
 				}
-				Property p = new Property((Seller)getUser(owner), address, zip, city, state, description, condition, room, amenities, price, propType);
+				Property p = new Property(owner, address, zip, city, state, description, condition, room, amenities, price, propType);
 				for(PaymentType pay : payments) {
 					p.addPaymentType(pay);
 				}

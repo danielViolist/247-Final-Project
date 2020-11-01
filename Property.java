@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Property {
 	
-	private Seller seller;
+	private int seller;
 	private String address;
 	private String zipCode;
 	private String city;
@@ -20,7 +20,7 @@ public class Property {
 	private ArrayList<PaymentType> acceptedPayments;
 	private boolean isLeased;
 	
-	public Property(Seller seller, String address, String zipCode, String city, String state, String description, String condition,
+	public Property(int seller, String address, String zipCode, String city, String state, String description, String condition,
 			int roomNumber, ArrayList<String> amenities, double price, PropertyType propertyType) {
 		this.seller = seller;
 		this.address = address;
@@ -59,12 +59,12 @@ public class Property {
 	}
 	
 	public boolean equals(Property property) {
-		return this.seller.equals(property.getSeller()) && this.getAddress().equals(property.getAddress()); 
+		return DataReader.getUser(this.seller).equals(property.getSeller()) && this.getAddress().equals(property.getAddress()); 
 	}
 	
 // =========================================================================================================================
 	public Seller getSeller() {
-		return seller;
+		return (Seller)DataReader.getUser(seller);
 	}
 	
 	public ArrayList<PaymentType> getAcceptedPayments() {

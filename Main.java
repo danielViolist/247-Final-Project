@@ -74,7 +74,11 @@ public class Main {
 			}
 		}
 	}
-	
+/******************************************************
+ * These are the main functions that run the program. *
+ * They shouldn't end until the user decides to       *
+ * leave/exit the program.                            *
+ ******************************************************/
 	public static void runRenter() {
 		//TODO
 		if (renter.getSeller() == null) {
@@ -91,6 +95,9 @@ public class Main {
 	public static void runREA() {
 		//TODO
 	}
+/***************************************************
+ * End                                             *
+ ***************************************************/
 	
 	/**
 	 * This attempts to create a new user by asking the user for all needed info.

@@ -49,6 +49,7 @@ public class DataReader extends JSONConstants {
 		try {
 			FileReader read = new FileReader(USERS_FILE);
 			JSONArray usersJSON = (JSONArray)new JSONParser().parse(read);
+			read.close();
 			for(int i = 0; i < usersJSON.size(); i++) {
 				JSONObject userJSON = (JSONObject)usersJSON.get(i);
 				int id = Integer.parseInt(String.valueOf(userJSON.get(ID)));
@@ -132,7 +133,7 @@ public class DataReader extends JSONConstants {
 		try {
 			FileReader read = new FileReader(PROPERTIES_FILE);
 			JSONArray propertiesJSON = (JSONArray)new JSONParser().parse(read);
-			
+			read.close();
 			for(int i = 0; i < propertiesJSON.size(); i++) {
 				JSONObject propJSON = (JSONObject)propertiesJSON.get(i);
 				int id = Integer.parseInt(String.valueOf(propJSON.get(ID)));
@@ -203,6 +204,7 @@ public class DataReader extends JSONConstants {
 		try {
 			FileReader read = new FileReader(REVIEWS_FILE);
 			JSONArray reviewsJSON = (JSONArray)new JSONParser().parse(read);
+			read.close();
 			for(int i = 0; i < reviewsJSON.size(); i++) {
 				JSONObject revJSON = (JSONObject)reviewsJSON.get(i);
 				int id = Integer.parseInt(String.valueOf(revJSON.get(ID)));

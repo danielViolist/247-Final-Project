@@ -64,6 +64,7 @@ public class Main {
 				break;
 			case 3:
 				// Continue as guest
+				runGuest();
 				break;
 			case 4:
 				ui.outputMenu("leave");
@@ -94,6 +95,10 @@ public class Main {
 	
 	public static void runREA() {
 		//TODO
+	}
+	
+	public static void runGuest() {
+		
 	}
 /***************************************************
  * End                                             *

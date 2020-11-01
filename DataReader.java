@@ -92,7 +92,7 @@ public class DataReader extends JSONConstants {
 				if(type.equals(RENTER)) {
 					Renter r = new Renter(username, password, email, id, phone, name, bio, uscid);
 					for(int j = 0; j < favorites.size(); j++) {
-						r.addFavorite(getProperty(Integer.parseInt(favorites.get(j))));
+						r.addFavoriteDB(getProperty(Integer.parseInt(favorites.get(j))));
 					}
 					users.add(r);
 				} else if(type.equals(REAL_ESTATE)) {

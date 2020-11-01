@@ -203,7 +203,7 @@ public class UserInterface {
 			}
 		}
 
-		PropertyAPI.createProperty(new Property(sellerUser, condition, condition, condition, condition, condition,
+		PropertyAPI.createProperty(new Property(sellerUser.getUserID(), condition, condition, condition, condition, condition,
 				condition, roomNumber, amenities, price, propertyType));
 	}
 

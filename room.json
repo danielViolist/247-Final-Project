@@ -1,0 +1,37 @@
+[
+	{
+		"id": 1,
+		"condition": "good",
+		"room": 218,
+		"bed": 1,
+		"bath": 1,
+		"amenities": ["Bathroom", "Refrigerator", "Oven", "Dishwasher"],
+		"perks": ["Pets", "Walk2Campus"],
+		"price": 720.00,
+		"type": "apartment",
+		"canSubLease": 1,
+	},{
+		"id": 2,
+		"condition": "excellent",
+		"room": 212,
+		"bed": 1,
+		"bath": 1,
+		"amenities": ["All"],
+		"perks": ["Pets"],
+		"price": 420.00,
+		"type": "apartment",
+		"canSubLease": 0,
+	}
+	,{
+		"id": 3,
+		"condition": "excellent",
+		"room": 343,
+		"bed": 2,
+		"bath": 2,
+		"amenities": ["Bathroom", "Kitchen"],
+		"perks": ["Pets", "Walk2Campus"],
+		"price": 1000.00,
+		"type": "apartment",
+		"canSubLease": 0,
+	}
+]

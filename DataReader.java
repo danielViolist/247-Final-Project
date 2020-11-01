@@ -114,7 +114,7 @@ public class DataReader extends JSONConstants {
 					}
 					Renter rs = new Renter(username, password, email, id, phone, name, bio, uscid, true, new Seller(username, password, email, id, phone, name, bio, propertiesProperty));
 					for(int j = 0; j < favorites.size(); j++) {
-						rs.addFavorite(getProperty(Integer.parseInt(favorites.get(j))));
+						rs.addFavoriteDB(getProperty(Integer.parseInt(favorites.get(j))));
 					}
 					users.add(rs);
 				}				
@@ -185,7 +185,7 @@ public class DataReader extends JSONConstants {
 				}
 				Property p = new Property(owner, address, zip, city, state, description, condition, room, amenities, price, propType);
 				for(PaymentType pay : payments) {
-					p.addPaymentType(pay);
+					p.addPaymentTypeDB(pay);
 				}
 				p.setPropertyID(id);
 				p.setName(name);

@@ -24,6 +24,10 @@ public class Seller extends User {
 		UserAPI.createSeller(this);
 	}
 	
+	public void addPropertyDB(Property property) {
+		properties.add(property);
+	}
+	
 	public ArrayList<Property> getProperties() {
 		return properties;
 	}

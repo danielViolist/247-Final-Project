@@ -202,6 +202,16 @@ public class Property {
 		return true;
 	}
 	
+	public boolean addReviewDB(Review review){
+		for (Review rev : reviews) {
+			if (review.equals(rev)) /* This checks if there is already a review with the same author */{
+				return false;
+			}
+		}
+		reviews.add(review);
+		return true;
+	}
+	
 	public boolean addPaymentType(PaymentType type) {
 		for (PaymentType payment : acceptedPayments) {
 			if (type == payment) {
@@ -213,7 +223,28 @@ public class Property {
 		return true;
 	}
 	
+	public boolean addPaymentTypeDB(PaymentType type) {
+		for (PaymentType payment : acceptedPayments) {
+			if (type == payment) {
+				return false;
+			}
+		}
+		acceptedPayments.add(type);
+		return true;
+	}
+	
 	public boolean addAmenitiy(String amenity) {
+		for (String ameni : amenities) {
+			if (amenity.equalsIgnoreCase(ameni)) {
+				return false;
+			}
+		}
+		amenities.add(amenity);
+		PropertyAPI.createProperty(this);
+		return true;
+	}
+	
+	public boolean addAmenitiyDB(String amenity) {
 		for (String ameni : amenities) {
 			if (amenity.equalsIgnoreCase(ameni)) {
 				return false;

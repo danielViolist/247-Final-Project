@@ -27,6 +27,16 @@ public class RealEstateAgent extends User {
 		return true;
 	}
 	
+	public boolean listPropertyDB (Property property) {
+		for (Property listing : listings) {
+			if (listing.equals(property)) {
+				return false;
+			}
+		}
+		listings.add(property);
+		return true;
+	}
+	
 	public ArrayList<Property> getListings() {
 		return listings;
 	}

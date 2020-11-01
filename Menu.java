@@ -26,7 +26,7 @@ public class Menu {
 		setTopPropertiesMenu();
 		setAddPropertyMenu();
 		setLoginSuccessMenu();
-		setCreateUserMenu(false);
+		setCreateUserMenu();
 		setInvalidInputMenu();
 		setSearchPropertiesMenu();
 	}
@@ -126,8 +126,7 @@ public class Menu {
 	public String getLoginSuccessMenu() {
 		return loginSuccessMenu;
 	}
-	public String getCreateUserMenu(Boolean isGuest) {
-		setCreateUserMenu(isGuest);
+	public String getCreateUserMenu() {
 		return createUserMenu;
 	}
 	public String getInvalidInputMenu() {

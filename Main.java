@@ -1,3 +1,5 @@
+
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,11 +29,15 @@ public class Main {
 					String username = s.nextLine();
 					System.out.println("Password: ");
 					String password = s.nextLine();
-					currentUserType = ui.userLogin(username, password);
-					if (currentUserType == -1) {
-						System.out.println("Error: Invalid credentials were entered. Please try again.");
-					}
-				}
+//					currentUserType = 
+//					if (currentUserType == -1) {
+//						System.out.println("Error: Invalid credentials were entered. Please try again.");
+//					}
+//				}
+				
+					ui.userLogin(username, password);
+				
+			}
 				switch (currentUserType) {
 				case 0:
 					runRenter();

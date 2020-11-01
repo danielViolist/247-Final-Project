@@ -16,6 +16,11 @@ public class Menu {
 	private String createUserMenu;
 	private String invalidInputMenu;
 	private String searchPropertiesMenu;
+	private String guestOptions;
+	private String renterOptions;
+	private String renterSellerOptions;
+	private String sellerOptions;
+	private String REAOptions;
 	
 	public Menu() {
 		setLoginMenu();
@@ -29,6 +34,51 @@ public class Menu {
 		setCreateUserMenu();
 		setInvalidInputMenu();
 		setSearchPropertiesMenu();
+		setGuestOptions();
+		setRenterOptions();
+		setSellerOptions();
+		setREAOptions();
+		setRenterSellerOptions();
+	}
+	
+	public void setGuestOptions() {
+		guestOptions = "Select from the following:"
+				+ "\n\t1. Show top listings"
+				+ "\n\t2. Search listings"
+				+ "\n\t3. Exit";
+	}
+	
+	public void setRenterOptions() {
+		renterOptions = "Select form the following:"
+				+ "\n\t1. Show top listings"
+				+ "\n\t2. Search listings"
+				+ "\n\t3. Rent a listing"
+				+ "\n\t4. Exit";	
+	}
+	
+	public void setRenterSellerOptions() {
+		renterSellerOptions = "Select form the following:"
+				+ "\n\t1. Show top listings"
+				+ "\n\t2. Search listings"
+				+ "\n\t3. Rent a listing"
+				+ "\n\t4. List a property"
+				+ "\n\t5. Exit";
+	}
+	
+	public void setSellerOptions() {
+		sellerOptions = "Select form the following:"
+				+ "\n\t1. Show top listings"
+				+ "\n\t2. Search listings"
+				+ "\n\t3. List a property"
+				+ "\n\t4. Exit";
+	}
+	
+	public void setREAOptions () {
+		REAOptions = "Select form the following:"
+				+ "\n\t1. Show top listings"
+				+ "\n\t2. Search listings"
+				+ "\n\t4. List a property"
+				+ "\n\t5. Exit";
 	}
 	
 	private void setLoginMenu() {
@@ -131,5 +181,30 @@ public class Menu {
 	public String getInvalidInputMenu() {
 		return invalidInputMenu;
 	}
-	
+	public String getThanksMenu() {
+		return thanksMenu;
+	}
+	public String getSearchPropertiesMenu() {
+		return searchPropertiesMenu;
+	}
+
+	public String getGuestOptions() {
+		return guestOptions;
+	}
+
+	public String getRenterOptions() {
+		return renterOptions;
+	}
+
+	public String getRenterSellerOptions() {
+		return renterSellerOptions;
+	}
+
+	public String getSellerOptions() {
+		return sellerOptions;
+	}
+
+	public String getREAOptions() {
+		return REAOptions;
+	}
 }

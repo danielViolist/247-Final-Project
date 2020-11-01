@@ -32,22 +32,34 @@ public class Main {
 						System.out.println("Error: Invalid credentials were entered. Please try again.");
 					}
 				}
-				//TODO go into each type of user's method
+				switch (currentUserType) {
+				case 0:
+					runRenter();
+					break;
+				case 1:
+					runSeller();
+					break;
+				case 2:
+					runREA();
+					break;
+				default:
+					System.exit(0);	
+				}
 				break;
 			case 2:
 				// Create new user
 				int userType = createUser();
-				if (userType == 0) {
+				if (userType == 0 || userType == 3) {
 					// Renter
+					runRenter();
 				} 
 				else if (userType == 1) {
 					// Seller
+					runSeller();
 				} 
 				else if (userType == 2) {
 					// REA
-				}
-				else if (userType == 3) {
-					// Renter-seller
+					runREA();
 				}
 				break;
 			case 3:
@@ -63,10 +75,28 @@ public class Main {
 		}
 	}
 	
+	public static void runRenter() {
+		//TODO
+		if (renter.getSeller() == null) {
+			// NOT a renter/seller
+		} else {
+			//Renter seller
+		}
+	}
+	
+	public static void runSeller() {
+		//TODO
+	}
+	
+	public static void runREA() {
+		//TODO
+	}
+	
 	/**
 	 * This attempts to create a new user by asking the user for all needed info.
 	 * This works with any user type except guest. 
 	 * It sets the currentUser to whatever user is created.
+	 * @return 0 if renter; 1 if seller; 2 if rea; 3 if renter-seller
 	 */
 	public static int createUser() {
 		ui.outputMenu("createUser");

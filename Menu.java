@@ -49,7 +49,7 @@ public class Menu {
 	}
 	
 	public void setRenterOptions() {
-		renterOptions = "Select form the following:"
+		renterOptions = "Select from the following:"
 				+ "\n\t1. Show top listings"
 				+ "\n\t2. Search listings"
 				+ "\n\t3. Rent a listing"

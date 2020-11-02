@@ -22,7 +22,7 @@ public class Property {
 		this.state = state;
 		this.description = description;
 		reviews = new ArrayList<Review>();
-		rooms = new ArrayList<String>();
+		rooms = new ArrayList<Room>();
 		acceptedPayments = new ArrayList<PaymentType>();
 		this.propertyID = PropertyAPI.getNewPropertyID();
 	}

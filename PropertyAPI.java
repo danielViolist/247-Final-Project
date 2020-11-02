@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PropertyAPI {
 	
@@ -17,6 +18,15 @@ public class PropertyAPI {
 		check();
 		DataWriter.writeProperty(property);
 		properties.add(property);
+	}
+	
+	public static int getNewPropertyID() {
+		check();
+		Random r = new Random();
+		int rand = r.nextInt();
+		while (DataReader.propertyExists(rand)) 
+			rand = r.nextInt();
+		return rand;
 	}
 	
 	private static void check() {

@@ -16,22 +16,28 @@ public class UserAPI {
 	 * @param password User-inputted password
 	 * @return Returns the user if successful; null otherwise. 
 	 */
-	public static User userLogin(String username, String password) {
+	public static int userLogin(String username, String password) {
 		check();
 		for (User user : users) {
 			if (user.getUsername().equalsIgnoreCase(username) && user.getPassword().equals(password)) {
 				loggedInUsers.add(user);
-				if (user.getClass().getName().equalsIgnoreCase("renter")) 
-					return (Renter) user;
-				else if (user.getClass().getName().equalsIgnoreCase("seller")) 
-					return (Seller) user;
-				else if (user.getClass().getName().equalsIgnoreCase("realestateagent"))
-					return (RealEstateAgent) user;
-				else
-					return null;
+				if (user.getClass().getName().equalsIgnoreCase("renter")) {
+					Main.renter = (Renter) user;
+					return 0;
+				}
+				else if (user.getClass().getName().equalsIgnoreCase("seller")) {
+					Main.seller = (Seller) user;
+					return 1;
+				}
+				else if (user.getClass().getName().equalsIgnoreCase("realestateagent")) {
+					Main.rea = (RealEstateAgent) user;
+					return 2;
+				}
+				else 
+					return -1;
 			}
 		}
-		return null;
+		return -1;
 	}
 	
 	/**
@@ -87,7 +93,7 @@ public class UserAPI {
 	 * This adds a Renter user to the DB.
 	 * @param renter Renter to add
 	 */
-	public static void createRenter(Renter renter) {
+	public static void createRenter(Renter renter) {	
 		check();
 		DataWriter.writeRenter(renter);
 		users.add(renter);

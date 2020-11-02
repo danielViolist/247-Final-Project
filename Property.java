@@ -99,6 +99,10 @@ public class Property {
 		return reviews;
 	}
 	
+	public void setPropertyID(int id) {
+		propertyID = id;
+	}
+	
 // ====================================================================================================================
 	public boolean removeReveiw(Renter renter) {
 		for (Review review: reviews) {

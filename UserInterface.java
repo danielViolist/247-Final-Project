@@ -32,7 +32,17 @@ public class UserInterface {
 			System.out.println(menus.getLoginSuccessMenu());
 		} else if (menu.equals("createUser")) {
 			System.out.println(menus.getCreateUserMenu());
-		} 
+		} else if (menu.equals("guestoptions")) {
+			System.out.println(menus.getGuestOptions());
+		} else if (menu.equals("renteroptions")) {
+			System.out.println(menus.getRenterOptions());
+		} else if (menu.equals("reaoptions")) {
+			System.out.println(menus.getREAOptions());
+		} else if (menu.equals("selleroptions")) {
+			System.out.println(menus.getSellerOptions());
+		} else if (menu.equals("renterselleroptions")) {
+			System.out.println(menus.getRenterSellerOptions());
+		}
 	}
 
 	public int userLogin(String username, String password) {

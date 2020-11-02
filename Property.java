@@ -22,16 +22,15 @@ public class Property {
 		this.state = state;
 		this.description = description;
 		reviews = new ArrayList<Review>();
-		rooms = new ArrayList<String>();
+		rooms = new ArrayList<Room>();
 		acceptedPayments = new ArrayList<PaymentType>();
 		this.propertyID = PropertyAPI.getNewPropertyID();
 	}
 
 	public String toString() {
-		return "Seller: " + seller
-				   + "\n\tAddress: " + address + city + ", " + state + zipCode
-				   + "\n\tDescription: " + description
-				   + "\n\tAmenities:\n";
+		return "Name: " + name + "\nID: " + propertyID + "\n\tSeller: " + seller
+				   + "\n\tAddress: " + address + city + ", " + state + ", " + zipCode
+				   + "\n\tDescription: " + description;
 	}
 	
 	public boolean equals(Property property) {

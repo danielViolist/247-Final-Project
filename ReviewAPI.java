@@ -38,7 +38,7 @@ public class ReviewAPI {
 		return rand;
 	}
 	
-	public static void createRenter(Review review) {
+	public static void createReview(Review review) {
 		check();
 		DataWriter.writeReview(review);
 		reviews.add(review);

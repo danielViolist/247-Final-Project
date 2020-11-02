@@ -49,15 +49,16 @@ public class Menu {
 	}
 	
 	public void setRenterOptions() {
-		renterOptions = "Select form the following:"
+		renterOptions = "Select from the following:"
 				+ "\n\t1. Show top listings"
 				+ "\n\t2. Search listings"
 				+ "\n\t3. Rent a listing"
-				+ "\n\t4. Exit";	
+				+ "\n\t4. Add to favorite"
+				+ "\n\t5. Exit";	
 	}
 	
 	public void setRenterSellerOptions() {
-		renterSellerOptions = "Select form the following:"
+		renterSellerOptions = "Select from the following:"
 				+ "\n\t1. Show top listings"
 				+ "\n\t2. Search listings"
 				+ "\n\t3. Rent a listing"
@@ -66,7 +67,7 @@ public class Menu {
 	}
 	
 	public void setSellerOptions() {
-		sellerOptions = "Select form the following:"
+		sellerOptions = "Select from the following:"
 				+ "\n\t1. Show top listings"
 				+ "\n\t2. Search listings"
 				+ "\n\t3. List a property"
@@ -74,7 +75,7 @@ public class Menu {
 	}
 	
 	public void setREAOptions () {
-		REAOptions = "Select form the following:"
+		REAOptions = "Select from the following:"
 				+ "\n\t1. Show top listings"
 				+ "\n\t2. Search listings"
 				+ "\n\t4. List a property"

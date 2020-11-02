@@ -28,7 +28,7 @@ public class Property {
 	}
 
 	public String toString() {
-		return "Name: " + name + "\n\tSeller: " + seller
+		return "Name: " + name + "\nID: " + propertyID + "\n\tSeller: " + seller
 				   + "\n\tAddress: " + address + city + ", " + state + ", " + zipCode
 				   + "\n\tDescription: " + description;
 	}

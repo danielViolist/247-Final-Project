@@ -10,7 +10,7 @@ public class LeaseWriter {
 	private Scanner inputByLine;
 	private Scanner inputByWord;
 
-	public void SignLease(/*String ownerName, ArrayList<String> tenantNames, Date startDate, Date endDate*/) throws FileNotFoundException {
+	public void SignLease(String ownerName, ArrayList<String> tenantNames, Date startDate, Date endDate, Property property, int Roomid) throws FileNotFoundException {
 		inputByLine = new Scanner(new File("LeaseAgreement.txt"));
 		output = new PrintWriter("SignedLease.txt");
 
@@ -35,29 +35,37 @@ public class LeaseWriter {
 				String fileWord = inputByWord.next();
 
 				if (fileWord.equalsIgnoreCase("<DATE>"))
-					fileWord = "<Must be replaced>";
+					fileWord = startDate.toString();
 				if (fileWord.equalsIgnoreCase("<LANDLOARD>"))
-					fileWord = "<Must be replaced>";
+					fileWord = ownerName;
 				if (fileWord.equalsIgnoreCase("<NUM_BED>"))
-					fileWord = "<Must be replaced>";
+					fileWord = Integer.toString(room.getBeds());
 				if (fileWord.equalsIgnoreCase("<NUM_BATH>"))
-					fileWord = "<Must be replaced>";
+					fileWord = Integer.toString(room.getBaths());
 				if (fileWord.equalsIgnoreCase("<PROPERTY_ADDRESS>"))
-					fileWord = "<Must be replaced>";
+					//fileWord = ;
 				if (fileWord.equalsIgnoreCase("<ZIP>"))
-					fileWord = "<Must be replaced>";
+					//fileWord = "<Must be replaced>";
 				if (fileWord.equalsIgnoreCase("<START DATE>"))
-					fileWord = "<Must be replaced>";
+					fileWord = startDate.toString();
 				if (fileWord.equalsIgnoreCase("<END DATE>"))
-					fileWord = "<Must be replaced>";
+					fileWord = endDate.toString();
 				if (fileWord.equalsIgnoreCase("<RENT>"))
-					fileWord = "<Must be replaced>";
+					fileWord = Double.toString(room.getPrice());
 				if (fileWord.equalsIgnoreCase("<PAYMENT ADDRESS>"))
-					fileWord = "<Must be replaced>";
+					//fileWord = "<Must be replaced>";
 				if (fileWord.equalsIgnoreCase("<DAMAGE COST>"))
-					fileWord = "<Must be replaced>";
+					//fileWord = "<Must be replaced>";
 				if (fileWord.equalsIgnoreCase("<TENANT(s)>"))
-					fileWord = "Must be replaced>";
+					for(int i = 0; i < tenantNames.size()-1; i++) {
+						
+						if (i == tenantNames.size()-2) {
+						fileWord += tenantNames.get(i);
+						} else {
+							fileWord += tenantNames.get(i) +", ";
+						}
+
+					}
 				
 
 				fileWord += " ";

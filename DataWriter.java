@@ -505,6 +505,26 @@ public class DataWriter extends JSONConstants {
 		}
 	}
 	
+	public static void removeRoom(int id) {
+		if(DataReader.roomExists(id)) {
+			JSONArray rooms = DataReader.getRoomsJSON();
+			for(int i = 0; i < rooms.size(); i++) {
+				JSONObject someRoom = (JSONObject)rooms.get(i);
+				if(Integer.parseInt(someRoom.get(ID).toString()) == id) {
+					removeRoomFromProperty(id);
+					rooms.remove(i);
+					try (FileWriter file = new FileWriter(ROOM_FILE)) {
+						file.write(rooms.toJSONString());
+						file.flush();
+						file.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+	}
+	
 	public static void removeReview(int id) {
 		if(DataReader.reviewExists(id)) {
 			JSONArray revs = DataReader.getReviewsJSON();
@@ -611,5 +631,27 @@ public class DataWriter extends JSONConstants {
 			} catch(IOException e) {
 				e.printStackTrace();
 			}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private static void removeRoomFromProperties(int id) {
+		JSONArray properties = DataReader.getPropertiesJSON();
+		for(int i = 0; i < properties.size(); i++) {
+			JSONObject someProp = (JSONObject)properties.get(i);
+			JSONArray rooms = (JSONArray)someProp.get(PROPERTIES_ROOMS);
+			for(int j = 0; j < rooms.size(); j++) {
+				if(Integer.parseInt(rooms.get(j).toString()) == id) {
+					rooms.remove(j);
+				}
+				try (FileWriter file = new FileWriter(REVIEWS_FILE)) {
+					file.write(rooms.toJSONString());
+					file.flush();
+					file.close();
+				} catch(IOException e) {
+					e.printStackTrace();
+				}
+				return;
+			}
+		}
 	}
 }

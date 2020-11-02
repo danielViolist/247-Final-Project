@@ -10,7 +10,8 @@ public class LeaseWriter {
 	private Scanner inputByLine;
 	private Scanner inputByWord;
 
-	public void SignLease(String ownerName, ArrayList<String> tenantNames, Date startDate, Date endDate, Property property, int Roomid) throws FileNotFoundException {
+	public void SignLease( ArrayList<Integer> tenantIDs, Date startDate, Date endDate, int propertyID, int roomID) throws FileNotFoundException {
+		
 		inputByLine = new Scanner(new File("LeaseAgreement.txt"));
 		output = new PrintWriter("SignedLease.txt");
 
@@ -29,49 +30,91 @@ public class LeaseWriter {
 			 * individually
 			 */
 			inputByWord = new Scanner(fileLine);
-			
+			String tempString = "";
 			while (inputByWord.hasNext()) {
 
 				String fileWord = inputByWord.next();
-
-				if (fileWord.equalsIgnoreCase("<DATE>"))
-					fileWord = startDate.toString();
-				if (fileWord.equalsIgnoreCase("<LANDLOARD>"))
-					fileWord = ownerName;
-				if (fileWord.equalsIgnoreCase("<NUM_BED>"))
-					fileWord = Integer.toString(DataReader.getRoom(Roomid).getBeds());
-				if (fileWord.equalsIgnoreCase("<NUM_BATH>"))
-					fileWord = Integer.toString(DataReader.getRoom(Roomid).getBaths());
-				if (fileWord.equalsIgnoreCase("<PROPERTY_ADDRESS>"))
-					fileWord = property.getAddress();
-				if (fileWord.equalsIgnoreCase("<ZIP>"))
-					fileWord = property.getZipCode();
-				if (fileWord.equalsIgnoreCase("<START DATE>"))
-					fileWord = startDate.toString();
-				if (fileWord.equalsIgnoreCase("<END DATE>"))
-					fileWord = endDate.toString();
-				if (fileWord.equalsIgnoreCase("<RENT>"))
-					fileWord = Double.toString(DataReader.getRoom(Roomid).getPrice());
-				if (fileWord.equalsIgnoreCase("<PAYMENT ADDRESS>"))
-					fileWord = property.getAddress();
-				if (fileWord.equalsIgnoreCase("<DAMAGE COST>"))
-					fileWord = "$" + Double.toString(DataReader.getRoom(Roomid).getPrice() * .85);
-				if (fileWord.equalsIgnoreCase("<TENANT(s)>"))
-					for(int i = 0; i < tenantNames.size()-1; i++) {
-						
-						if (i == tenantNames.size()-2) {
-						fileWord += tenantNames.get(i);
-						} else {
-							fileWord += tenantNames.get(i) +", ";
-						}
-
-					}
 				
 
-				fileWord += " ";
+				if (fileWord.contains("<DATE>")) {
+					fileWord.replaceAll("\\p{Punct}", "");
+					fileWord = "**Must Be Replaced**";
+					//fileWord = startDate.toString();
+					}
+				if (fileWord.contains("<LANDLOARD>")) {
+					fileWord.trim();
+					fileWord = "**Must Be Replaced**";
+				//	fileWord = DataReader.getProperty(propertyID).getSeller().getName();
+					}
+				if (fileWord.contains("<NUM_BED>")) {
+					fileWord.trim();
+					fileWord = "**Must Be Replaced**";
+					//fileWord = Integer.toString(DataReader.getRoom(roomID).getBeds());
+					}
+				if (fileWord.contains("<NUM_BATH>")) {
+					fileWord.trim();
+					fileWord = "**Must Be Replaced**";
+					//fileWord = Integer.toString(DataReader.getRoom(roomID).getBaths());
+					}
+				if (fileWord.contains("<PROPERTY_ADDRESS>")) {
+					fileWord.trim();
+					fileWord = "**Must Be Replaced**";
+					//fileWord = DataReader.getProperty(propertyID).getAddress();
+					}
+				if (fileWord.contains("<ZIP>")) {
+					fileWord.trim();
+					fileWord = "**Must Be Replaced**";
+					//fileWord = DataReader.getProperty(propertyID).getZipCode();
+					}
+				if (fileWord.contains("<START DATE>")) {
+					fileWord.trim();
+					fileWord = "**Must Be Replaced**";
+					//fileWord = startDate.toString();
+					}
+				if (fileWord.contains("<END DATE>")) {
+					fileWord.trim();
+					fileWord = "**Must Be Replaced**";
+					//fileWord = endDate.toString();
+					}
+				if (fileWord.contains("<RENT>")) {
+					fileWord.trim();
+					fileWord = "**Must Be Replaced**";
+					//fileWord = Double.toString(DataReader.getRoom(roomID).getPrice());
+					}
+				if (fileWord.contains("<PAYMENT ADDRESS>")) {
+					fileWord.trim();
+					fileWord = "**Must Be Replaced**";
+					//fileWord = DataReader.getProperty(propertyID).getAddress();
+					}
+				if (fileWord.contains("<DAMAGE COST>")) {
+					fileWord.trim();
+					fileWord = "**Must Be Replaced**";
+					//fileWord = "$" + Double.toString(DataReader.getRoom(roomID).getPrice() * .85);
+					}
+				if (fileWord.contains("<TENANT(s)>")) {
+//					for(int i = 0; i < tenantIDs.size()-1; i++) {
+//						
+//						if (i == tenantIDs.size()-2) {
+//						fileWord += DataReader.getUser(tenantIDs.get(i)).getName() + ".";
+//						} else {
+//							fileWord += DataReader.getUser(tenantIDs.get(i)).getName() +", ";
+//						}
+//
+//					}
+					fileWord.trim();
+					fileWord = "**Must Be Replaced**";
+				}
+				
+
+				//fileWord += " ";
+				tempString += " "+ fileWord;
 
 				
 			}
+			fileLine = tempString;
+			if(fileLine.length()>1 && fileLine.endsWith(".") != true) {
+				fileLine+=".";}
+			fileLine += "\n";
 			output.print(fileLine);
 			inputByWord.close();
 			

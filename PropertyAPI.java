@@ -21,6 +21,7 @@ public class PropertyAPI {
 	}
 	
 	public static int getNewPropertyID() {
+		check();
 		Random r = new Random();
 		int rand = r.nextInt();
 		while (DataReader.propertyExists(rand)) 

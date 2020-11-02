@@ -78,7 +78,7 @@ public class DataReader extends JSONConstants {
 				}
 				String type = String.valueOf(userJSON.get(USERS_TYPE));
 				String agency = "";
-				String uscid = "";
+				String uscid ="";
 				ArrayList<String> listings = new ArrayList<String>();
 				ArrayList<String> favorites = new ArrayList<String>();
 				ArrayList<String> properties = new ArrayList<String>();

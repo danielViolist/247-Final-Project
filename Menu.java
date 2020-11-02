@@ -53,7 +53,8 @@ public class Menu {
 				+ "\n\t1. Show top listings"
 				+ "\n\t2. Search listings"
 				+ "\n\t3. Rent a listing"
-				+ "\n\t4. Exit";	
+				+ "\n\t4. Add to favorite"
+				+ "\n\t5. Exit";	
 	}
 	
 	public void setRenterSellerOptions() {

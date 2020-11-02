@@ -4,6 +4,8 @@ public class Room {
 	
 	private int roomID;
 	private int roomNumber;
+	private int beds;
+	private int baths;
 	private String condition;
 	private ArrayList<String> amenities;
 	private ArrayList<String> bonuses;
@@ -12,9 +14,11 @@ public class Room {
 	private boolean isLeased;
 	private double price;
 
-	public Room(int id, int rn, String condition, ArrayList<String> amenities, ArrayList<String> bonuses, PropertyType propType, boolean canSub, boolean isLeased, double price) {
+	public Room(int id, int rn, int beds, int baths, String condition, ArrayList<String> amenities, ArrayList<String> bonuses, PropertyType propType, boolean canSub, boolean isLeased, double price) {
 		this.roomID = id;
 		this.roomNumber = rn;
+		this.beds = beds;
+		this.baths = baths;
 		this.condition = condition;
 		this.amenities = amenities;
 		this.bonuses = bonuses;
@@ -30,6 +34,14 @@ public class Room {
 	
 	public int getRoomNumber() {
 		return this.roomNumber;
+	}
+	
+	public int getBeds() {
+		return this.beds;
+	}
+	
+	public int getBaths() {
+		return this.baths;
 	}
 	
 	public String getCondition() {
@@ -60,8 +72,20 @@ public class Room {
 		return this.price;
 	}
 	
+	public void setID(int num) {
+		this.roomID = num;
+	}
+	
 	public void setRoomNumber(int num) {
 		this.roomNumber = num;
+	}
+	
+	public void setBeds(int beds) {
+		this.beds = beds;
+	}
+	
+	public void setBaths(int baths) {
+		this.baths = baths;
 	}
 	
 	public void setCondition(String con) {

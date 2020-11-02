@@ -43,16 +43,16 @@ public class DataWriter extends JSONConstants {
 							properties.add(p.getID());
 						}
 					}
+					try (FileWriter file = new FileWriter(USERS_FILE)) {
+						file.write(users.toJSONString());
+						file.flush();
+						file.close();
+					} catch(IOException e) {
+						e.printStackTrace();
+					}
+					return;
 				}
 			}
-			try (FileWriter file = new FileWriter(USERS_FILE)) {
-				file.write(users.toJSONString());
-				file.flush();
-				file.close();
-			} catch(IOException e) {
-				e.printStackTrace();
-			}
-			return;
 		}
 		JSONObject renter = new JSONObject();
 		renter.put(ID, r.getUserID());
@@ -118,16 +118,16 @@ public class DataWriter extends JSONConstants {
 					for(Property p : sellerProperties) {
 						properties.add(p.getID());
 					}
+					try (FileWriter file = new FileWriter(USERS_FILE)) {
+						file.write(users.toJSONString());
+						file.flush();
+						file.close();
+					} catch(IOException e) {
+						e.printStackTrace();
+					}
+					return;
 				}
 			}
-			try (FileWriter file = new FileWriter(USERS_FILE)) {
-				file.write(users.toJSONString());
-				file.flush();
-				file.close();
-			} catch(IOException e) {
-				e.printStackTrace();
-			}
-			return;
 		}
 		JSONObject seller = new JSONObject();
 		seller.put(ID, s.getUserID());
@@ -185,16 +185,16 @@ public class DataWriter extends JSONConstants {
 					for(Property p : reListings) {
 						listings.add(p.getID());
 					}
+					try (FileWriter file = new FileWriter(USERS_FILE)) {
+						file.write(users.toJSONString());
+						file.flush();
+						file.close();
+					} catch(IOException e) {
+						e.printStackTrace();
+					}
+					return;
 				}
 			}
-			try (FileWriter file = new FileWriter(USERS_FILE)) {
-				file.write(users.toJSONString());
-				file.flush();
-				file.close();
-			} catch(IOException e) {
-				e.printStackTrace();
-			}
-			return;
 		}
 		JSONObject agent = new JSONObject();
 		agent.put(ID, re.getUserID());
@@ -237,42 +237,34 @@ public class DataWriter extends JSONConstants {
 					someProp.replace(PROPERTIES_OWNER, p.getSeller().getUserID());
 					someProp.replace(PROPERTIES_NAME, p.getName());
 					someProp.replace(PROPERTIES_DESCRIPTION, p.getDescription());
-					someProp.replace(PROPERTIES_CONDITION, p.getCondition());
-					someProp.replace(PROPERTIES_ROOM, p.getRoomNumber());
-					JSONArray amenities = new JSONArray();
-					ArrayList<String> propertyAmenities = p.getAmenities();
-					for(String amen : propertyAmenities) {
-						amenities.add(amen);
-					}
-					someProp.replace(PROPERTIES_AMENITIES, amenities);
-					someProp.replace(PROPERTIES_PRICE, p.getPrice());
 					JSONArray reviews = new JSONArray();
 					ArrayList<Review> propertyReviews = p.getReviews();
 					for(Review r : propertyReviews) {
 						reviews.add(r.getID());
 					}
 					someProp.replace(PROPERTIES_REVIEWS, reviews);
-					if(p.canSubLease()) {
-						someProp.replace(PROPERTIES_SUB, 1);
-					} else {
-						someProp.replace(PROPERTIES_SUB, 0);
+					JSONArray rooms = new JSONArray();
+					ArrayList<Room> propertyRooms = p.getRooms();
+					for(Room r : propertyRooms) {
+						rooms.add(r.getRoomID());
 					}
+					someProp.replace(PROPERTIES_ROOMS, rooms);
 					JSONArray payments = new JSONArray();
 					ArrayList<PaymentType> propertyPayments = p.getAcceptedPayments();
 					for(PaymentType pay : propertyPayments) {
 						payments.add(pay);
 					}
 					someProp.replace(PROPERTIES_PAYMENTS, payments);
+					try (FileWriter file = new FileWriter(PROPERTIES_FILE)) {
+						file.write(props.toJSONString());
+						file.flush();
+						file.close();
+					} catch(IOException e) {
+						e.printStackTrace();
+					}
+					return;
 				}
 			}
-			try (FileWriter file = new FileWriter(PROPERTIES_FILE)) {
-				file.write(props.toJSONString());
-				file.flush();
-				file.close();
-			} catch(IOException e) {
-				e.printStackTrace();
-			}
-			return;
 		}
 		JSONObject property = new JSONObject();
 		property.put(ID, p.getID());
@@ -283,28 +275,12 @@ public class DataWriter extends JSONConstants {
 		property.put(PROPERTIES_CITY, p.getCity());
 		property.put(PROPERTIES_STATE, p.getState());
 		property.put(PROPERTIES_DESCRIPTION, p.getDescription());
-		property.put(PROPERTIES_CONDITION, p.getCondition());
-		property.put(PROPERTIES_ROOM, p.getRoomNumber());
-		JSONArray amenities = new JSONArray();
-		ArrayList<String> propertyAmenities = p.getAmenities();
-		for(String amen : propertyAmenities) {
-			amenities.add(amen);
-		}
-		property.put(PROPERTIES_AMENITIES, amenities);
-		property.put(PROPERTIES_PRICE, p.getPrice());
 		JSONArray reviews = new JSONArray();
 		ArrayList<Review> propertyReviews = p.getReviews();
 		for(Review r : propertyReviews) {
 			reviews.add(r.getID());
 		}
 		property.put(PROPERTIES_REVIEWS, reviews);
-		property.put(PROPERTIES_TYPE, p.getPropertyType());
-		if(p.canSubLease()) {
-			property.put(PROPERTIES_SUB, 1);
-		} else {
-			property.put(PROPERTIES_SUB, 0);
-		}
-		//property.put(PROPERTIES_LEASE, p.getLease());
 		JSONArray payments = new JSONArray();
 		ArrayList<PaymentType> propertyPayments = p.getAcceptedPayments();
 		for(PaymentType pay : propertyPayments) {
@@ -328,16 +304,16 @@ public class DataWriter extends JSONConstants {
 				if(Integer.parseInt(someRev.get(ID).toString()) == r.getID()) {
 					someRev.replace(REVIEWS_RATING, r.getRating());
 					someRev.replace(REVIEWS_DESCRIPTION, r.getDescription());
+					try (FileWriter file = new FileWriter(REVIEWS_FILE)) {
+						file.write(revs.toJSONString());
+						file.flush();
+						file.close();
+					} catch(IOException e) {
+						e.printStackTrace();
+					}
+					return;
 				}
 			}
-			try (FileWriter file = new FileWriter(REVIEWS_FILE)) {
-				file.write(revs.toJSONString());
-				file.flush();
-				file.close();
-			} catch(IOException e) {
-				e.printStackTrace();
-			}
-			return;
 		}
 		JSONObject review = new JSONObject();
 		review.put(ID, r.getID());
@@ -346,6 +322,90 @@ public class DataWriter extends JSONConstants {
 		review.put(REVIEWS_DESCRIPTION, r.getDescription());
 		try (FileWriter file = new FileWriter(REVIEWS_FILE, true)) {
 			file.write(review.toJSONString());
+			file.flush();
+			file.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static void writeRoom(Room r) {
+		if(DataReader.roomExists(r.getRoomID())) {
+			JSONArray rooms = DataReader.getRoomsJSON();
+			for(int i = 0; i < rooms.size(); i++) {
+				JSONObject someRoom = (JSONObject)rooms.get(i);
+				if(Integer.parseInt(someRoom.get(ID).toString()) == r.getRoomID()) {
+					someRoom.replace(ROOM_CONDITION, r.getCondition());
+					someRoom.replace(ROOM_BEDS, r.getBeds());
+					someRoom.replace(ROOM_BATHS, r.getBaths());
+					JSONArray amens = new JSONArray();
+					ArrayList<String> amenities = r.getAmenities();
+					for(String s : amenities) {
+						amens.add(s);
+					}
+					someRoom.replace(ROOM_AMENITIES, amenities);
+					JSONArray bonuses = new JSONArray();
+					ArrayList<String> bonus = r.getAmenities();
+					for(String s : bonus) {
+						bonuses.add(s);
+					}
+					someRoom.replace(ROOM_PERKS, bonuses);
+					someRoom.replace(ROOM_PRICE, r.getPrice());
+					someRoom.replace(ROOM_TYPE, r.getPropertyType().toString());
+					if(r.canSubLease()) {
+						someRoom.replace(ROOM_SUB, 1);
+					} else {
+						someRoom.replace(ROOM_SUB, 0);
+					}
+					if(r.isLeased()) {
+						someRoom.replace(ROOM_ISLEASED, 1);
+					} else {
+						someRoom.replace(ROOM_ISLEASED, 0);
+					}
+					try (FileWriter file = new FileWriter(ROOM_FILE)) {
+						file.write(rooms.toJSONString());
+						file.flush();
+						file.close();
+					} catch(IOException e) {
+						e.printStackTrace();
+					}
+					return;
+				}
+			}
+		}
+		JSONObject room = new JSONObject();
+		room.put(ID, r.getRoomID());
+		room.put(ROOM_CONDITION, r.getCondition());
+		room.put(ROOM_ROOM, r.getRoomNumber());
+		room.put(ROOM_BEDS, r.getBeds());
+		room.put(ROOM_BATHS, r.getBaths());
+		JSONArray amens = new JSONArray();
+		ArrayList<String> roomAmens = r.getAmenities();
+		for(String a : roomAmens) {
+			amens.add(a);
+		}
+		room.put(ROOM_AMENITIES, amens);
+		JSONArray perks = new JSONArray();
+		ArrayList<String> roomPerks = r.getAmenities();
+		for(String p : roomPerks) {
+			perks.add(p);
+		}
+		room.put(ROOM_PERKS, perks);
+		room.put(ROOM_PRICE, r.getPrice());
+		room.put(ROOM_TYPE, r.getPropertyType().toString());
+		if(r.canSubLease()) {
+			room.put(ROOM_SUB, 1);
+		} else {
+			room.put(ROOM_SUB, 0);
+		}
+		if(r.isLeased()) {
+			room.put(ROOM_ISLEASED, 1);
+		} else {
+			room.put(ROOM_ISLEASED, 0);
+		}
+		try (FileWriter file = new FileWriter(ROOM_FILE, true)) {
+			file.write(room.toJSONString());
 			file.flush();
 			file.close();
 		} catch(IOException e) {

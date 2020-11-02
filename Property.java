@@ -9,6 +9,7 @@ public class Property {
 	private String state;
 	private String description;
 	private ArrayList<Review> reviews;
+	private ArrayList<Room> rooms;
 	private int propertyID;
 	private String name;
 	private ArrayList<PaymentType> acceptedPayments;
@@ -20,6 +21,9 @@ public class Property {
 		this.city = city;
 		this.state = state;
 		this.description = description;
+		reviews = new ArrayList<Review>();
+		rooms = new ArrayList<String>();
+		acceptedPayments = new ArrayList<PaymentType>();
 		this.propertyID = PropertyAPI.getNewPropertyID();
 	}
 
@@ -104,7 +108,7 @@ public class Property {
 	}
 	
 // ====================================================================================================================
-	public boolean removeReveiw(Renter renter) {
+	public boolean removeReview(Renter renter) {
 		for (Review review: reviews) {
 			if (review.getAuthor().equalsIgnoreCase(renter.getName())) {
 				reviews.remove(review);
@@ -134,6 +138,14 @@ public class Property {
 		}
 		reviews.add(review);
 		return true;
+	}
+	
+	public void addRoomDB(Room r) {
+		this.rooms.add(r);
+	}
+	
+	public ArrayList<Room> getRooms() {
+		return this.rooms;
 	}
 	
 	public boolean addPaymentType(PaymentType type) {

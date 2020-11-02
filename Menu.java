@@ -43,43 +43,38 @@ public class Menu {
 	
 	public void setGuestOptions() {
 		guestOptions = "Select from the following:"
-				+ "\n\t1. Show top listings"
-				+ "\n\t2. Search listings"
-				+ "\n\t3. Exit";
+				+ "\n\t1. Search listings"
+				+ "\n\t2. Exit";
 	}
 	
 	public void setRenterOptions() {
 		renterOptions = "Select from the following:"
-				+ "\n\t1. Show top listings"
-				+ "\n\t2. Search listings"
-				+ "\n\t3. Rent a listing"
-				+ "\n\t4. Add to favorite"
-				+ "\n\t5. Exit";	
+				+ "\n\t1. Search listings"
+				+ "\n\t2. Rent a listing"
+				+ "\n\t3. Add to favorite"
+				+ "\n\t4. Exit";	
 	}
 	
 	public void setRenterSellerOptions() {
 		renterSellerOptions = "Select from the following:"
-				+ "\n\t1. Show top listings"
-				+ "\n\t2. Search listings"
-				+ "\n\t3. Rent a listing"
-				+ "\n\t4. List a property"
-				+ "\n\t5. Exit";
-	}
-	
-	public void setSellerOptions() {
-		sellerOptions = "Select from the following:"
-				+ "\n\t1. Show top listings"
-				+ "\n\t2. Search listings"
+				+ "\n\t1. Search listings"
+				+ "\n\t2. Rent a listing"
 				+ "\n\t3. List a property"
 				+ "\n\t4. Exit";
 	}
 	
+	public void setSellerOptions() {
+		sellerOptions = "Select from the following:"
+				+ "\n\t1. Search listings"
+				+ "\n\t2. List a property"
+				+ "\n\t3. Exit";
+	}
+	
 	public void setREAOptions () {
 		REAOptions = "Select from the following:"
-				+ "\n\t1. Show top listings"
-				+ "\n\t2. Search listings"
-				+ "\n\t4. List a property"
-				+ "\n\t5. Exit";
+				+ "\n\t1. Search listings"
+				+ "\n\t2. List a property"
+				+ "\n\t3. Exit";
 	}
 	
 	private void setLoginMenu() {

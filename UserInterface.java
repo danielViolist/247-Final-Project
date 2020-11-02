@@ -113,7 +113,7 @@ public class UserInterface {
 		PropertyAPI.createProperty(new Property(sellerUser.getUserID(), address, city, state, zipCode, description));
 	}
 	
-	private void searchProperties(String searchQuery) {
+	public void searchProperties(String searchQuery) {
 		//First, search through everything related to the complex
 		ArrayList<Property> props = PropertyAPI.getProperties();
 		//These have something that the user is searching for

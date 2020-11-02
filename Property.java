@@ -28,10 +28,9 @@ public class Property {
 	}
 
 	public String toString() {
-		return "Seller: " + seller
-				   + "\n\tAddress: " + address + city + ", " + state + zipCode
-				   + "\n\tDescription: " + description
-				   + "\n\tAmenities:\n";
+		return "Name: " + name + "\n\tSeller: " + seller
+				   + "\n\tAddress: " + address + city + ", " + state + ", " + zipCode
+				   + "\n\tDescription: " + description;
 	}
 	
 	public boolean equals(Property property) {

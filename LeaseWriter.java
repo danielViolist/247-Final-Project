@@ -39,23 +39,23 @@ public class LeaseWriter {
 				if (fileWord.equalsIgnoreCase("<LANDLOARD>"))
 					fileWord = ownerName;
 				if (fileWord.equalsIgnoreCase("<NUM_BED>"))
-					fileWord = Integer.toString(room.getBeds());
+					fileWord = Integer.toString(DataReader.getRoom(Roomid).getBeds());
 				if (fileWord.equalsIgnoreCase("<NUM_BATH>"))
-					fileWord = Integer.toString(room.getBaths());
+					fileWord = Integer.toString(DataReader.getRoom(Roomid).getBaths());
 				if (fileWord.equalsIgnoreCase("<PROPERTY_ADDRESS>"))
-					//fileWord = ;
+					fileWord = property.getAddress();
 				if (fileWord.equalsIgnoreCase("<ZIP>"))
-					//fileWord = "<Must be replaced>";
+					fileWord = property.getZipCode();
 				if (fileWord.equalsIgnoreCase("<START DATE>"))
 					fileWord = startDate.toString();
 				if (fileWord.equalsIgnoreCase("<END DATE>"))
 					fileWord = endDate.toString();
 				if (fileWord.equalsIgnoreCase("<RENT>"))
-					fileWord = Double.toString(room.getPrice());
+					fileWord = Double.toString(DataReader.getRoom(Roomid).getPrice());
 				if (fileWord.equalsIgnoreCase("<PAYMENT ADDRESS>"))
-					//fileWord = "<Must be replaced>";
+					fileWord = property.getAddress();
 				if (fileWord.equalsIgnoreCase("<DAMAGE COST>"))
-					//fileWord = "<Must be replaced>";
+					fileWord = "$" + Double.toString(DataReader.getRoom(Roomid).getPrice() * .85);
 				if (fileWord.equalsIgnoreCase("<TENANT(s)>"))
 					for(int i = 0; i < tenantNames.size()-1; i++) {
 						

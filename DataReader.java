@@ -61,7 +61,6 @@ public class DataReader extends JSONConstants {
 		try {
 			FileReader read = new FileReader(USERS_FILE);
 			JSONArray usersJSON = (JSONArray)new JSONParser().parse(read);
-			read.close();
 			for(int i = 0; i < usersJSON.size(); i++) {
 				JSONObject userJSON = (JSONObject)usersJSON.get(i);
 				int id = Integer.parseInt(String.valueOf(userJSON.get(ID)));
@@ -78,7 +77,7 @@ public class DataReader extends JSONConstants {
 				}
 				String type = String.valueOf(userJSON.get(USERS_TYPE));
 				String agency = "";
-				String uscid ="";
+				String uscid = "";
 				ArrayList<String> listings = new ArrayList<String>();
 				ArrayList<String> favorites = new ArrayList<String>();
 				ArrayList<String> properties = new ArrayList<String>();
@@ -147,7 +146,6 @@ public class DataReader extends JSONConstants {
 		try {
 			FileReader read = new FileReader(PROPERTIES_FILE);
 			JSONArray propertiesJSON = (JSONArray)new JSONParser().parse(read);
-			read.close();
 			for(int i = 0; i < propertiesJSON.size(); i++) {
 				JSONObject propJSON = (JSONObject)propertiesJSON.get(i);
 				int id = Integer.parseInt(String.valueOf(propJSON.get(ID)));
@@ -214,7 +212,6 @@ public class DataReader extends JSONConstants {
 		try {
 			FileReader read = new FileReader(ROOM_FILE);
 			JSONArray roomJSON = (JSONArray)new JSONParser().parse(read);
-			read.close();
 			for(int i = 0; i < roomJSON.size(); i++) {
 				JSONObject rJSON = (JSONObject)roomJSON.get(i);
 				int id = Integer.parseInt(String.valueOf(rJSON.get(ID)));
@@ -274,7 +271,6 @@ public class DataReader extends JSONConstants {
 		try {
 			FileReader read = new FileReader(REVIEWS_FILE);
 			JSONArray reviewsJSON = (JSONArray)new JSONParser().parse(read);
-			read.close();
 			for(int i = 0; i < reviewsJSON.size(); i++) {
 				JSONObject revJSON = (JSONObject)reviewsJSON.get(i);
 				int id = Integer.parseInt(String.valueOf(revJSON.get(ID)));

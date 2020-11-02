@@ -21,6 +21,8 @@
 		"state": "SC",
 		"description": "The best place to live!",
 		"reviews": [2],
+		"properties": [2],
+		"payments": ["Credit", "Debit", "Check", "Cash"]
     }, {
         "id": 3,
         "owner": 2,

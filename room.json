@@ -10,6 +10,7 @@
 		"price": 720.00,
 		"type": "apartment",
 		"canSubLease": 1,
+		"isLeased": 0
 	},{
 		"id": 2,
 		"condition": "excellent",
@@ -21,6 +22,7 @@
 		"price": 420.00,
 		"type": "apartment",
 		"canSubLease": 0,
+		"isLeased": 0
 	}
 	,{
 		"id": 3,
@@ -33,5 +35,6 @@
 		"price": 1000.00,
 		"type": "apartment",
 		"canSubLease": 0,
+		"isLeased": 0
 	}
 ]

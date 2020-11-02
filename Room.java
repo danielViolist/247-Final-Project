@@ -28,6 +28,12 @@ public class Room {
 		this.price = price;
 	}
 	
+	public String toString() {
+		//TODO - Make a toString function
+		String ret = "";
+		return  ret;
+	}
+	
 	public int getRoomID() {
 		return this.roomID;
 	}
@@ -92,15 +98,15 @@ public class Room {
 		this.condition = con;
 	}
 	
-	public void addAmenities(String amenity) {
+	public void addAmenity(String amenity) {
 		this.amenities.add(amenity);
 	}
 	
-	public void addAmenitiesDB(String amenity) {
+	public void addAmenityDB(String amenity) {
 		this.amenities.add(amenity);
 	}
 	
-	public void rmAmenities(String amenity) {
+	public void removeAmenity(String amenity) {
 		for(int i = 0; i < this.amenities.size(); i++) {
 			if(this.amenities.get(i).equalsIgnoreCase(amenity)) {
 				this.amenities.remove(i);
@@ -108,16 +114,7 @@ public class Room {
 			}
 		}
 	}
-	
-	public void rmAmenitiesDB(String amenity) {
-		for(int i = 0; i < this.amenities.size(); i++) {
-			if(this.amenities.get(i).equalsIgnoreCase(amenity)) {
-				this.amenities.remove(i);
-				break;
-			}
-		}
-	}
-	
+
 	public void addBonus(String bonus) {
 		this.bonuses.add(bonus);
 	}

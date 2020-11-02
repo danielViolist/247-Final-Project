@@ -96,11 +96,50 @@ public class Main {
 	}
 	
 	public static void runREA() {
-		//TODO
+		while (true) {
+			ui.outputMenu("reaoptions");
+			System.out.println("Enter selection: ");
+			int selection = s.nextInt();
+			boolean good = true;
+			s.nextLine();
+			switch (selection) {
+			case 1:
+				
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			default:
+				System.out.println("Please enter a value between 1 and 4.");
+				good = false;
+			}
+			if (good) {
+				
+			}
+		}
 	}
 	
 	public static void runGuest() {
-		
+		while (true) {
+			ui.outputMenu("guestoptions");
+			System.out.println("Enter selection: ");
+			int selection = s.nextInt();
+			switch (selection) {
+			case 1:
+				System.out.println("Enter search keywords: ");
+				String search = s.nextLine();
+				ui.searchProperties(search);
+				break;
+			case 2:
+				ui.outputMenu("leave");
+				System.exit(0);
+			default:
+					
+			}
+		}
 	}
 /***************************************************
  * End                                             *

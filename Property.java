@@ -12,7 +12,6 @@ public class Property {
 	private ArrayList<Room> rooms;
 	private int propertyID;
 	private String name;
-
 	private ArrayList<PaymentType> acceptedPayments;	 
 	
 	public Property(int seller, String address, String zipCode, String city, String state, String description) {
@@ -43,13 +42,13 @@ public class Property {
 	}
 
 	public String toString() {
-		String ret = "Name: " + name + "\nID: " + propertyID + "\n\tSeller: " + seller
-				   + "\n\tAddress: " + address + city + ", " + state + ", " + zipCode
+		String ret = "Name: " + name + "\nID: " + propertyID + "\n\tSeller: " + DataReader.getUser(seller).getName()
+				   + "\n\tAddress: " + address + ", " + city + ", " + state + ", " + zipCode
 				   + "\n\tDescription: " + description
 				   + "\n\tRentable spaces:";
 		for (int i = 0; i < rooms.size(); i++) {
-			ret += "\n*************************************************************"
-					+ i + ". \n" + rooms.get(i).toString();
+			ret += "\n*************************************************************\n\t"
+					+ (i+1) + ". \n" + rooms.get(i).toString();
 		}
 		ret += "\n*************************************************************";
 		return ret;

@@ -185,7 +185,7 @@ public class DataReader extends JSONConstants {
 						payments.add(PaymentType.CREDIT);
 					}
 				}
-				Property p = new Property(owner, address, zip, city, state, description);
+				Property p = new Property(owner, address, zip, city, state, description, id);
 				for(PaymentType pay : payments) {
 					p.addPaymentTypeDB(pay);
 				}

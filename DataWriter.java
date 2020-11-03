@@ -511,7 +511,7 @@ public class DataWriter extends JSONConstants {
 			for(int i = 0; i < rooms.size(); i++) {
 				JSONObject someRoom = (JSONObject)rooms.get(i);
 				if(Integer.parseInt(someRoom.get(ID).toString()) == id) {
-					removeRoomFromProperty(id);
+					removeRoomFromProperties(id);
 					rooms.remove(i);
 					try (FileWriter file = new FileWriter(ROOM_FILE)) {
 						file.write(rooms.toJSONString());

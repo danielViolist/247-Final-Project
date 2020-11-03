@@ -7,6 +7,13 @@ public class Review {
 	private int id;
 	private int authorID;
 	
+	public Review(Renter renter, double rating, String description) {
+		this.rating = setRating(rating);
+		this.description = description;
+		author = renter.getName();
+		authorID = renter.getUserID();
+	}
+
 	public Review(int author, double rating, String description) {
 		this.rating = setRating(rating);
 		this.description = description;

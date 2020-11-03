@@ -139,6 +139,10 @@ public class Main {
 				System.out.println("Enter search keywords: ");
 				String search = s.nextLine();
 				ui.searchProperties(search);
+				System.out.println("\n\n"
+						+ "**********************************************************"
+					  + "\n* You must create an account in order to rent a property.*"
+					+ "\n\n**********************************************************\n\n");
 				break;
 			case 2:
 				ui.outputMenu("leave");

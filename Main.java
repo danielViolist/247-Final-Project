@@ -10,7 +10,7 @@ public class Main {
 	protected static Renter renter;
 	protected static Seller seller;
 	protected static RealEstateAgent rea;
-	PropertyAPI  propertyApi = PropertyAPI.getInstance();
+	protected static PropertyAPI propertyApi;
 	protected static RoomAPI roomApi;
 	protected static UserAPI userApi;
 	protected static ReviewAPI reviewApi;
@@ -18,9 +18,11 @@ public class Main {
 	public static void main(String[] args) {
 		s = new Scanner(System.in);
 		ui = new UserInterface();
+		roomApi = RoomAPI.getInstance();
+		reviewApi = ReviewAPI.getInstance();
+		userApi = UserAPI.getInstance();
+		propertyApi = PropertyAPI.getInstance();
 		
-		roomApi = new RoomAPI();
-		reviewApi = new ReviewAPI();
 		int currentUserType = -1;
 		ui.outputMenu("welcome");
 		int selection;

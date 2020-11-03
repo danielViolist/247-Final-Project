@@ -26,6 +26,20 @@ public class Property {
 		acceptedPayments = new ArrayList<PaymentType>();
 		this.propertyID = Main.propertyApi.getNewPropertyID();
 	}
+	
+	// To be used by the DB:
+	public Property(int seller, String address, String zipCode, String city, String state, String description, int id) {
+		this.seller = seller;
+		this.address = address;
+		this.zipCode = zipCode;
+		this.city = city;
+		this.state = state;
+		this.description = description;
+		reviews = new ArrayList<Review>();
+		rooms = new ArrayList<Room>();
+		acceptedPayments = new ArrayList<PaymentType>();
+		propertyID = id;
+	}
 
 	public String toString() {
 		return "Name: " + name + "\nID: " + propertyID + "\n\tSeller: " + seller

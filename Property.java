@@ -42,9 +42,14 @@ public class Property {
 	}
 
 	public String toString() {
-		return "Name: " + name + "\nID: " + propertyID + "\n\tSeller: " + seller
+		String ret = "Name: " + name + "\nID: " + propertyID + "\n\tSeller: " + seller
 				   + "\n\tAddress: " + address + city + ", " + state + ", " + zipCode
-				   + "\n\tDescription: " + description;
+				   + "\n\tDescription: " + description
+				   + "\n\tRentable spaces:\n";
+		for (Room room : rooms) {
+			ret += "\t\t1. " + room.toString() + "\n";
+		}
+		return ret;
 	}
 	
 	public boolean equals(Property property) {

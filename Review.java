@@ -17,7 +17,10 @@ public class Review {
 	public Review(int author, double rating, String description) {
 		this.rating = setRating(rating);
 		this.description = description;
-		this.author = "name";
+		this.author = "name"; //set to this for testing 
+		//this.author = UserAPI.getUser(author).getName();
+		//this creates another loop
+
 		authorID = author;
 	}
 	

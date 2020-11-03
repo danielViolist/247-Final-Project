@@ -13,6 +13,9 @@ public class Property {
 	private int propertyID;
 	private String name;
 	private ArrayList<PaymentType> acceptedPayments;
+	private Systems systems;
+	 
+	
 	
 	public Property(int seller, String address, String zipCode, String city, String state, String description) {
 		this.seller = seller;
@@ -24,7 +27,7 @@ public class Property {
 		reviews = new ArrayList<Review>();
 		rooms = new ArrayList<Room>();
 		acceptedPayments = new ArrayList<PaymentType>();
-		this.propertyID = Main.propertyApi.getNewPropertyID();
+		this.propertyID = systems.propertyApi.getNewPropertyID();
 	}
 	
 	// To be used by the DB:
@@ -132,7 +135,7 @@ public class Property {
 		for (Review review: reviews) {
 			if (review.getAuthor().equalsIgnoreCase(renter.getName())) {
 				reviews.remove(review);
-				Main.propertyApi.createProperty(this);
+				systems.propertyApi.createProperty(this);
 				return true;
 			}
 		}
@@ -146,7 +149,7 @@ public class Property {
 			}
 		}
 		reviews.add(review);
-		Main.propertyApi.createProperty(this);
+		systems.propertyApi.createProperty(this);
 		return true;
 	}
 	
@@ -175,7 +178,7 @@ public class Property {
 			}
 		}
 		acceptedPayments.add(type);
-		Main.propertyApi.createProperty(this);
+		systems.propertyApi.createProperty(this);
 		return true;
 	}
 	

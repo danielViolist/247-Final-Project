@@ -4,10 +4,19 @@ import java.util.Random;
 public class UserAPI {
 	private ArrayList<User> users;
 	private ArrayList<User> loggedInUsers;
+	private static UserAPI userAPI;
 	
 	public UserAPI() {
 		users = DataReader.loadUsers();
 		loggedInUsers = new ArrayList<User>();
+	}
+	
+	public static UserAPI getInstance() {
+		if (userAPI == null) {
+			userAPI = new UserAPI();
+		}
+		
+		return userAPI;
 	}
 	
 	/**

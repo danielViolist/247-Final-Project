@@ -7,6 +7,7 @@ public class UserInterface {
 	private static Scanner s;
 	private static Random randNum;
 	private Menu menus;
+	private Systems systems;
 
 	public UserInterface() {
 		s = new Scanner(System.in);
@@ -46,11 +47,11 @@ public class UserInterface {
 	}
 
 	public int userLogin(String username, String password) {
-		if (Main.userApi.userLogin(username, password) == -1) 
+		if (systems.userAPI.userLogin(username, password) == -1) 
 			return -1;
 		else {
 			outputMenu("loginSuccess");
-			int usertype = (Main.userApi.userLogin(username, password));
+			int usertype = (systems.userAPI.userLogin(username, password));
 			return usertype;
 		}
 	}

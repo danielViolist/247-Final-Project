@@ -4,9 +4,18 @@ import java.util.Random;
 public class PropertyAPI {
 	
 	private ArrayList<Property> properties;
+	private static PropertyAPI propertyAPI;
 	
 	public PropertyAPI() {
 		properties = DataReader.loadProperties();
+	}
+	
+	public static PropertyAPI getInstance() {
+		if (propertyAPI == null) {
+			propertyAPI = new PropertyAPI();
+		}
+		
+		return propertyAPI;
 	}
 	
 	public  ArrayList<Property> getProperties() {
@@ -26,4 +35,5 @@ public class PropertyAPI {
 		return rand;
 	}
 	
+
 }

@@ -281,7 +281,7 @@ public class DataReader extends JSONConstants {
 				String authorName = "";
 				for(int j = 0; j < users.size(); j++) {
 					JSONObject someUser = (JSONObject)users.get(j);
-					if(someUser.get(ID) == id) {
+					if(Integer.parseInt(someUser.get(ID).toString()) == id) {
 						authorName = someUser.get(USERS_NAME).toString();
 					}
 				}

@@ -7,11 +7,11 @@ public class Review {
 	private int id;
 	private int authorID;
 	
-	public Review(Renter renter, double rating, String description) {
+	public Review(int author, double rating, String description) {
 		this.rating = setRating(rating);
 		this.description = description;
 		author = renter.getName();
-		authorID = renter.getUserID();
+		authorID = author;
 	}
 	
 	private double setRating(double rating) {

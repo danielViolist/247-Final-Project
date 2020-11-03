@@ -277,7 +277,7 @@ public class DataReader extends JSONConstants {
 				int author = Integer.parseInt(String.valueOf(revJSON.get(REVIEWS_AUTHOR)));
 				double rating = Double.parseDouble(String.valueOf(revJSON.get(REVIEWS_RATING)));
 				String description = String.valueOf(revJSON.get(REVIEWS_DESCRIPTION));
-				Review rev = new Review((Renter)getUser(author), rating, description);
+				Review rev = new Review(author, rating, description);
 				rev.setID(id);
 				reviews.add(rev);
 			}

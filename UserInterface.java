@@ -51,7 +51,7 @@ public class UserInterface {
 			return -1;
 		else {
 			outputMenu("loginSuccess");
-			int usertype = (systems.userAPI.userLogin(username, password));
+			int usertype = (Main.userApi.userLogin(username, password));
 			return usertype;
 		}
 	}

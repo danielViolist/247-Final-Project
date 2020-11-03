@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class UserAPI {
-	private ArrayList<User> users;
+	private static ArrayList<User> users;
 	private ArrayList<User> loggedInUsers;
 	private static UserAPI userAPI;
 	
@@ -119,4 +119,13 @@ public class UserAPI {
 		DataWriter.writeRE(re);
 		users.add(re);
 	}
+	
+	public static User getUser(int id) {
+		for (User user : users) {
+			if (user.getUserID() == id) 
+				return user;
+		}
+		return null;
+	}
+	
 }

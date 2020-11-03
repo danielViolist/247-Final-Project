@@ -28,6 +28,7 @@
         "owner": 2,
 		"name": "Some Place",
 		"zip": 29201,
+		"address": "300 Main Street",
 		"city": "Columbia",
 		"state": "SC",
 		"description": "This is a cool place. Live here.",

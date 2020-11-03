@@ -67,14 +67,16 @@ public class Menu {
 		sellerOptions = "Select from the following:"
 				+ "\n\t1. Search listings"
 				+ "\n\t2. List a property"
-				+ "\n\t3. Exit";
+				+ "\n\t3. Show your listed properties"
+				+ "\n\t4. Exit";
 	}
 	
 	public void setREAOptions () {
 		REAOptions = "Select from the following:"
 				+ "\n\t1. Search listings"
 				+ "\n\t2. List a property"
-				+ "\n\t3. Exit";
+				+ "\n\t3. Show your listings"
+				+ "\n\t4. Exit";
 	}
 	
 	private void setLoginMenu() {

@@ -3,19 +3,13 @@ import java.util.Random;
 
 public class RoomAPI {
 	
-	private static ArrayList<Room> rooms;
+	private  ArrayList<Room> rooms;
 	
 	public RoomAPI() {
 		rooms = DataReader.loadRooms();
 	}
 	
-	private static void check() {
-		if (rooms == null) 
-			rooms = DataReader.loadRooms();
-	}
-	
-	public static int getNewRoomID() {
-		check();
+	public int getNewRoomID() {
 		Random r = new Random();
 		int rand = r.nextInt();
 		while (DataReader.roomExists(rand)) 
@@ -23,19 +17,16 @@ public class RoomAPI {
 		return rand;
 	}
 	
-	public static ArrayList<Room> getRooms() {
-		check();
+	public ArrayList<Room> getRooms() {
 		return rooms;
 	}
 	
-	public static void createRoom(Room room) {
-		check();
+	public void createRoom(Room room) {
 		DataWriter.writeRoom(room);
 		rooms.add(room);
 	}
 	
-	public static void removeRoom(Room room) {
-		check();
+	public void removeRoom(Room room) {
 		DataWriter.removeRoom(room.getRoomID());
 		rooms.remove(room);
 	}

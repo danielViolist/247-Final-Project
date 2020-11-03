@@ -16,12 +16,12 @@ public class Seller extends User {
 	
 	public void addProperty(String address, String zipCode, String city, String state, String description, String condition, int roomNumber, ArrayList<String> amenities, double price, PropertyType propertyType) {
 		properties.add(new Property(this.getUserID(), address,  zipCode,  city,  state,  description));
-		UserAPI.createSeller(this);
+		Main.userApi.createSeller(this);
 	}
 	
 	public void addProperty(Property property) {
 		properties.add(property);
-		UserAPI.createSeller(this);
+		Main.userApi.createSeller(this);
 	}
 	
 	public void addPropertyDB(Property property) {

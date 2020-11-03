@@ -23,7 +23,7 @@ public class RealEstateAgent extends User {
 			}
 		}
 		listings.add(property);
-		UserAPI.createRE(this);
+		Main.userApi.createRE(this);
 		return true;
 	}
 	

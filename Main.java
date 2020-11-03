@@ -10,10 +10,17 @@ public class Main {
 	protected static Renter renter;
 	protected static Seller seller;
 	protected static RealEstateAgent rea;
+	protected static PropertyAPI propertyApi;
+	protected static RoomAPI roomApi;
+	protected static UserAPI userApi;
+	protected static ReviewAPI reviewApi;
 
 	public static void main(String[] args) {
 		s = new Scanner(System.in);
 		ui = new UserInterface();
+		propertyApi = new PropertyAPI();
+		roomApi = new RoomAPI();
+		reviewApi = new ReviewAPI();
 		int currentUserType = -1;
 		ui.outputMenu("welcome");
 		int selection;
@@ -188,18 +195,18 @@ public class Main {
 				System.out.println("Please enter your USC-ID: ");
 				uscID = s.next();
 				s.nextLine();
-				renter = new Renter(username, password, email, UserAPI.getNewUserID(), phoneNum, name, bio, uscID);
+				renter = new Renter(username, password, email, userApi.getNewUserID(), phoneNum, name, bio, uscID);
 				return 0;
 			case 2:
-				seller = new Seller(username, password, email, UserAPI.getNewUserID(), phoneNum, name, bio, new ArrayList<Property>());
+				seller = new Seller(username, password, email, userApi.getNewUserID(), phoneNum, name, bio, new ArrayList<Property>());
 				return 1;
 			case 3:
 				System.out.println("Please enter the name of your agency: ");
 				String agency = s.nextLine();
-				rea = new RealEstateAgent(username, password, email, UserAPI.getNewUserID(), phoneNum, username, bio, agency, new ArrayList<Property>());
+				rea = new RealEstateAgent(username, password, email, userApi.getNewUserID(), phoneNum, username, bio, agency, new ArrayList<Property>());
 				return 2;
 			case 4:
-				Renter rent = new Renter(username, password, email, UserAPI.getNewUserID(), phoneNum, name, bio, uscID);
+				Renter rent = new Renter(username, password, email, userApi.getNewUserID(), phoneNum, name, bio, uscID);
 				rent.makeSeller();
 				renter = rent;
 				return 3;

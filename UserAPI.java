@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class UserAPI {
-	private static ArrayList<User> users;
-	private static ArrayList<User> loggedInUsers;
+	private ArrayList<User> users;
+	private ArrayList<User> loggedInUsers;
 	
 	public UserAPI() {
 		users = DataReader.loadUsers();
@@ -16,8 +16,7 @@ public class UserAPI {
 	 * @param password User-inputted password
 	 * @return Returns the user if successful; null otherwise. 
 	 */
-	public static int userLogin(String username, String password) {
-		check();
+	public int userLogin(String username, String password) {
 		for (User user : users) {
 			if (user.getUsername().equalsIgnoreCase(username) && user.getPassword().equals(password)) {
 				loggedInUsers.add(user);
@@ -44,8 +43,7 @@ public class UserAPI {
 	 * Gets the currently logged-in users.
 	 * @return ArrayList of logged-in users.
 	 */
-	public static ArrayList<User> getUsers() {
-		check();
+	public ArrayList<User> getUsers() {
 		return loggedInUsers;
 	}
 	
@@ -54,8 +52,7 @@ public class UserAPI {
 	 * @param user User to logout.
 	 * @return True if successful. False if the user was not found to be logged in.
  	 */
-	public static boolean logoutUser(User user) {
-		check();
+	public boolean logoutUser(User user) {
 		for (User person : loggedInUsers) {
 			if (person.equals(user)) {
 				loggedInUsers.remove(person);
@@ -70,8 +67,7 @@ public class UserAPI {
 	 * @param user User to validate.
 	 * @return True if the user is currently logged in; false otherwise.
 	 */
-	public static boolean isLoggedIn(User user) {
-		check();
+	public boolean isLoggedIn(User user) {
 		for (User person : users) {
 			if (person.equals(user)) 
 				return true;
@@ -79,8 +75,7 @@ public class UserAPI {
 		return false;
 	}
 	
-	public static int getNewUserID() {
-		check();
+	public int getNewUserID() {
 		Random r = new Random();
 		int rand = r.nextInt();
 		while (DataReader.userExists(rand)) {
@@ -93,8 +88,7 @@ public class UserAPI {
 	 * This adds a Renter user to the DB.
 	 * @param renter Renter to add
 	 */
-	public static void createRenter(Renter renter) {	
-		check();
+	public void createRenter(Renter renter) {	
 		DataWriter.writeRenter(renter);
 		users.add(renter);
 	}
@@ -103,8 +97,7 @@ public class UserAPI {
 	 * This adds a Seller user to the DB.
 	 * @param seller Seller to add
 	 */
-	public static void createSeller(Seller seller) {
-		check();
+	public void createSeller(Seller seller) {
 		DataWriter.writeSeller(seller);
 		users.add(seller);
 	}
@@ -113,17 +106,8 @@ public class UserAPI {
 	 * This adds a RealEstateAgent user to the DB.
 	 * @param RealEstateAgent to add
 	 */
-	public static void createRE(RealEstateAgent re) {
-		check();
+	public void createRE(RealEstateAgent re) {
 		DataWriter.writeRE(re);
 		users.add(re);
 	}
-	
-	private static void check() {
-		if (users == null) 
-			users = DataReader.loadUsers();
-		if (loggedInUsers == null) 
-			loggedInUsers = new ArrayList<User>();
-	}
 }
-

@@ -49,7 +49,7 @@ public class Renter extends User {
 			}
 		}
 		favorites.add(property);
-		UserAPI.createRenter(this);
+		Main.userApi.createRenter(this);
 		return true;
 	}
 	public boolean addFavoriteDB(Property property) {
@@ -72,7 +72,7 @@ public class Renter extends User {
 		for (Property favorite : favorites) {
 			if (favorite.equals(property)) {
 				favorites.remove(property);
-				UserAPI.createRenter(this);
+				Main.userApi.createRenter(this);
 				return true;
 			}
 		}
@@ -83,7 +83,7 @@ public class Renter extends User {
 		if (!isSeller) {
 			this.isSeller = true;
 			seller = new Seller(this);
-			UserAPI.createRenter(this);
+			Main.userApi.createRenter(this);
 		}
 	}
 

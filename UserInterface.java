@@ -46,11 +46,11 @@ public class UserInterface {
 	}
 
 	public int userLogin(String username, String password) {
-		if (UserAPI.userLogin(username, password) == -1) 
+		if (Main.userApi.userLogin(username, password) == -1) 
 			return -1;
 		else {
 			outputMenu("loginSuccess");
-			int usertype = (UserAPI.userLogin(username, password));
+			int usertype = (Main.userApi.userLogin(username, password));
 			return usertype;
 		}
 	}
@@ -110,12 +110,12 @@ public class UserInterface {
 			}
 		}
 
-		PropertyAPI.createProperty(new Property(sellerUser.getUserID(), address, city, state, zipCode, description));
+		Main.propertyApi.createProperty(new Property(sellerUser.getUserID(), address, city, state, zipCode, description));
 	}
 	
 	public void searchProperties(String searchQuery) {
 		//First, search through everything related to the complex
-		ArrayList<Property> props = PropertyAPI.getProperties();
+		ArrayList<Property> props = Main.propertyApi.getProperties();
 		//These have something that the user is searching for
 		for(Property p : props) {
 			if(searchQuery.contains(p.getAddress()) || searchQuery.contains(p.getCity()) || searchQuery.contains(p.getZipCode()) || searchQuery.contains(p.getName())) {

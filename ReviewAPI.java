@@ -2,23 +2,17 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ReviewAPI {
-	private static ArrayList<Review> reviews;
+	private ArrayList<Review> reviews;
 	
 	public ReviewAPI() {
 		reviews = DataReader.loadReviews();
 	}
 	
-	private static void check() {
-		if (reviews == null)
-			reviews = DataReader.loadReviews();
-	}
-	
-	public static ArrayList<Review> getReviews() {
+	public ArrayList<Review> getReviews() {
 		return reviews;
 	}
 	
-	public static boolean removeReview(Review review) {
-		check();
+	public boolean removeReview(Review review) {
 		for (Review rev : reviews) {
 			if (review.equals(rev)) {
 				reviews.remove(rev);
@@ -28,8 +22,7 @@ public class ReviewAPI {
 		return false;
 	}
 	
-	public static int getNewReviewID() {
-		check();
+	public int getNewReviewID() {
 		Random r = new Random();
 		int rand = r.nextInt();
 		while (DataReader.reviewExists(rand)) {
@@ -38,8 +31,7 @@ public class ReviewAPI {
 		return rand;
 	}
 	
-	public static void createReview(Review review) {
-		check();
+	public void createReview(Review review) {
 		DataWriter.writeReview(review);
 		reviews.add(review);
 	}

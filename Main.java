@@ -14,6 +14,7 @@ public class Main {
 	protected static RoomAPI roomApi;
 	protected static UserAPI userApi;
 	protected static ReviewAPI reviewApi;
+	
 
 	public static void main(String[] args) {
 		s = new Scanner(System.in);

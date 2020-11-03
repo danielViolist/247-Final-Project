@@ -23,8 +23,7 @@
 		"type": "apartment",
 		"canSubLease": 0,
 		"isLeased": 0
-	}
-	,{
+	},{
 		"id": 3,
 		"condition": "excellent",
 		"room": 343,
@@ -35,6 +34,18 @@
 		"price": 1000.00,
 		"type": "apartment",
 		"canSubLease": 0,
+		"isLeased": 0
+	},{
+		"id": 4,
+		"condition": "excellent",
+		"room": 212,
+		"bed": 1,
+		"bath": 1,
+		"amenities": ["Bathroom", "Kitchen"],
+		"perks": ["Pets"],
+		"price": 420.00,
+		"type": "house",
+		"canSubLease": 1,
 		"isLeased": 0
 	}
 ]

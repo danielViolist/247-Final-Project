@@ -35,5 +35,17 @@
 		"reviews": [],
 		"properties": [3],
 		"payments": ["Credit", "Debit", "Check", "Cash"]
-    }
+    }, {
+		"id": 4,
+		"owner": 2,
+		"name": "Some Other Place",
+		"zip": 29201,
+		"address": "69 Boogerbranch Drive",
+		"city": "Seneca",
+		"state": "SC",
+		"description": "BOOGERS BABY",
+		"reviews": [],
+		"properties": [4],
+		"payments": ["Credit", "Debit", "Check", "Cash"]
+	}
 ]

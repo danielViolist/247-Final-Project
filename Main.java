@@ -99,7 +99,40 @@ public class Main {
 	}
 	
 	public static void runSeller() {
-		//TODO
+		while (true) {
+			ui.outputMenu("selleroptions");
+			System.out.println("Enter selection: ");
+			int selection = s.nextInt();
+			s.nextLine();
+			switch (selection) {
+			case 1:
+				//Search listings
+				System.out.println("Enter search keywords: ");
+				String search = s.nextLine();
+				ui.searchProperties(search);
+				break;
+			case 2:
+				// List a property
+				// Need help with this. 
+				// See runREA comments in case 2.
+				break;
+			case 3:
+				// Show own's listings
+				for (Property prop : seller.getProperties()) {
+					System.out.println("\n*************************************************************\n"
+							         + prop);
+				}
+				System.out.println("\n*************************************************************\n");
+				break;
+			case 4:
+				// Exit
+				ui.outputMenu("leave");
+				System.exit(0);
+				break;
+			default:
+				System.out.println("Please enter a value between 1 and 4.");
+			}
+		}
 	}
 	
 	public static void runREA() {
@@ -107,7 +140,6 @@ public class Main {
 			ui.outputMenu("reaoptions");
 			System.out.println("Enter selection: ");
 			int selection = s.nextInt();
-			boolean good = true;
 			s.nextLine();
 			switch (selection) {
 			case 1:
@@ -119,6 +151,7 @@ public class Main {
 			case 2:
 				// List a property
 				// Need help with this por favor
+				// Needs to be like how it is described in the scenario (create a property, then add rooms to it)
 				break;
 			case 3:
 				// Show their own listings

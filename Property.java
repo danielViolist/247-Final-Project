@@ -45,10 +45,12 @@ public class Property {
 		String ret = "Name: " + name + "\nID: " + propertyID + "\n\tSeller: " + seller
 				   + "\n\tAddress: " + address + city + ", " + state + ", " + zipCode
 				   + "\n\tDescription: " + description
-				   + "\n\tRentable spaces:\n";
-		for (Room room : rooms) {
-			ret += "\t\t1. " + room.toString() + "\n";
+				   + "\n\tRentable spaces:";
+		for (int i = 0; i < rooms.size(); i++) {
+			ret += "\n*************************************************************"
+					+ i + ". \n" + rooms.get(i).toString();
 		}
+		ret += "\n*************************************************************";
 		return ret;
 	}
 	

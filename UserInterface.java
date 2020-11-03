@@ -7,7 +7,6 @@ public class UserInterface {
 	private static Scanner s;
 	private static Random randNum;
 	private Menu menus;
-	private Systems systems;
 
 	public UserInterface() {
 		s = new Scanner(System.in);

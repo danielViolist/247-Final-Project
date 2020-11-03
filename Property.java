@@ -12,10 +12,8 @@ public class Property {
 	private ArrayList<Room> rooms;
 	private int propertyID;
 	private String name;
-	private ArrayList<PaymentType> acceptedPayments;
-	
-	 
-	
+
+	private ArrayList<PaymentType> acceptedPayments;	 
 	
 	public Property(int seller, String address, String zipCode, String city, String state, String description) {
 		this.seller = seller;

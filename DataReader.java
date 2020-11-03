@@ -277,7 +277,15 @@ public class DataReader extends JSONConstants {
 				int author = Integer.parseInt(String.valueOf(revJSON.get(REVIEWS_AUTHOR)));
 				double rating = Double.parseDouble(String.valueOf(revJSON.get(REVIEWS_RATING)));
 				String description = String.valueOf(revJSON.get(REVIEWS_DESCRIPTION));
-				Review rev = new Review(author, rating, description);
+				JSONArray users = (JSONArray)getUsersJSON();
+				String authorName = "";
+				for(int j = 0; j < users.size(); j++) {
+					JSONObject someUser = (JSONObject)users.get(j);
+					if(Integer.parseInt(someUser.get(ID).toString()) == id) {
+						authorName = someUser.get(USERS_NAME).toString();
+					}
+				}
+				Review rev = new Review(author, rating, description, authorName);
 				rev.setID(id);
 				reviews.add(rev);
 			}

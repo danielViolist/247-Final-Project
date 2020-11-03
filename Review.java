@@ -14,13 +14,11 @@ public class Review {
 		authorID = renter.getUserID();
 	}
 
-	public Review(int author, double rating, String description) {
+	public Review(int author, double rating, String description, String authorName) {
 		this.rating = setRating(rating);
 		this.description = description;
-		this.author = "name"; //set to this for testing 
-		//this.author = UserAPI.getUser(author).getName();
-		//this creates another loop
 
+		this.author = authorName;
 		authorID = author;
 	}
 	

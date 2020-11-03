@@ -19,10 +19,10 @@ public class Main {
 	public static void main(String[] args) {
 		s = new Scanner(System.in);
 		ui = new UserInterface();
-		roomApi = RoomAPI.getInstance();
-		reviewApi = ReviewAPI.getInstance();
 		userApi = UserAPI.getInstance();
 		propertyApi = PropertyAPI.getInstance();
+		roomApi = RoomAPI.getInstance();
+		reviewApi = ReviewAPI.getInstance();
 		
 		int currentUserType = -1;
 		ui.outputMenu("welcome");
@@ -35,9 +35,9 @@ public class Main {
 				// Login
 				while (currentUserType == -1) {
 					ui.outputMenu("login");
-					System.out.println("Username: ");
+					System.out.print("Username: ");
 					String username = s.nextLine();
-					System.out.println("Password: ");
+					System.out.print("Password: ");
 					String password = s.nextLine();
 					currentUserType = ui.userLogin(username, password);
 					if (currentUserType == -1) {

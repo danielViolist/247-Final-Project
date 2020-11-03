@@ -111,20 +111,30 @@ public class Main {
 			s.nextLine();
 			switch (selection) {
 			case 1:
-				
+				//Search listings
+				System.out.println("Enter search keywords: ");
+				String search = s.nextLine();
+				ui.searchProperties(search);
 				break;
 			case 2:
+				// List a property
+				// Need help with this por favor
 				break;
 			case 3:
+				// Show their own listings
+				for (Property prop : rea.getListings()) {
+					System.out.println("\n*************************************************************\n"
+							         + prop);
+				}
+				System.out.println("\n*************************************************************\n");
 				break;
 			case 4:
+				// Exit
+				ui.outputMenu("leave");
+				System.exit(0);
 				break;
 			default:
 				System.out.println("Please enter a value between 1 and 4.");
-				good = false;
-			}
-			if (good) {
-				
 			}
 		}
 	}
@@ -148,7 +158,7 @@ public class Main {
 				ui.outputMenu("leave");
 				System.exit(0);
 			default:
-					
+					System.out.println("Please enter a value from 1 to 2.");
 			}
 		}
 	}

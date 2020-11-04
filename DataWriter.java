@@ -283,8 +283,13 @@ public class DataWriter extends JSONConstants {
 		propertyJSONObject.put(PROPERTIES_DESCRIPTION, property.getDescription());
 		JSONArray reviews = new JSONArray();
 		ArrayList<Review> propertyReviews = property.getReviews();
-		for(Review r : propertyReviews) {
-			reviews.add(r.getID());
+		for(Review rev : propertyReviews) {
+			reviews.add(rev.getID());
+		}
+		JSONArray roomsJSON = new JSONArray();
+		ArrayList<Room> rooms = property.getRooms();
+		for(Room room : rooms) {
+			roomsJSON.add(room.getRoomID());
 		}
 		propertyJSONObject.put(PROPERTIES_REVIEWS, reviews);
 		JSONArray payments = new JSONArray();
@@ -304,14 +309,14 @@ public class DataWriter extends JSONConstants {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static void writeReview(Review r) {
-		if(DataReader.reviewExists(r.getID())) {
+	public static void writeReview(Review rev) {
+		if(DataReader.reviewExists(rev.getID())) {
 			JSONArray revs = DataReader.getReviewsJSON();
 			for(int i = 0; i < revs.size(); i++) {
 				JSONObject someRev = (JSONObject)revs.get(i);
-				if(Integer.parseInt(someRev.get(ID).toString()) == r.getID()) {
-					someRev.replace(REVIEWS_RATING, r.getRating());
-					someRev.replace(REVIEWS_DESCRIPTION, r.getDescription());
+				if(Integer.parseInt(someRev.get(ID).toString()) == rev.getID()) {
+					someRev.replace(REVIEWS_RATING, rev.getRating());
+					someRev.replace(REVIEWS_DESCRIPTION, rev.getDescription());
 					try (FileWriter file = new FileWriter(REVIEWS_FILE)) {
 						file.write(revs.toJSONString());
 						file.flush();
@@ -324,10 +329,10 @@ public class DataWriter extends JSONConstants {
 			}
 		}
 		JSONObject review = new JSONObject();
-		review.put(ID, r.getID());
-		review.put(REVIEWS_AUTHOR, r.getAuthorID());
-		review.put(REVIEWS_RATING, r.getRating());
-		review.put(REVIEWS_DESCRIPTION, r.getDescription());
+		review.put(ID, rev.getID());
+		review.put(REVIEWS_AUTHOR, rev.getAuthorID());
+		review.put(REVIEWS_RATING, rev.getRating());
+		review.put(REVIEWS_DESCRIPTION, rev.getDescription());
 		JSONArray reviews = DataReader.getReviewsJSON();
 		reviews.add(review);
 		try (FileWriter file = new FileWriter(REVIEWS_FILE)) {
@@ -340,35 +345,35 @@ public class DataWriter extends JSONConstants {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static void writeRoom(Room r) {
-		if(DataReader.roomExists(r.getRoomID())) {
+	public static void writeRoom(Room room) {
+		if(DataReader.roomExists(room.getRoomID())) {
 			JSONArray rooms = DataReader.getRoomsJSON();
 			for(int i = 0; i < rooms.size(); i++) {
 				JSONObject someRoom = (JSONObject)rooms.get(i);
-				if(Integer.parseInt(someRoom.get(ID).toString()) == r.getRoomID()) {
-					someRoom.replace(ROOM_CONDITION, r.getCondition());
-					someRoom.replace(ROOM_BEDS, r.getBeds());
-					someRoom.replace(ROOM_BATHS, r.getBaths());
+				if(Integer.parseInt(someRoom.get(ID).toString()) == room.getRoomID()) {
+					someRoom.replace(ROOM_CONDITION, room.getCondition());
+					someRoom.replace(ROOM_BEDS, room.getBeds());
+					someRoom.replace(ROOM_BATHS, room.getBaths());
 					JSONArray amens = new JSONArray();
-					ArrayList<String> amenities = r.getAmenities();
+					ArrayList<String> amenities = room.getAmenities();
 					for(String amenity : amenities) {
 						amens.add(amenity);
 					}
 					someRoom.replace(ROOM_AMENITIES, amenities);
 					JSONArray bonuses = new JSONArray();
-					ArrayList<String> bonus = r.getAmenities();
+					ArrayList<String> bonus = room.getAmenities();
 					for(String perk : bonus) {
 						bonuses.add(perk);
 					}
 					someRoom.replace(ROOM_PERKS, bonuses);
-					someRoom.replace(ROOM_PRICE, r.getPrice());
-					someRoom.replace(ROOM_TYPE, r.getPropertyType().toString());
-					if(r.canSubLease()) {
+					someRoom.replace(ROOM_PRICE, room.getPrice());
+					someRoom.replace(ROOM_TYPE, room.getPropertyType().toString());
+					if(room.canSubLease()) {
 						someRoom.replace(ROOM_SUB, 1);
 					} else {
 						someRoom.replace(ROOM_SUB, 0);
 					}
-					if(r.isLeased()) {
+					if(room.isLeased()) {
 						someRoom.replace(ROOM_ISLEASED, 1);
 					} else {
 						someRoom.replace(ROOM_ISLEASED, 0);
@@ -384,38 +389,38 @@ public class DataWriter extends JSONConstants {
 				}
 			}
 		}
-		JSONObject room = new JSONObject();
-		room.put(ID, r.getRoomID());
-		room.put(ROOM_CONDITION, r.getCondition());
-		room.put(ROOM_ROOM, r.getRoomNumber());
-		room.put(ROOM_BEDS, r.getBeds());
-		room.put(ROOM_BATHS, r.getBaths());
+		JSONObject roomJSONObject = new JSONObject();
+		roomJSONObject.put(ID, room.getRoomID());
+		roomJSONObject.put(ROOM_CONDITION, room.getCondition());
+		roomJSONObject.put(ROOM_ROOM, room.getRoomNumber());
+		roomJSONObject.put(ROOM_BEDS, room.getBeds());
+		roomJSONObject.put(ROOM_BATHS, room.getBaths());
 		JSONArray amens = new JSONArray();
-		ArrayList<String> roomAmens = r.getAmenities();
+		ArrayList<String> roomAmens = room.getAmenities();
 		for(String amenity : roomAmens) {
 			amens.add(amenity);
 		}
-		room.put(ROOM_AMENITIES, amens);
+		roomJSONObject.put(ROOM_AMENITIES, amens);
 		JSONArray perks = new JSONArray();
-		ArrayList<String> roomPerks = r.getAmenities();
+		ArrayList<String> roomPerks = room.getAmenities();
 		for(String perk : roomPerks) {
 			perks.add(perk);
 		}
-		room.put(ROOM_PERKS, perks);
-		room.put(ROOM_PRICE, r.getPrice());
-		room.put(ROOM_TYPE, r.getPropertyType().toString());
-		if(r.canSubLease()) {
-			room.put(ROOM_SUB, 1);
+		roomJSONObject.put(ROOM_PERKS, perks);
+		roomJSONObject.put(ROOM_PRICE, room.getPrice());
+		roomJSONObject.put(ROOM_TYPE, room.getPropertyType().toString());
+		if(room.canSubLease()) {
+			roomJSONObject.put(ROOM_SUB, 1);
 		} else {
-			room.put(ROOM_SUB, 0);
+			roomJSONObject.put(ROOM_SUB, 0);
 		}
-		if(r.isLeased()) {
-			room.put(ROOM_ISLEASED, 1);
+		if(room.isLeased()) {
+			roomJSONObject.put(ROOM_ISLEASED, 1);
 		} else {
-			room.put(ROOM_ISLEASED, 0);
+			roomJSONObject.put(ROOM_ISLEASED, 0);
 		}
 		JSONArray rooms = DataReader.getRoomsJSON();
-		rooms.add(room);
+		rooms.add(roomJSONObject);
 		try (FileWriter file = new FileWriter(ROOM_FILE)) {
 			file.write(rooms.toJSONString());
 			file.flush();

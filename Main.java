@@ -181,15 +181,20 @@ public class Main {
 			ui.outputMenu("guestoptions");
 			System.out.println("Enter selection: ");
 			int selection = s.nextInt();
+			s.nextLine();
 			switch (selection) {
 			case 1:
 				System.out.println("Enter search keywords: ");
 				String search = s.nextLine();
-				ui.searchProperties(search);
-				System.out.println("\n\n"
-						+ "**********************************************************"
+				ArrayList<Property> results = ui.searchProperties(search);
+				if (results.size() == 0) {
+					System.out.println("\nNo properties found!\n");
+				}
+				if (results.size() > 0) {
+				System.out.println("**********************************************************"
 					  + "\n* You must create an account in order to rent a property.*"
-					+ "\n\n**********************************************************\n\n");
+					+ "\n**********************************************************\n\n");
+				}
 				break;
 			case 2:
 				ui.outputMenu("leave");

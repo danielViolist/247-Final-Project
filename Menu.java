@@ -11,7 +11,6 @@ public class Menu {
 	private String thanksMenu;
 	private String giveReviewMenu;
 	private String topPropertiesMenu;
-	private String addFavoriteMenu;
 	private String addPropertyMenu;
 	private String loginSuccessMenu;
 	private String createUserMenu;
@@ -30,7 +29,6 @@ public class Menu {
 		setGiveReviewMenu();
 		setTopPropertiesMenu();
 		setAddPropertyMenu();
-		setAddFavoriteMenu();
 		setLoginSuccessMenu();
 		setCreateUserMenu();
 		setInvalidInputMenu();

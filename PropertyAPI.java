@@ -36,7 +36,7 @@ public class PropertyAPI {
 	}
 
 	//TODO
-	public void deleteProperty(int id) {
+	public static void deleteProperty(int id) {
 
 	}
 }

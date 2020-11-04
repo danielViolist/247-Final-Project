@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class RoomAPI {
 	
-	private  ArrayList<Room> rooms;
+	private ArrayList<Room> rooms;
 	public static RoomAPI roomapi;
 	
 	public RoomAPI() {
@@ -33,9 +33,13 @@ public class RoomAPI {
 		rooms.add(room);
 	}
 	
-	public void removeRoom(Room room) {
-		DataWriter.removeRoom(room.getRoomID());
-		rooms.remove(room);
+	public void removeRoom(int id) {
+		for(int i = 0; i < rooms.size(); i++) {
+			if(rooms.get(i).getRoomID() == id) {
+				DataWriter.removeRoom(id);
+				rooms.remove(i);
+			}
+		}
 	}
 	
 }

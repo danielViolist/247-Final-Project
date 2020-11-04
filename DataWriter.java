@@ -303,6 +303,7 @@ public class DataWriter extends JSONConstants {
 		try (FileWriter file = new FileWriter(PROPERTIES_FILE)) {
 			file.write(properties.toJSONString());
 			file.flush();
+			file.close();
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -361,7 +362,7 @@ public class DataWriter extends JSONConstants {
 					}
 					someRoom.replace(ROOM_AMENITIES, amenities);
 					JSONArray bonuses = new JSONArray();
-					ArrayList<String> bonus = room.getAmenities();
+					ArrayList<String> bonus = room.getBonuses();
 					for(String perk : bonus) {
 						bonuses.add(perk);
 					}
@@ -402,7 +403,7 @@ public class DataWriter extends JSONConstants {
 		}
 		roomJSONObject.put(ROOM_AMENITIES, amens);
 		JSONArray perks = new JSONArray();
-		ArrayList<String> roomPerks = room.getAmenities();
+		ArrayList<String> roomPerks = room.getBonuses();
 		for(String perk : roomPerks) {
 			perks.add(perk);
 		}

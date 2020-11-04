@@ -266,6 +266,7 @@ public class UserInterface {
 		for(Property prop : Main.renter.getFavorites()) {
 			if(prop.getID() == id) {
 				Main.renter.removeFavorite(prop);
+				Main.userApi.createRenter(Main.renter);
 				return;
 			}
 		}
@@ -276,6 +277,7 @@ public class UserInterface {
 		for (Property prop : Main.propertyApi.getProperties()) {
 			if (prop.getID() == propertyID) {
 				Main.renter.addFavorite(prop);
+				Main.userApi.createRenter(Main.renter);
 				return;
 			}
 		}

@@ -8,39 +8,39 @@ import org.json.simple.JSONObject;
 public class DataWriter extends JSONConstants {
 	
 	@SuppressWarnings("unchecked")
-	public static void writeRenter(Renter r) {
-		if(DataReader.userExists(r.getUserID())) {
+	public static void writeRenter(Renter renter) {
+		if(DataReader.userExists(renter.getUserID())) {
 			JSONArray users = DataReader.getUsersJSON();
 			for(int i = 0; i < users.size(); i++) {
 				JSONObject someUser = (JSONObject)users.get(i);
-				if(Integer.parseInt(someUser.get(ID).toString()) == r.getUserID()) {
-					someUser.replace(USERS_PASSWORD, r.getPassword());
-					someUser.replace(USERS_EMAIL, r.getEmail());
-					someUser.replace(USERS_PHONE, r.getPhoneNumber());
-					someUser.replace(USERS_NAME, r.getName());
-					someUser.replace(USERS_BIO, r.getBio());
+				if(Integer.parseInt(someUser.get(ID).toString()) == renter.getUserID()) {
+					someUser.replace(USERS_PASSWORD, renter.getPassword());
+					someUser.replace(USERS_EMAIL, renter.getEmail());
+					someUser.replace(USERS_PHONE, renter.getPhoneNumber());
+					someUser.replace(USERS_NAME, renter.getName());
+					someUser.replace(USERS_BIO, renter.getBio());
 					someUser.remove(USERS_CONTACTS);
 					JSONArray contacts = new JSONArray();
-					ArrayList<String> renterContacts = r.getContactInfo();
+					ArrayList<String> renterContacts = renter.getContactInfo();
 					for(String cont : renterContacts) {
 						contacts.add(cont);
 					}
 					someUser.replace(USERS_CONTACTS, contacts);
 					someUser.remove(USERS_FAVORITES);
 					JSONArray favorites = new JSONArray();
-					ArrayList<Property> renterFavorites = r.getFavorites();
-					for(Property p : renterFavorites) {
-						favorites.add(p.getID());
+					ArrayList<Property> renterFavorites = renter.getFavorites();
+					for(Property prop : renterFavorites) {
+						favorites.add(prop.getID());
 					}
 					someUser.put(USERS_FAVORITES, favorites);
-					if(r.getSeller() != null) {
+					if(renter.getSeller() != null) {
 						someUser.replace(USERS_TYPE, RENTER_SELLER);
 						someUser.remove(USERS_PROPERTIES);
-						Seller s = r.getSeller();
+						Seller seller = renter.getSeller();
 						JSONArray properties = new JSONArray();
-						ArrayList<Property> sellerProperties = s.getProperties();
-						for(Property p : sellerProperties) {
-							properties.add(p.getID());
+						ArrayList<Property> sellerProperties = seller.getProperties();
+						for(Property property : sellerProperties) {
+							properties.add(property.getID());
 						}
 					}
 					try (FileWriter file = new FileWriter(USERS_FILE)) {
@@ -54,38 +54,38 @@ public class DataWriter extends JSONConstants {
 				}
 			}
 		}
-		JSONObject renter = new JSONObject();
-		renter.put(ID, r.getUserID());
-		renter.put(USERS_USERNAME, r.getUsername());
-		renter.put(USERS_PASSWORD, r.getPassword());
-		renter.put(USERS_EMAIL,  r.getEmail());
-		renter.put(USERS_PHONE, r.getPhoneNumber());
-		renter.put(USERS_NAME, r.getName());
-		renter.put(USERS_BIO, r.getBio());
+		JSONObject renterJSONObject = new JSONObject();
+		renterJSONObject.put(ID, renter.getUserID());
+		renterJSONObject.put(USERS_USERNAME, renter.getUsername());
+		renterJSONObject.put(USERS_PASSWORD, renter.getPassword());
+		renterJSONObject.put(USERS_EMAIL,  renter.getEmail());
+		renterJSONObject.put(USERS_PHONE, renter.getPhoneNumber());
+		renterJSONObject.put(USERS_NAME, renter.getName());
+		renterJSONObject.put(USERS_BIO, renter.getBio());
 		JSONArray contacts = new JSONArray();
-		ArrayList<String> renterContacts = r.getContactInfo();
+		ArrayList<String> renterContacts = renter.getContactInfo();
 		for(String cont : renterContacts) {
 			contacts.add(cont);
 		}
-		renter.put(USERS_CONTACTS, contacts);
-		renter.put(USERS_TYPE, RENTER);
-		renter.put(USERS_USCID, r.getUscID());
+		renterJSONObject.put(USERS_CONTACTS, contacts);
+		renterJSONObject.put(USERS_TYPE, RENTER);
+		renterJSONObject.put(USERS_USCID, renter.getUscID());
 		JSONArray favorites = new JSONArray();
-		ArrayList<Property> renterFavorites = r.getFavorites();
+		ArrayList<Property> renterFavorites = renter.getFavorites();
 		for(Property prop : renterFavorites) {
 			favorites.add(prop.getID());
 		}
-		renter.put(USERS_FAVORITES, favorites);
-		if(r.getSeller() != null) {
+		renterJSONObject.put(USERS_FAVORITES, favorites);
+		if(renter.getSeller() != null) {
 			JSONArray properties = new JSONArray();
-			ArrayList<Property> renterSellerProperties = r.getSeller().getProperties();
+			ArrayList<Property> renterSellerProperties = renter.getSeller().getProperties();
 			for(Property prop : renterSellerProperties) {
 				properties.add(prop.getID());
 			}
-			renter.put(USERS_PROPERTIES, properties);
+			renterJSONObject.put(USERS_PROPERTIES, properties);
 		}
 		try (FileWriter file = new FileWriter(USERS_FILE, true)) {
-			file.write(renter.toJSONString());
+			file.write(renterJSONObject.toJSONString());
 			file.flush();
 			file.close();
 		} catch(IOException e) {
@@ -94,29 +94,29 @@ public class DataWriter extends JSONConstants {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static void writeSeller(Seller s) {
-		if(DataReader.userExists(s.getUserID())) {
+	public static void writeSeller(Seller seller) {
+		if(DataReader.userExists(seller.getUserID())) {
 			JSONArray users = DataReader.getUsersJSON();
 			for(int i = 0; i < users.size(); i++) {
 				JSONObject someUser = (JSONObject)users.get(i);
-				if(Integer.parseInt(someUser.get(ID).toString()) == s.getUserID()) {
-					someUser.replace(USERS_PASSWORD, s.getPassword());
-					someUser.replace(USERS_EMAIL, s.getEmail());
-					someUser.replace(USERS_PHONE, s.getPhoneNumber());
-					someUser.replace(USERS_NAME, s.getName());
-					someUser.replace(USERS_BIO, s.getBio());
+				if(Integer.parseInt(someUser.get(ID).toString()) == seller.getUserID()) {
+					someUser.replace(USERS_PASSWORD, seller.getPassword());
+					someUser.replace(USERS_EMAIL, seller.getEmail());
+					someUser.replace(USERS_PHONE, seller.getPhoneNumber());
+					someUser.replace(USERS_NAME, seller.getName());
+					someUser.replace(USERS_BIO, seller.getBio());
 					someUser.remove(USERS_CONTACTS);
 					JSONArray contacts = new JSONArray();
-					ArrayList<String> renterContacts = s.getContactInfo();
+					ArrayList<String> renterContacts = seller.getContactInfo();
 					for(String cont : renterContacts) {
 						contacts.add(cont);
 					}
 					someUser.replace(USERS_CONTACTS, contacts);
 					someUser.remove(USERS_PROPERTIES);
 					JSONArray properties = new JSONArray();
-					ArrayList<Property> sellerProperties = s.getProperties();
-					for(Property p : sellerProperties) {
-						properties.add(p.getID());
+					ArrayList<Property> sellerProperties = seller.getProperties();
+					for(Property prop : sellerProperties) {
+						properties.add(prop.getID());
 					}
 					try (FileWriter file = new FileWriter(USERS_FILE)) {
 						file.write(users.toJSONString());
@@ -129,29 +129,29 @@ public class DataWriter extends JSONConstants {
 				}
 			}
 		}
-		JSONObject seller = new JSONObject();
-		seller.put(ID, s.getUserID());
-		seller.put(USERS_USERNAME, s.getUsername());
-		seller.put(USERS_PASSWORD, s.getPassword());
-		seller.put(USERS_EMAIL,  s.getEmail());
-		seller.put(USERS_PHONE, s.getPhoneNumber());
-		seller.put(USERS_NAME, s.getName());
-		seller.put(USERS_BIO, s.getBio());
+		JSONObject sellerJSONObject = new JSONObject();
+		sellerJSONObject.put(ID, seller.getUserID());
+		sellerJSONObject.put(USERS_USERNAME, seller.getUsername());
+		sellerJSONObject.put(USERS_PASSWORD, seller.getPassword());
+		sellerJSONObject.put(USERS_EMAIL,  seller.getEmail());
+		sellerJSONObject.put(USERS_PHONE, seller.getPhoneNumber());
+		sellerJSONObject.put(USERS_NAME, seller.getName());
+		sellerJSONObject.put(USERS_BIO, seller.getBio());
 		JSONArray contacts = new JSONArray();
-		ArrayList<String> sellerContacts = s.getContactInfo();
+		ArrayList<String> sellerContacts = seller.getContactInfo();
 		for(String cont : sellerContacts) {
 			contacts.add(cont);
 		}
-		seller.put(USERS_CONTACTS, contacts);
-		seller.put(USERS_TYPE, SELLER);
+		sellerJSONObject.put(USERS_CONTACTS, contacts);
+		sellerJSONObject.put(USERS_TYPE, SELLER);
 		JSONArray properties = new JSONArray();
-		ArrayList<Property> sellerProperties = s.getProperties();
+		ArrayList<Property> sellerProperties = seller.getProperties();
 		for(Property prop : sellerProperties) {
 			properties.add(prop.getID());
 		}
-		seller.put(USERS_PROPERTIES, properties);
+		sellerJSONObject.put(USERS_PROPERTIES, properties);
 		try (FileWriter file = new FileWriter(USERS_FILE, true)) {
-			file.write(seller.toJSONString());
+			file.write(sellerJSONObject.toJSONString());
 			file.flush();
 			file.close();
 		} catch(IOException e) {
@@ -160,30 +160,30 @@ public class DataWriter extends JSONConstants {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static void writeRE(RealEstateAgent re) {
-		if(DataReader.userExists(re.getUserID())) {
+	public static void writeRE(RealEstateAgent reAgent) {
+		if(DataReader.userExists(reAgent.getUserID())) {
 			JSONArray users = DataReader.getUsersJSON();
 			for(int i = 0; i < users.size(); i++) {
 				JSONObject someUser = (JSONObject)users.get(i);
-				if(Integer.parseInt(someUser.get(ID).toString()) == re.getUserID()) {
-					someUser.replace(USERS_PASSWORD, re.getPassword());
-					someUser.replace(USERS_EMAIL, re.getEmail());
-					someUser.replace(USERS_PHONE, re.getPhoneNumber());
-					someUser.replace(USERS_NAME, re.getName());
-					someUser.replace(USERS_BIO, re.getBio());
+				if(Integer.parseInt(someUser.get(ID).toString()) == reAgent.getUserID()) {
+					someUser.replace(USERS_PASSWORD, reAgent.getPassword());
+					someUser.replace(USERS_EMAIL, reAgent.getEmail());
+					someUser.replace(USERS_PHONE, reAgent.getPhoneNumber());
+					someUser.replace(USERS_NAME, reAgent.getName());
+					someUser.replace(USERS_BIO, reAgent.getBio());
 					someUser.remove(USERS_CONTACTS);
 					JSONArray contacts = new JSONArray();
-					ArrayList<String> renterContacts = re.getContactInfo();
+					ArrayList<String> renterContacts = reAgent.getContactInfo();
 					for(String cont : renterContacts) {
 						contacts.add(cont);
 					}
 					someUser.replace(USERS_CONTACTS, contacts);
-					someUser.replace(USERS_AGENCY, re.getNameOfAgency());
+					someUser.replace(USERS_AGENCY, reAgent.getNameOfAgency());
 					someUser.remove(USERS_LISTINGS);
 					JSONArray listings = new JSONArray();
-					ArrayList<Property> reListings = re.getListings();
-					for(Property p : reListings) {
-						listings.add(p.getID());
+					ArrayList<Property> reListings = reAgent.getListings();
+					for(Property property : reListings) {
+						listings.add(property.getID());
 					}
 					try (FileWriter file = new FileWriter(USERS_FILE)) {
 						file.write(users.toJSONString());
@@ -197,23 +197,23 @@ public class DataWriter extends JSONConstants {
 			}
 		}
 		JSONObject agent = new JSONObject();
-		agent.put(ID, re.getUserID());
-		agent.put(USERS_USERNAME, re.getUsername());
-		agent.put(USERS_PASSWORD, re.getPassword());
-		agent.put(USERS_EMAIL,  re.getEmail());
-		agent.put(USERS_PHONE, re.getPhoneNumber());
-		agent.put(USERS_NAME, re.getName());
-		agent.put(USERS_BIO, re.getBio());
+		agent.put(ID, reAgent.getUserID());
+		agent.put(USERS_USERNAME, reAgent.getUsername());
+		agent.put(USERS_PASSWORD, reAgent.getPassword());
+		agent.put(USERS_EMAIL,  reAgent.getEmail());
+		agent.put(USERS_PHONE, reAgent.getPhoneNumber());
+		agent.put(USERS_NAME, reAgent.getName());
+		agent.put(USERS_BIO, reAgent.getBio());
 		JSONArray contacts = new JSONArray();
-		ArrayList<String> reContacts = re.getContactInfo();
+		ArrayList<String> reContacts = reAgent.getContactInfo();
 		for(String cont : reContacts) {
 			contacts.add(cont);
 		}
 		agent.put(USERS_CONTACTS, contacts);
 		agent.put(USERS_TYPE, REAL_ESTATE);
-		agent.put(USERS_AGENCY, re.getNameOfAgency());
+		agent.put(USERS_AGENCY, reAgent.getNameOfAgency());
 		JSONArray listings = new JSONArray();
-		ArrayList<Property> agentListings = re.getListings();
+		ArrayList<Property> agentListings = reAgent.getListings();
 		for(Property prop : agentListings) {
 			listings.add(prop.getID());
 		}
@@ -228,29 +228,29 @@ public class DataWriter extends JSONConstants {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static void writeProperty(Property p) {
-		if(DataReader.propertyExists(p.getID())) {
+	public static void writeProperty(Property property) {
+		if(DataReader.propertyExists(property.getID())) {
 			JSONArray props = DataReader.getPropertiesJSON();
 			for(int i = 0; i < props.size(); i++) {
 				JSONObject someProp = (JSONObject)props.get(i);
-				if(Integer.parseInt(someProp.get(ID).toString()) == p.getID()) {
-					someProp.replace(PROPERTIES_OWNER, p.getSeller().getUserID());
-					someProp.replace(PROPERTIES_NAME, p.getName());
-					someProp.replace(PROPERTIES_DESCRIPTION, p.getDescription());
+				if(Integer.parseInt(someProp.get(ID).toString()) == property.getID()) {
+					someProp.replace(PROPERTIES_OWNER, property.getSeller().getUserID());
+					someProp.replace(PROPERTIES_NAME, property.getName());
+					someProp.replace(PROPERTIES_DESCRIPTION, property.getDescription());
 					JSONArray reviews = new JSONArray();
-					ArrayList<Review> propertyReviews = p.getReviews();
-					for(Review r : propertyReviews) {
-						reviews.add(r.getID());
+					ArrayList<Review> propertyReviews = property.getReviews();
+					for(Review rev : propertyReviews) {
+						reviews.add(rev.getID());
 					}
 					someProp.replace(PROPERTIES_REVIEWS, reviews);
 					JSONArray rooms = new JSONArray();
-					ArrayList<Room> propertyRooms = p.getRooms();
-					for(Room r : propertyRooms) {
-						rooms.add(r.getRoomID());
+					ArrayList<Room> propertyRooms = property.getRooms();
+					for(Room room : propertyRooms) {
+						rooms.add(room.getRoomID());
 					}
 					someProp.replace(PROPERTIES_ROOMS, rooms);
 					JSONArray payments = new JSONArray();
-					ArrayList<PaymentType> propertyPayments = p.getAcceptedPayments();
+					ArrayList<PaymentType> propertyPayments = property.getAcceptedPayments();
 					for(PaymentType pay : propertyPayments) {
 						payments.add(pay.toString());
 					}
@@ -266,29 +266,29 @@ public class DataWriter extends JSONConstants {
 				}
 			}
 		}
-		JSONObject property = new JSONObject();
-		property.put(ID, p.getID());
-		property.put(PROPERTIES_OWNER, p.getSeller().getUserID());
-		property.put(PROPERTIES_NAME, p.getName());
-		property.put(PROPERTIES_ADDRESS, p.getAddress());
-		property.put(PROPERTIES_ZIP, p.getZipCode());
-		property.put(PROPERTIES_CITY, p.getCity());
-		property.put(PROPERTIES_STATE, p.getState());
-		property.put(PROPERTIES_DESCRIPTION, p.getDescription());
+		JSONObject propertyJSONObject = new JSONObject();
+		propertyJSONObject.put(ID, property.getID());
+		propertyJSONObject.put(PROPERTIES_OWNER, property.getSeller().getUserID());
+		propertyJSONObject.put(PROPERTIES_NAME, property.getName());
+		propertyJSONObject.put(PROPERTIES_ADDRESS, property.getAddress());
+		propertyJSONObject.put(PROPERTIES_ZIP, property.getZipCode());
+		propertyJSONObject.put(PROPERTIES_CITY, property.getCity());
+		propertyJSONObject.put(PROPERTIES_STATE, property.getState());
+		propertyJSONObject.put(PROPERTIES_DESCRIPTION, property.getDescription());
 		JSONArray reviews = new JSONArray();
-		ArrayList<Review> propertyReviews = p.getReviews();
+		ArrayList<Review> propertyReviews = property.getReviews();
 		for(Review r : propertyReviews) {
 			reviews.add(r.getID());
 		}
-		property.put(PROPERTIES_REVIEWS, reviews);
+		propertyJSONObject.put(PROPERTIES_REVIEWS, reviews);
 		JSONArray payments = new JSONArray();
-		ArrayList<PaymentType> propertyPayments = p.getAcceptedPayments();
+		ArrayList<PaymentType> propertyPayments = property.getAcceptedPayments();
 		for(PaymentType pay : propertyPayments) {
 			payments.add(pay);
 		}
-		property.put(PROPERTIES_PAYMENTS, payments);
+		propertyJSONObject.put(PROPERTIES_PAYMENTS, payments);
 		try (FileWriter file = new FileWriter(PROPERTIES_FILE, true)) {
-			file.write(property.toJSONString());
+			file.write(propertyJSONObject.toJSONString());
 			file.flush();
 		} catch(IOException e) {
 			e.printStackTrace();
@@ -341,14 +341,14 @@ public class DataWriter extends JSONConstants {
 					someRoom.replace(ROOM_BATHS, r.getBaths());
 					JSONArray amens = new JSONArray();
 					ArrayList<String> amenities = r.getAmenities();
-					for(String s : amenities) {
-						amens.add(s);
+					for(String amenity : amenities) {
+						amens.add(amenity);
 					}
 					someRoom.replace(ROOM_AMENITIES, amenities);
 					JSONArray bonuses = new JSONArray();
 					ArrayList<String> bonus = r.getAmenities();
-					for(String s : bonus) {
-						bonuses.add(s);
+					for(String perk : bonus) {
+						bonuses.add(perk);
 					}
 					someRoom.replace(ROOM_PERKS, bonuses);
 					someRoom.replace(ROOM_PRICE, r.getPrice());
@@ -382,14 +382,14 @@ public class DataWriter extends JSONConstants {
 		room.put(ROOM_BATHS, r.getBaths());
 		JSONArray amens = new JSONArray();
 		ArrayList<String> roomAmens = r.getAmenities();
-		for(String a : roomAmens) {
-			amens.add(a);
+		for(String amenity : roomAmens) {
+			amens.add(amenity);
 		}
 		room.put(ROOM_AMENITIES, amens);
 		JSONArray perks = new JSONArray();
 		ArrayList<String> roomPerks = r.getAmenities();
-		for(String p : roomPerks) {
-			perks.add(p);
+		for(String perk : roomPerks) {
+			perks.add(perk);
 		}
 		room.put(ROOM_PERKS, perks);
 		room.put(ROOM_PRICE, r.getPrice());
@@ -633,7 +633,6 @@ public class DataWriter extends JSONConstants {
 			}
 	}
 	
-	@SuppressWarnings("unchecked")
 	private static void removeRoomFromProperties(int id) {
 		JSONArray properties = DataReader.getPropertiesJSON();
 		for(int i = 0; i < properties.size(); i++) {
@@ -642,15 +641,15 @@ public class DataWriter extends JSONConstants {
 			for(int j = 0; j < rooms.size(); j++) {
 				if(Integer.parseInt(rooms.get(j).toString()) == id) {
 					rooms.remove(j);
+					try (FileWriter file = new FileWriter(REVIEWS_FILE)) {
+						file.write(rooms.toJSONString());
+						file.flush();
+						file.close();
+					} catch(IOException e) {
+						e.printStackTrace();
+					}
+					return;
 				}
-				try (FileWriter file = new FileWriter(REVIEWS_FILE)) {
-					file.write(rooms.toJSONString());
-					file.flush();
-					file.close();
-				} catch(IOException e) {
-					e.printStackTrace();
-				}
-				return;
 			}
 		}
 	}

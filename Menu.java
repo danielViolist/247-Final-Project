@@ -142,14 +142,14 @@ public class Menu {
 	}
 	
 	private void setCreateUserMenu() {
-		this.createUserMenu = "To create an account, please enter the following information:\n"
-				+ "\t- Name"
-	            + "\t- Username"
-	            + "\t- Password"
-	            + "\t- Email"
-	            + "\t- Phone number"
-	            + "\t- Bio"
-	            + "\t- Contact information";
+		this.createUserMenu = "To create an account, please enter the following information:"
+				+ "\n\t- Name"
+	            + "\n\t- Username"
+	            + "\n\t- Password"
+	            + "\n\t- Email"
+	            + "\n\t- Phone number"
+	            + "\n\t- Bio"
+	            + "\n\t- Contact information";
 	}
 	
 	private void setInvalidInputMenu() {

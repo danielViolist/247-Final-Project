@@ -44,7 +44,8 @@ public class Property {
 	}
 
 	public String toString() {
-		String ret = "Name: " + name + "\nID: " + propertyID + "\n\tSeller: " + DataReader.getUser(seller).getName()
+		String ret = "Name: " + name + "\nID: " + propertyID + " (using for favoriting)"
+				   + "\n\tSeller: " + DataReader.getUser(seller).getName()
 				   + "\n\tAddress: " + address + ", " + city + ", " + state + ", " + zipCode
 				   + "\n\tDescription: " + description
 				   + "\n\tRentable spaces:";

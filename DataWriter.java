@@ -286,12 +286,13 @@ public class DataWriter extends JSONConstants {
 		for(Review rev : propertyReviews) {
 			reviews.add(rev.getID());
 		}
+		propertyJSONObject.put(PROPERTIES_REVIEWS, reviews);
 		JSONArray roomsJSON = new JSONArray();
 		ArrayList<Room> rooms = property.getRooms();
 		for(Room room : rooms) {
 			roomsJSON.add(room.getRoomID());
 		}
-		propertyJSONObject.put(PROPERTIES_REVIEWS, reviews);
+		propertyJSONObject.put(PROPERTIES_ROOMS, roomsJSON);
 		JSONArray payments = new JSONArray();
 		ArrayList<PaymentType> propertyPayments = property.getAcceptedPayments();
 		for(PaymentType pay : propertyPayments) {

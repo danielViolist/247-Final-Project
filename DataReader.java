@@ -57,7 +57,6 @@ public class DataReader extends JSONConstants {
 	
 	public static ArrayList<User> loadUsers() {
 		ArrayList<User> users = new ArrayList<User>();
-		
 		try {
 			FileReader read = new FileReader(USERS_FILE);
 			JSONArray usersJSON = (JSONArray)new JSONParser().parse(read);

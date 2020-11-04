@@ -43,7 +43,7 @@ public class Main {
 					System.out.println();
 					currentUserType = ui.userLogin(username, password);
 					if (currentUserType == -1) {
-						System.out.println("Error: Invalid credentials were entered. Please try again.");
+						System.out.println("Error: Invalid credentials were entered.");
 					}
 				}
 				switch (currentUserType) {
@@ -116,7 +116,7 @@ public class Main {
 						System.out.println("\nNo properties found!\n");
 					}
 					if (results.size() > 0) {
-						for (Property prop : rea.getListings()) {
+						for (Property prop : results) {
 							System.out.println("\n*************************************************************\n"
 									         + prop);
 						}
@@ -167,8 +167,7 @@ public class Main {
 					s.nextLine();
 					if (response.equals("YES")) {
 						userApi.deleteUser(renter.getUserID());
-						System.out.println("You account has been deleted."
-								         + "\nThe system is now restarting.");
+						System.out.println("You account has been deleted.");
 						ui.outputMenu("leave");
 						System.exit(0);
 					}
@@ -280,8 +279,7 @@ public class Main {
 					s.nextLine();
 					if (response.equals("YES")) {
 						userApi.deleteUser(renter.getUserID());
-						System.out.println("You account has been deleted."
-								         + "\nThe system is now restarting.");
+						System.out.println("You account has been deleted.");
 						ui.outputMenu("leave");
 						System.exit(0);
 					}
@@ -359,8 +357,7 @@ public class Main {
 				s.nextLine();
 				if (response.equals("YES")) {
 					userApi.deleteUser(seller.getUserID());
-					System.out.println("You account has been deleted."
-							         + "\nThe system is now restarting.");
+					System.out.println("You account has been deleted.");
 					ui.outputMenu("leave");
 					System.exit(0);
 				}
@@ -437,8 +434,7 @@ public class Main {
 				s.nextLine();
 				if (response.equals("YES")) {
 					userApi.deleteUser(rea.getUserID());
-					System.out.println("You account has been deleted."
-							         + "\nThe system is now restarting.");
+					System.out.println("You account has been deleted.");
 					ui.outputMenu("leave");
 					System.exit(0);
 				}

@@ -24,8 +24,8 @@ public class LeaseWriter {
 	public static void SignLease(ArrayList<Integer> tenantIDs, Date startDate, Date endDate, int propertyID, int roomID)
 			throws FileNotFoundException {
 
-		inputByLine = new Scanner(new File("LeaseAgreement.txt"));
-		output = new PrintWriter(DataReader.getUser(tenantIDs.get(0)).getName() + "SignedLease.txt");
+		inputByLine = new Scanner(new File("src/LeaseAgreement.txt"));
+		output = new PrintWriter("src/"+DataReader.getUser(tenantIDs.get(0)).getName() + " Signed Lease.txt");
 
 		while (inputByLine.hasNextLine()) {
 

@@ -293,7 +293,7 @@ public class UserInterface {
 				cont = false;
 			}
 		}
-		System.out.println("Please enter the ID of a user you would like to sign the lease with.");
+		System.out.println("Please enter the ID of a user you would like to sign the lease with (enter -1 you don't want to sign a lease with someone else).");
 		cont = true;
 		int roommateID = 0;
 		while(cont) {
@@ -311,7 +311,8 @@ public class UserInterface {
 		}
 		ArrayList<Integer> tenantIDs = new ArrayList<Integer>();
 		tenantIDs.add(Main.renter.getUserID());
-		tenantIDs.add(roommateID);
+		if (roommateID > 0)
+			tenantIDs.add(roommateID);
 		int propertyID = 0;
 		ArrayList<Property> allProperties = Main.propertyApi.getProperties();
 		boolean breakCondition = false;

@@ -61,8 +61,8 @@ public class Property {
 	}
 	
 // =========================================================================================================================
-	public Seller getSeller() {
-		return (Seller)DataReader.getUser(seller);
+	public User getSeller() {
+		return DataReader.getUser(seller);
 	}
 	
 	public int getSellerID() {

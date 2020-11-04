@@ -103,11 +103,11 @@ public class DataReader extends JSONConstants {
 					}
 				}
 				if(type.equals(RENTER)) {
-					Renter r = new Renter(username, password, email, id, phone, name, bio, uscid);
+					Renter renter = new Renter(username, password, email, id, phone, name, bio, uscid);
 					for(int j = 0; j < favorites.size(); j++) {
-						r.addFavoriteDB(getProperty(Integer.parseInt(favorites.get(j))));
+						renter.addFavoriteDB(getProperty(Integer.parseInt(favorites.get(j))));
 					}
-					users.add(r);
+					users.add(renter);
 				} else if(type.equals(REAL_ESTATE)) {
 					ArrayList<Property> listingsProperty = new ArrayList<Property>();
 					for(int j = 0; j < listings.size(); j++) {
@@ -125,11 +125,11 @@ public class DataReader extends JSONConstants {
 					for(int j = 0; j < properties.size(); j++) {
 						propertiesProperty.add(getProperty(Integer.parseInt(properties.get(j))));
 					}
-					Renter rs = new Renter(username, password, email, id, phone, name, bio, uscid, true, new Seller(username, password, email, id, phone, name, bio, propertiesProperty));
+					Renter renterSeller = new Renter(username, password, email, id, phone, name, bio, uscid, true, new Seller(username, password, email, id, phone, name, bio, propertiesProperty));
 					for(int j = 0; j < favorites.size(); j++) {
-						rs.addFavoriteDB(getProperty(Integer.parseInt(favorites.get(j))));
+						renterSeller.addFavoriteDB(getProperty(Integer.parseInt(favorites.get(j))));
 					}
-					users.add(rs);
+					users.add(renterSeller);
 				}				
 			}
 			read.close();
@@ -185,19 +185,17 @@ public class DataReader extends JSONConstants {
 						payments.add(PaymentType.CREDIT);
 					}
 				}
-				Property p = new Property(owner, name, address, zip, city, state, description, id);
+				Property property = new Property(owner, name, address, zip, city, state, description, id);
 				for(PaymentType pay : payments) {
-					p.addPaymentTypeDB(pay);
+					property.addPaymentTypeDB(pay);
 				}
-				p.setPropertyID(id);
-				p.setName(name);
 				for(String s : reviews) {
-					p.addReviewDB(getReview(Integer.parseInt(s)));
+					property.addReviewDB(getReview(Integer.parseInt(s)));
 				}
 				for(String r : rooms) {
-					p.addRoomDB(getRoom(Integer.parseInt(r)));
+					property.addRoomDB(getRoom(Integer.parseInt(r)));
 				}
-				properties.add(p);
+				properties.add(property);
 			}
 			read.close();
 			return properties;
@@ -299,8 +297,8 @@ public class DataReader extends JSONConstants {
 	
 	public static boolean userExists(int id) {
 		ArrayList<User> users = loadUsers();
-		for(User u : users) {
-			if(u.getUserID() == id) {
+		for(User user : users) {
+			if(user.getUserID() == id) {
 				return true;
 			}
 		}
@@ -309,8 +307,8 @@ public class DataReader extends JSONConstants {
 	
 	public static boolean propertyExists(int id) {
 		ArrayList<Property> props = loadProperties();
-		for(Property p : props) {
-			if(p.getID() == id) {
+		for(Property property : props) {
+			if(property.getID() == id) {
 				return true;
 			}
 		}
@@ -319,8 +317,8 @@ public class DataReader extends JSONConstants {
 	
 	public static boolean reviewExists(int id) {
 		ArrayList<Review> revs = loadReviews();
-		for(Review r : revs) {
-			if(r.getID() == id) {
+		for(Review review : revs) {
+			if(review.getID() == id) {
 				return true;
 			}
 		}
@@ -329,8 +327,8 @@ public class DataReader extends JSONConstants {
 	
 	public static boolean roomExists(int id) {
 		ArrayList<Room> rooms = loadRooms();
-		for(Room r : rooms) {
-			if(r.getRoomID() == id) {
+		for(Room room : rooms) {
+			if(room.getRoomID() == id) {
 				return true;
 			}
 		}
@@ -340,9 +338,9 @@ public class DataReader extends JSONConstants {
 	public static User getUser(int id) {
 		if(userExists(id)) {
 			ArrayList<User> users = loadUsers();
-			for(User u : users) {
-				if(u.getUserID() == id) {
-					return u;
+			for(User user : users) {
+				if(user.getUserID() == id) {
+					return user;
 				}
 			}
 		}
@@ -352,9 +350,9 @@ public class DataReader extends JSONConstants {
 	public static Property getProperty(int id) {
 		if(propertyExists(id)) {
 			ArrayList<Property> props = loadProperties();
-			for(Property p : props) {
-				if(p.getID() == id) {
-					return p;
+			for(Property property : props) {
+				if(property.getID() == id) {
+					return property;
 				}
 			}
 		}
@@ -364,9 +362,9 @@ public class DataReader extends JSONConstants {
 	public static Room getRoom(int id) {
 		if(roomExists(id)) {
 			ArrayList<Room> rooms = loadRooms();
-			for(Room r : rooms) {
-				if(r.getRoomID() == id) {
-					return r;
+			for(Room room : rooms) {
+				if(room.getRoomID() == id) {
+					return room;
 				}
 			}
 		}
@@ -377,9 +375,9 @@ public class DataReader extends JSONConstants {
 		if(reviewExists(id)) {
 			//Get information
 			ArrayList<Review> revs = loadReviews();
-			for(Review r : revs) {
-				if(r.getID() == id) {
-					return r;
+			for(Review review : revs) {
+				if(review.getID() == id) {
+					return review;
 				}
 			}
 		}

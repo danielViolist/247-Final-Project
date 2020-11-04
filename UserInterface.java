@@ -91,7 +91,6 @@ public class UserInterface {
 		double price = s.nextDouble();
 		// System.out.println("Subleasing potential");
 		// we may be forbidding leasing functionality
-
 		System.out.println("Type of property (apartment, condo, or house):");
 		PropertyType propertyType = PropertyType.APARTMENT; // must initialize to avoid error
 		done = false;

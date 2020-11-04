@@ -67,8 +67,7 @@ public class UserInterface {
 		String state = s.nextLine();
 		System.out.println("Description: ");
 		String description = s.nextLine();
-		Property p = new Property(Main.seller.getUserID(), address, city, state, zipCode, description);
-		p.setName(name);
+		Property p = new Property(Main.seller.getUserID(), name, address, city, state, zipCode, description);
 		System.out.println("How many rooms would you like to add to this property?");
 		int choice = s.nextInt();
 		s.nextLine();
@@ -172,8 +171,7 @@ public class UserInterface {
 		String state = s.nextLine();
 		System.out.println("Description: ");
 		String description = s.nextLine();
-		Property p = new Property(Main.renter.getUserID(), address, city, state, zipCode, description);
-		p.setName(name);
+		Property p = new Property(Main.renter.getUserID(), name, address, city, state, zipCode, description);
 		System.out.println("How many rooms would you like to add to this property?");
 		int choice = s.nextInt();
 		s.nextLine();
@@ -277,8 +275,7 @@ public class UserInterface {
 		String state = s.nextLine();
 		System.out.println("Description: ");
 		String description = s.nextLine();
-		Property p = new Property(Main.rea.getUserID(), address, city, state, zipCode, description);
-		p.setName(name);
+		Property p = new Property(Main.rea.getUserID(), name, address, city, state, zipCode, description);
 		System.out.println("How many rooms would you like to add to this property?");
 		int choice = s.nextInt();
 		s.nextLine();

@@ -252,7 +252,7 @@ public class DataWriter extends JSONConstants {
 					JSONArray payments = new JSONArray();
 					ArrayList<PaymentType> propertyPayments = p.getAcceptedPayments();
 					for(PaymentType pay : propertyPayments) {
-						payments.add(pay);
+						payments.add(pay.toString());
 					}
 					someProp.replace(PROPERTIES_PAYMENTS, payments);
 					try (FileWriter file = new FileWriter(PROPERTIES_FILE)) {

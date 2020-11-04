@@ -36,4 +36,24 @@ public class PropertyAPI {
 	}
 	
 
+	public Property getProperty(int id) {
+		for(Property p : properties) {
+			if(p.getID() == id) {
+				return p;
+			}
+		}
+		return null;
+	}
+
+
+	//TODO
+	public void deleteProperty(int id) {
+		for(int i = 0; i < properties.size(); i++) {
+			if(properties.get(i).getID() == id) {
+				DataWriter.removeProperty(id);
+				properties.remove(i);
+				return;
+			}
+		}
+	}
 }

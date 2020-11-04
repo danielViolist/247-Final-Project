@@ -128,4 +128,12 @@ public class UserAPI {
 		return null;
 	}
 	
+	public void deleteUser(int id) {
+		for(int i = 0; i < users.size(); i++) {
+			if(users.get(i).getUserID() == id) {
+				DataWriter.removeUser(id);
+				users.remove(i);
+			}
+		}
+	}
 }

@@ -96,8 +96,145 @@ public class Main {
 		//TODO
 		if (renter.getSeller() == null) {
 			// NOT a renter/seller
+			ui.outputMenu("renteroptions");
+			while(true) {
+				ui.outputMenu("renteroptions");
+				System.out.println("Enter selection: ");
+				int selection = s.nextInt();
+				System.out.println();
+				s.nextLine();
+				switch (selection) {
+				case 1:
+					//Search
+					System.out.print("Enter search keywords: ");
+					String search = s.nextLine();
+					System.out.println();
+					ArrayList<Property> results = ui.searchProperties(search);
+					if (results.size() == 0) {
+						System.out.println("\nNo properties found!\n");
+					}
+					if (results.size() > 0) {
+						for (Property prop : rea.getListings()) {
+							System.out.println("\n*************************************************************\n"
+									         + prop);
+						}
+					}
+					break;
+				case 2:
+					//Rent
+					break;
+				case 3:
+					//Add to favorites
+					break;
+				case 4:
+					//Show favorites
+					ui.showFavorites();
+					break;
+				case 5:
+					//Remove a favorite
+					ui.removeFavorite();
+					break;
+				case 6:
+					// Delete account
+					System.out.println("Please confirm that you wish to delete your account."
+							         + "\nEnter 'YES' to confrim, anything else to cancel."
+							         + "\nWarning: If you delete your account, all of your data will not be recoverable!");
+					String response = s.next();
+					s.nextLine();
+					if (response.equals("YES")) {
+						userApi.deleteUser(renter.getUserID());
+						System.out.println("You account has been deleted."
+								         + "\nThe system is now restarting.");
+						ui.outputMenu("leave");
+						System.exit(0);
+					}
+					break;
+				case 7:
+					//Exit
+					ui.outputMenu("leave");
+					System.exit(0);
+					break;
+				default:
+					System.out.println("Please enter a value between 1 and 7.");
+				}
+			}
 		} else {
 			//Renter seller
+			while(true) {
+				ui.outputMenu("renterselleroptions");
+				System.out.println("Enter selection: ");
+				int selection = s.nextInt();
+				System.out.println();
+				s.nextLine();
+				switch (selection) {
+				case 1:
+					//Search properties
+					System.out.print("Enter search keywords: ");
+					String search = s.nextLine();
+					System.out.println();
+					ArrayList<Property> results = ui.searchProperties(search);
+					if (results.size() == 0) {
+						System.out.println("\nNo properties found!\n");
+					}
+					if (results.size() > 0) {
+						for (Property prop : rea.getListings()) {
+							System.out.println("\n*************************************************************\n"
+									         + prop);
+						}
+					}
+					break;
+				case 2:
+					//Rent
+					break;
+				case 3:
+					//List a property
+					break;
+				case 4:
+					//Show listed properties
+					for (Property prop : renter.getSeller().getProperties()) {
+						System.out.println("\n*************************************************************\n"
+								         + prop);
+					}
+					System.out.println("\n*************************************************************\n");
+					break;
+				case 5:
+					//Remove a listed property
+					break;
+				case 6:
+					//Add a favorite
+					break;
+				case 7:
+					//Show favorites
+					ui.showFavorites();
+					break;
+				case 8:
+					//Remove a favorite
+					ui.removeFavorite();
+					break;
+				case 9:
+					// Delete account
+					System.out.println("Please confirm that you wish to delete your account."
+							         + "\nEnter 'YES' to confrim, anything else to cancel."
+							         + "\nWarning: If you delete your account, all of your data will not be recoverable!");
+					String response = s.next();
+					s.nextLine();
+					if (response.equals("YES")) {
+						userApi.deleteUser(renter.getUserID());
+						System.out.println("You account has been deleted."
+								         + "\nThe system is now restarting.");
+						ui.outputMenu("leave");
+						System.exit(0);
+					}
+					break;
+				case 10:
+					//Exit
+					ui.outputMenu("leave");
+					System.exit(0);
+					break;
+				default:
+					System.out.println("Please enter a value between 1 and 10.");
+				}
+			}
 		}
 	}
 	
@@ -112,7 +249,17 @@ public class Main {
 				//Search listings
 				System.out.println("Enter search keywords: ");
 				String search = s.nextLine();
-				ui.searchProperties(search);
+				System.out.println();
+				ArrayList<Property> results = ui.searchProperties(search);
+				if (results.size() == 0) {
+					System.out.println("\nNo properties found!\n");
+				}
+				if (results.size() > 0) {
+					for (Property prop : rea.getListings()) {
+						System.out.println("\n*************************************************************\n"
+								         + prop);
+					}
+				}
 				break;
 			case 2:
 				// List a property
@@ -130,6 +277,24 @@ public class Main {
 				System.out.println("\n*************************************************************\n");
 				break;
 			case 4:
+				//Remove property
+				break;
+			case 5:
+				// Delete account
+				System.out.println("Please confirm that you wish to delete your account."
+						         + "\nEnter 'YES' to confrim, anything else to cancel."
+						         + "\nWarning: If you delete your account, all of your data will not be recoverable!");
+				String response = s.next();
+				s.nextLine();
+				if (response.equals("YES")) {
+					userApi.deleteUser(seller.getUserID());
+					System.out.println("You account has been deleted."
+							         + "\nThe system is now restarting.");
+					ui.outputMenu("leave");
+					System.exit(0);
+				}
+				break;
+			case 6:
 				// Exit
 				ui.outputMenu("leave");
 				System.exit(0);
@@ -151,7 +316,17 @@ public class Main {
 				//Search listings
 				System.out.println("Enter search keywords: ");
 				String search = s.nextLine();
-				ui.searchProperties(search);
+				System.out.println();
+				ArrayList<Property> results = ui.searchProperties(search);
+				if (results.size() == 0) {
+					System.out.println("\nNo properties found!\n");
+				}
+				if (results.size() > 0) {
+					for (Property prop : rea.getListings()) {
+						System.out.println("\n*************************************************************\n"
+								         + prop);
+					}
+				}
 				break;
 			case 2:
 				System.out.print(rea.showListings());
@@ -169,6 +344,24 @@ public class Main {
 				System.out.println("\n*************************************************************\n");
 				break;
 			case 4:
+				// Remove a listing
+				break;
+			case 5:
+				// Delete account
+				System.out.println("Please confirm that you wish to delete your account."
+						         + "\nEnter 'YES' to confrim, anything else to cancel."
+						         + "\nWarning: If you delete your account, all of your data will not be recoverable!");
+				String response = s.next();
+				s.nextLine();
+				if (response.equals("YES")) {
+					userApi.deleteUser(rea.getUserID());
+					System.out.println("You account has been deleted."
+							         + "\nThe system is now restarting.");
+					ui.outputMenu("leave");
+					System.exit(0);
+				}
+				break;
+			case 6:
 				// Exit
 				ui.outputMenu("leave");
 				System.exit(0);
@@ -188,11 +381,20 @@ public class Main {
 			case 1:
 				System.out.println("Enter search keywords: ");
 				String search = s.nextLine();
-				ui.searchProperties(search);
-				System.out.println("\n\n"
-						+ "**********************************************************"
-					  + "\n* You must create an account in order to rent a property.*"
-					+ "\n\n**********************************************************\n\n");
+				System.out.println();
+				ArrayList<Property> results = ui.searchProperties(search);
+				if (results.size() == 0) {
+					System.out.println("\nNo properties found!\n");
+				}
+				if (results.size() > 0) {
+					for (Property prop : rea.getListings()) {
+						System.out.println("\n*************************************************************\n"
+								         + prop);
+					}
+					System.out.println("**********************************************************"
+							+ "\n* You must create an account in order to rent a property.*"
+							+ "\n**********************************************************\n\n");
+				}
 				break;
 			case 2:
 				ui.outputMenu("leave");

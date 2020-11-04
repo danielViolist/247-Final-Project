@@ -529,8 +529,8 @@ public class Main {
 					+ "\n\t1. Wanting to rent"
 					+ "\n\t2. Wanting to list properties for rent"
 					+ "\n\t3. Wanting to list properties as an agent"
-					+ "\n\t4. Wanting to rent and list properties"
-					+ "\nSelection: ");
+					+ "\n\t4. Wanting to rent and list properties");
+			System.out.print("Selection: ");
 			int choice = s.nextInt();
 			System.out.println();
 			s.nextLine();

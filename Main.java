@@ -96,7 +96,7 @@ public class Main {
  * leave/exit the program.                            *
  ******************************************************/
 	public static void runRenter() {
-		//TODO
+		int choice;
 		if (renter.getSeller() == null) {
 			// NOT a renter/seller
 			ui.outputMenu("renteroptions");
@@ -123,19 +123,40 @@ public class Main {
 						}
 					}
 					break;
-				case 2:
+				case 2: //TODO
 					//Rent
 					break;
 				case 3:
 					//Add to favorites
+					System.out.println("Please enter the ID of the property to favorite."
+							         + "If you do not know the property's ID, please enter -1, then choose to search properties."
+							         + "\nIn the searched for properties, an ID will be displayed. Enter that ID here.");
+					System.out.print("\nID: ");
+					choice = s.nextInt();
+					s.nextLine();
+					if (choice < 0) {
+						break;
+					}
+					ui.addToFavorites(choice);
+					System.out.println("If a property with that ID exits, it has been added to your favorites.");
 					break;
 				case 4:
 					//Show favorites
 					ui.showFavorites();
 					break;
 				case 5:
-					//Remove a favorite
-					ui.removeFavorite();
+					// Remove a favorite
+					System.out.println("Please enter the ID of the propery favorite to remove."
+								 	 + "\nIf you do not know the ID, please enter -1 and then select the option to show your favorites.\n"
+								 	 + "There you will find the IDs listed for each favorited property.");
+					System.out.print("\nID: ");
+					choice = s.nextInt();
+					s.nextLine();
+					if (choice < 0) {
+						break;
+					}
+					ui.removeFavorite(choice);
+					System.out.println("If that property was in your favorites, it has been removed.");
 					break;
 				case 6:
 					// Delete account
@@ -186,10 +207,10 @@ public class Main {
 						}
 					}
 					break;
-				case 2:
+				case 2: //TODO
 					//Rent
 					break;
-				case 3:
+				case 3: //TODO
 					//List a property
 					break;
 				case 4:
@@ -200,19 +221,40 @@ public class Main {
 					}
 					System.out.println("\n*************************************************************\n");
 					break;
-				case 5:
+				case 5: //TODO
 					//Remove a listed property
 					break;
 				case 6:
-					//Add a favorite
+					// Add a favorite
+					System.out.println("Please enter the ID of the property to favorite."
+							         + "If you do not know the property's ID, please enter -1, then choose to search properties."
+							         + "\nIn the searched for properties, an ID will be displayed. Enter that ID here.");
+					System.out.print("\nID: ");
+					choice = s.nextInt();
+					s.nextLine();
+					if (choice < 0) {
+						break;
+					}
+					ui.addToFavorites(choice);
+					System.out.println("If a property with that ID exits, it has been added to your favorites.");
 					break;
 				case 7:
 					//Show favorites
 					ui.showFavorites();
 					break;
 				case 8:
-					//Remove a favorite
-					ui.removeFavorite();
+					// Remove a favorite
+					System.out.println("Please enter the ID of the propery favorite to remove."
+								 	 + "\nIf you do not know the ID, please enter -1 and then select the option to show your favorites.\n"
+								 	 + "There you will find the IDs listed for each favorited property.");
+					System.out.print("\nID: ");
+					choice = s.nextInt();
+					s.nextLine();
+					if (choice < 0) {
+						break;
+					}
+					ui.removeFavorite(choice);
+					System.out.println("If that property was in your favorites, it has been removed.");
 					break;
 				case 9:
 					// Delete account
@@ -265,12 +307,12 @@ public class Main {
 					}
 				}
 				break;
-			case 2:
+			case 2: //TODO
 				// List a property
 				// Need help with this. 
 				// See runREA comments in case 2.
 				break;
-			case 3:
+			case 3: 
 				// Show own's listings
 				for (Property prop : seller.getProperties()) {
 					System.out.println("\n*************************************************************\n"
@@ -278,7 +320,7 @@ public class Main {
 				}
 				System.out.println("\n*************************************************************\n");
 				break;
-			case 4:
+			case 4: //TODO
 				//Remove property
 				break;
 			case 5:
@@ -302,7 +344,7 @@ public class Main {
 				System.exit(0);
 				break;
 			default:
-				System.out.println("Please enter a value between 1 and 4.");
+				System.out.println("Please enter a value between 1 and 6.");
 			}
 		}
 	}
@@ -331,7 +373,7 @@ public class Main {
 					}
 				}
 				break;
-			case 2:
+			case 2: //TODO
 				// List a property
 				// Need help with this por favor
 				// Needs to be like how it is described in the scenario (create a property, then add rooms to it)
@@ -344,7 +386,7 @@ public class Main {
 				}
 				System.out.println("\n*************************************************************\n");
 				break;
-			case 4:
+			case 4: //TODO
 				// Remove a listing
 				break;
 			case 5:
@@ -368,7 +410,7 @@ public class Main {
 				System.exit(0);
 				break;
 			default:
-				System.out.println("Please enter a value between 1 and 4.");
+				System.out.println("Please enter a value between 1 and 6.");
 			}
 		}
 	}

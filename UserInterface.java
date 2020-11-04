@@ -1,11 +1,9 @@
 import java.util.ArrayList;
-//import java.util.Random;
 import java.util.Scanner;
 
 public class UserInterface {
 
 	private static Scanner s;
-	//private static Random randNum;
 	private Menu menus;
 
 
@@ -44,9 +42,6 @@ public class UserInterface {
 		} else if (menu.equals("renterselleroptions")) {
 			System.out.println(menus.getRenterSellerOptions());
 		}
-		else if (menu.contentEquals("createListings")) {
-			System.out.println(menus.getCreateListing());
-		}
 	}
 
 	public int userLogin(String username, String password) {
@@ -60,7 +55,6 @@ public class UserInterface {
 	}
 
 	//NEED TO MAKE THIS CREATE ROOMS AS WELL -> CURRENTLY ONLY CREATES A PROPERTY
-
 	public void addProperty(Seller sellerUser) {
 		System.out.println("Name: ");
 		String name = s.nextLine();
@@ -74,53 +68,11 @@ public class UserInterface {
 		String state = s.nextLine();
 		System.out.println("Description: ");
 		String description = s.nextLine();
-		System.out.println("Condition:");
-		//String condition = s.nextLine();
-		//System.out.println("Number of rooms: ");
-		//int roomNumber = s.nextInt();
-		System.out.println("List of Amenities:");
-		ArrayList<String> amenities = new ArrayList<String>();
-		boolean done = false;
-		while (done == false) { // loop until user is done entering contents of amenities list
-			System.out
-					.println("Enter \"done\" when all you are finished adding" + " amenities to this property listing");
-			String amenity = s.nextLine();
-			if (amenity.equalsIgnoreCase("done")) {
-				done = true;
-			} else {
-				amenities.add(amenity);
-			}
-		}
-		System.out.println("Cost per Month:");
-		//double price = s.nextDouble();
-		// System.out.println("Subleasing potential");
-		// we may be forbidding leasing functionality
-
-		System.out.println("Type of property (apartment, condo, or house):");
-		/*
-		PropertyType propertyType = PropertyType.APARTMENT; // must initialize to avoid error
-		done = false;
-		while (done == false) { // loop to make sure user enters a valid property type
-			String userPropType = s.nextLine();
-			if (userPropType.equalsIgnoreCase("house")) {
-				propertyType = PropertyType.HOUSE;
-				done = true;
-			} else if (userPropType.equalsIgnoreCase("apartment")) {
-				propertyType = PropertyType.APARTMENT;
-				done = true;
-			} else if (userPropType.equalsIgnoreCase("condo")) {
-				propertyType = PropertyType.CONDO;
-				done = true;
-			} else {
-				menus.getInvalidInputMenu();
-			}
-		}*/
-		Property p = new Property(sellerUser.getUserID(), name, address, city, state, zipCode, description);
+		Property p = new Property(sellerUser.getUserID(), address, city, state, zipCode, description);
 		p.setName(name);
 		Main.propertyApi.createProperty(p);
 	}
 	
-
 	public ArrayList<Property> searchProperties(String query) {
 		//First, search through everything related to the complex
 		String searchQuery = query.toLowerCase();
@@ -210,4 +162,13 @@ public class UserInterface {
 		}
 		System.out.println("That property is not in your favorites.");
 	}
+	
+	public void addToFavorites(int propertyID) {
+		for (Property prop : Main.propertyApi.getProperties()) {
+			if (prop.getID() == propertyID) {
+				Main.renter.addFavorite(prop);
+			}
+		}
+	}
+	
 }

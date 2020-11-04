@@ -34,6 +34,15 @@ public class PropertyAPI {
 			rand = r.nextInt();
 		return rand;
 	}
+	
+	public Property getProperty(int id) {
+		for(Property p : properties) {
+			if(p.getID() == id) {
+				return p;
+			}
+		}
+		return null;
+	}
 
 	//TODO
 	public static void deleteProperty(int id) {

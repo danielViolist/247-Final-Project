@@ -114,16 +114,20 @@ public class UserInterface {
 		Main.propertyApi.createProperty(new Property(sellerUser.getUserID(), address, city, state, zipCode, description));
 	}
 	
-	public void searchProperties(String searchQuery) {
+	public ArrayList<Property> searchProperties(String searchQuery) {
 		//First, search through everything related to the complex
 		ArrayList<Property> props = Main.propertyApi.getProperties();
 		//These have something that the user is searching for
+		ArrayList<Property> ret = new ArrayList<Property();
 		for(Property p : props) {
 			if(searchQuery.contains(p.getAddress()) || searchQuery.contains(p.getCity()) || searchQuery.contains(p.getZipCode()) || searchQuery.contains(p.getName())) {
 				for(Room r : p.getRooms()) {
 					System.out.println(p.toString());
 					System.out.println(r.toString());
 					System.out.println("-------------------------");
+					if(!ret.contains(p)) {
+						ret.add(p);
+					}
 				}
 				continue;
 			}
@@ -134,6 +138,9 @@ public class UserInterface {
 						System.out.println(p.toString());
 						System.out.println(r.toString());
 						System.out.println("-------------------------");
+						if(!ret.contains(p)) {
+							ret.add(p);
+						}
 						break room;
 					}
 				}
@@ -142,6 +149,9 @@ public class UserInterface {
 						System.out.println(p.toString());
 						System.out.println(r.toString());
 						System.out.println("-------------------------");
+						if(!ret.contains(p)) {
+							ret.add(p);
+						}
 						break room;
 					}
 				}
@@ -149,9 +159,13 @@ public class UserInterface {
 					System.out.println(p.toString());
 					System.out.println(r.toString());
 					System.out.println("-------------------------");
+					if(!ret.contains(p)) {
+						ret.add(p);
+					}
 				}
 			}
 		}
+		return ret;
 	}
 
 	private void deleteUser(int id) {

@@ -289,7 +289,7 @@ public class DataWriter extends JSONConstants {
 		JSONArray payments = new JSONArray();
 		ArrayList<PaymentType> propertyPayments = property.getAcceptedPayments();
 		for(PaymentType pay : propertyPayments) {
-			payments.add(pay);
+			payments.add(pay.toString());
 		}
 		propertyJSONObject.put(PROPERTIES_PAYMENTS, payments);
 		JSONArray properties = DataReader.getPropertiesJSON();

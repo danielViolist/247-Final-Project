@@ -33,7 +33,7 @@
 		"state": "SC",
 		"description": "This is a cool place. Live here.",
 		"reviews": [],
-		"properties": [3],
+		"properties": [3, 5],
 		"payments": ["Credit", "Debit", "Check", "Cash"]
     }, {
 		"id": 4,

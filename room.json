@@ -47,5 +47,17 @@
 		"type": "house",
 		"canSubLease": 1,
 		"isLeased": 0
+	},{
+		"id": 5,
+		"condition": "excellent",
+		"room": 344,
+		"bed": 2,
+		"bath": 1,
+		"amenities": ["Bathroom", "Kitchen"],
+		"perks": ["Pets", "Walk2Campus"],
+		"price": 1000.00,
+		"type": "apartment",
+		"canSubLease": 0,
+		"isLeased": 0
 	}
 ]

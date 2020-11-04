@@ -633,6 +633,7 @@ public class DataWriter extends JSONConstants {
 			}
 	}
 	
+	@SuppressWarnings("unchecked")
 	private static void removeRoomFromProperties(int id) {
 		JSONArray properties = DataReader.getPropertiesJSON();
 		for(int i = 0; i < properties.size(); i++) {
@@ -641,15 +642,15 @@ public class DataWriter extends JSONConstants {
 			for(int j = 0; j < rooms.size(); j++) {
 				if(Integer.parseInt(rooms.get(j).toString()) == id) {
 					rooms.remove(j);
-					try (FileWriter file = new FileWriter(REVIEWS_FILE)) {
-						file.write(rooms.toJSONString());
-						file.flush();
-						file.close();
-					} catch(IOException e) {
-						e.printStackTrace();
-					}
-					return;
 				}
+				try (FileWriter file = new FileWriter(REVIEWS_FILE)) {
+					file.write(rooms.toJSONString());
+					file.flush();
+					file.close();
+				} catch(IOException e) {
+					e.printStackTrace();
+				}
+				return;
 			}
 		}
 	}

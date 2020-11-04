@@ -9,7 +9,7 @@
 		"state": "SC",
 		"description": "The Lofts is cool. Live here! (easy ethernet not included)",
 		"reviews": [1],
-		"properties": [1],
+		"properties": [1, 6],
 		"payments": ["Credit", "Debit", "Cash"]
     },{
         "id": 2,

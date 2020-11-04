@@ -7,9 +7,9 @@ import java.time.LocalDate;
 
 public class LeaseWriter {
 
-	private PrintWriter output;
-	private Scanner inputByLine;
-	private Scanner inputByWord;
+	private static PrintWriter output;
+	private static Scanner inputByLine;
+	private static Scanner inputByWord;
 
 	/**
 	 * Generates a text file which contains the leasing agreement between 
@@ -21,7 +21,7 @@ public class LeaseWriter {
 	 * @param roomID
 	 * @throws FileNotFoundException
 	 */
-	public void SignLease(ArrayList<Integer> tenantIDs, Date startDate, Date endDate, int propertyID, int roomID)
+	public static void SignLease(ArrayList<Integer> tenantIDs, Date startDate, Date endDate, int propertyID, int roomID)
 			throws FileNotFoundException {
 
 		inputByLine = new Scanner(new File("LeaseAgreement.txt"));

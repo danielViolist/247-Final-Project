@@ -1,11 +1,11 @@
 import java.util.ArrayList;
-import java.util.Random;
+//import java.util.Random;
 import java.util.Scanner;
 
 public class UserInterface {
 
 	private static Scanner s;
-	private static Random randNum;
+	//private static Random randNum;
 	private Menu menus;
 
 
@@ -58,22 +58,22 @@ public class UserInterface {
 
 	//NEED TO MAKE THIS CREATE ROOMS AS WELL -> CURRENTLY ONLY CREATES A PROPERTY
 	public void addProperty(Seller sellerUser) {
-		System.out.println("Name:");
+		System.out.println("Name: ");
 		String name = s.nextLine();
-		System.out.println("Street Address:");
+		System.out.println("Street Address: ");
 		String address = s.nextLine();
-		System.out.println("Zip Code:");
+		System.out.println("Zip Code: ");
 		String zipCode = s.nextLine();
-		System.out.println("City:");
+		System.out.println("City: ");
 		String city = s.nextLine();
-		System.out.println("State:");
+		System.out.println("State: ");
 		String state = s.nextLine();
-		System.out.println("Description:");
+		System.out.println("Description: ");
 		String description = s.nextLine();
 		System.out.println("Condition:");
-		String condition = s.nextLine();
-		System.out.println("Number of rooms:");
-		int roomNumber = s.nextInt();
+		//String condition = s.nextLine();
+		//System.out.println("Number of rooms: ");
+		//int roomNumber = s.nextInt();
 		System.out.println("List of Amenities:");
 		ArrayList<String> amenities = new ArrayList<String>();
 		boolean done = false;
@@ -88,10 +88,11 @@ public class UserInterface {
 			}
 		}
 		System.out.println("Cost per Month:");
-		double price = s.nextDouble();
+		//double price = s.nextDouble();
 		// System.out.println("Subleasing potential");
 		// we may be forbidding leasing functionality
 		System.out.println("Type of property (apartment, condo, or house):");
+		/*
 		PropertyType propertyType = PropertyType.APARTMENT; // must initialize to avoid error
 		done = false;
 		while (done == false) { // loop to make sure user enters a valid property type
@@ -108,8 +109,10 @@ public class UserInterface {
 			} else {
 				menus.getInvalidInputMenu();
 			}
-		}
-		Main.propertyApi.createProperty(new Property(sellerUser.getUserID(), address, city, state, zipCode, description));
+		}*/
+		Property p = new Property(sellerUser.getUserID(), address, city, state, zipCode, description);
+		p.setName(name);
+		Main.propertyApi.createProperty(p);
 	}
 	
 	public ArrayList<Property> searchProperties(String searchQuery) {
@@ -203,9 +206,7 @@ public class UserInterface {
 	
 	public void removeFavorite() {
 		System.out.println("Please enter the id of the property you wish to remove from your favorites: ");
-		for(Property p : Main.renter.getFavorites()) {
-			System.out.println(p.toString());
-		}
+		showFavorites();
 		int id = s.nextInt();
 		s.nextLine();
 		for(Property p : Main.renter.getFavorites()) {
@@ -214,6 +215,6 @@ public class UserInterface {
 				return;
 			}
 		}
-		System.out.println("That property was not in your favorites.");
+		System.out.println("That property is not in your favorites.");
 	}
 }

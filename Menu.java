@@ -50,9 +50,10 @@ public class Menu {
 				+ "\n\t1. Search listings"
 				+ "\n\t2. Rent a listing"
 				+ "\n\t3. Add to favorite"
-				+ "\n\t4. Remove a favorite"
-				+ "\n\t5. Delete your account"
-				+ "\n\t6. Exit";	
+				+ "\n\t4. Show favorites"
+				+ "\n\t5. Remove a favorite"
+				+ "\n\t6. Delete your account"
+				+ "\n\t7. Exit";	
 	}
 	
 	public void setRenterSellerOptions() {
@@ -62,8 +63,11 @@ public class Menu {
 				+ "\n\t3. List a property"
 				+ "\n\t4. Show your listed properties"
 				+ "\n\t5. Remove a listed property"
-				+ "\n\t6. Delete your account"
-				+ "\n\t7. Exit";
+				+ "\n\t6. Add to favorites"
+				+ "\n\t7. Show favorites"
+				+ "\n\t8. Remove a favorite"
+				+ "\n\t9. Delete your account"
+				+"\n\t10. Exit";
 	}
 	
 	public void setSellerOptions() {

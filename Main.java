@@ -99,8 +99,103 @@ public class Main {
 		//TODO
 		if (renter.getSeller() == null) {
 			// NOT a renter/seller
+			ui.outputMenu("renteroptions");
+			while(true) {
+				ui.outputMenu("renteroptions");
+				System.out.println("Enter selection: ");
+				int selection = s.nextInt();
+				System.out.println();
+				s.nextLine();
+				switch (selection) {
+				case 1:
+					//Search
+					System.out.print("Enter search keywords: ");
+					String search = s.nextLine();
+					System.out.println();
+					ui.searchProperties(search);
+					break;
+				case 2:
+					//Rent
+					break;
+				case 3:
+					//Add to favorites
+					break;
+				case 4:
+					//Show favorites
+					ui.showFavorites();
+					break;
+				case 5:
+					//Remove a favorite
+					ui.removeFavorite();
+					break;
+				case 6:
+					//Delete account
+					break;
+				case 7:
+					//Exit
+					ui.outputMenu("leave");
+					System.exit(0);
+					break;
+				default:
+					System.out.println("Please enter a value between 1 and 7.");
+				}
+			}
 		} else {
 			//Renter seller
+			while(true) {
+				ui.outputMenu("renterselleroptions");
+				System.out.println("Enter selection: ");
+				int selection = s.nextInt();
+				System.out.println();
+				s.nextLine();
+				switch (selection) {
+				case 1:
+					//Search properties
+					System.out.print("Enter search keywords: ");
+					String search = s.nextLine();
+					System.out.println();
+					ui.searchProperties(search);
+					break;
+				case 2:
+					//Rent
+					break;
+				case 3:
+					//List a property
+					break;
+				case 4:
+					//Show listed properties
+					for (Property prop : renter.getSeller().getProperties()) {
+						System.out.println("\n*************************************************************\n"
+								         + prop);
+					}
+					System.out.println("\n*************************************************************\n");
+					break;
+				case 5:
+					//Remove a listed property
+					break;
+				case 6:
+					//Add a favorite
+					break;
+				case 7:
+					//Show favorites
+					ui.showFavorites();
+					break;
+				case 8:
+					//Remove a favorite
+					ui.removeFavorite();
+					break;
+				case 9:
+					//Delete account
+					break;
+				case 10:
+					//Exit
+					ui.outputMenu("leave");
+					System.exit(0);
+					break;
+				default:
+					System.out.println("Please enter a value between 1 and 10.");
+				}
+			}
 		}
 	}
 	

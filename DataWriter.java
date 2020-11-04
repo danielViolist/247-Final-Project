@@ -268,7 +268,7 @@ public class DataWriter extends JSONConstants {
 		}
 		JSONObject propertyJSONObject = new JSONObject();
 		propertyJSONObject.put(ID, property.getID());
-		propertyJSONObject.put(PROPERTIES_OWNER, property.getSeller().getUserID());
+		propertyJSONObject.put(PROPERTIES_OWNER, property.getSellerID());
 		propertyJSONObject.put(PROPERTIES_NAME, property.getName());
 		propertyJSONObject.put(PROPERTIES_ADDRESS, property.getAddress());
 		propertyJSONObject.put(PROPERTIES_ZIP, property.getZipCode());

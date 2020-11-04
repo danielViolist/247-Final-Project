@@ -65,6 +65,10 @@ public class Property {
 		return (Seller)DataReader.getUser(seller);
 	}
 	
+	public int getSellerID() {
+		return seller;
+	}
+	
 	public ArrayList<PaymentType> getAcceptedPayments() {
 		return acceptedPayments;
 	}
@@ -75,6 +79,7 @@ public class Property {
 	
 	public void setName(String name) {
 		this.name = name;
+		Main.propertyApi.createProperty(this);
 	}
 	
 	public int getID() {
@@ -87,6 +92,7 @@ public class Property {
 
 	public void setAddress(String address) {
 		this.address = address;
+		Main.propertyApi.createProperty(this);
 	}
 
 	public String getZipCode() {
@@ -95,6 +101,7 @@ public class Property {
 
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+		Main.propertyApi.createProperty(this);
 	}
 
 	public String getCity() {
@@ -103,6 +110,7 @@ public class Property {
 
 	public void setCity(String city) {
 		this.city = city;
+		Main.propertyApi.createProperty(this);
 	}
 
 	public String getState() {
@@ -111,6 +119,7 @@ public class Property {
 
 	public void setState(String state) {
 		this.state = state;
+		Main.propertyApi.createProperty(this);
 	}
 
 	public String getDescription() {
@@ -119,6 +128,7 @@ public class Property {
 
 	public void setDescription(String description) {
 		this.description = description;
+		Main.propertyApi.createProperty(this);
 	}
 
 	public ArrayList<Review> getReviews() {
@@ -127,6 +137,7 @@ public class Property {
 	
 	public void setPropertyID(int id) {
 		propertyID = id;
+		Main.propertyApi.createProperty(this);
 	}
 	
 // ====================================================================================================================

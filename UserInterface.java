@@ -118,7 +118,7 @@ public class UserInterface {
 		//First, search through everything related to the complex
 		ArrayList<Property> props = Main.propertyApi.getProperties();
 		//These have something that the user is searching for
-		ArrayList<Property> ret = new ArrayList<Property();
+		ArrayList<Property> ret = new ArrayList<Property>();
 		for(Property p : props) {
 			if(searchQuery.contains(p.getAddress()) || searchQuery.contains(p.getCity()) || searchQuery.contains(p.getZipCode()) || searchQuery.contains(p.getName())) {
 				for(Room r : p.getRooms()) {
@@ -166,17 +166,5 @@ public class UserInterface {
 			}
 		}
 		return ret;
-	}
-
-	private void deleteUser(int id) {
-		DataWriter.removeUser(id);
-	}
-
-	private void deleteReview(int id) {
-		DataWriter.removeReview(id);
-	}
-
-	private void deleteProperty(int id) {
-		DataWriter.removeProperty(id);
 	}
 }

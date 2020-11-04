@@ -127,7 +127,7 @@ public class Menu {
 	}
 
 	private void setLoginSuccessMenu() {
-		this.loginSuccessMenu = "****** Welcome! ******\n You have successfully logged in.\n";
+		this.loginSuccessMenu = "\t****** Welcome! ******\n   You have successfully logged in.\n";
 	}
 	
 	private void setCreateUserMenu() {

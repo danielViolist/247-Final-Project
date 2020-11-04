@@ -34,6 +34,9 @@ public class PropertyAPI {
 			rand = r.nextInt();
 		return rand;
 	}
-	
 
+	//TODO
+	public void deleteProperty(int id) {
+
+	}
 }

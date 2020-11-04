@@ -165,4 +165,55 @@ public class UserInterface {
 		}
 		return ret;
 	}
+
+	public void showFavorites() {
+		for(Property p : Main.renter.getFavorites()) {
+			System.out.println(p.toString());
+		}
+	}
+
+	public void removeProperty(int id) {
+		System.out.println("Please enter the id of the property you wish to remove: ");
+		if(Main.renter == null) {
+			for(Property p : Main.seller.getProperties()) {
+				System.out.println(p.toString());
+			}
+			int id = s.nextInt();
+			s.nextLine();
+			PropertyAPI.deleteProperty(id);
+			return;
+		}
+		for(Property p : Main.renter.getSeller().getProperties()) {
+			System.out.println(p.toString());
+		}
+		int id = s.nextInt();
+		s.nextLine();
+		PropertyAPI.deleteProperty(id);
+	}
+
+	public void removeListing(int id) {
+		System.out.println("Please enter the id of the property you wish to remove: ");
+		for(Property p : Main.rea.getListings()) {
+			System.out.println(p.toString());
+		}
+		int id = s.nextInt();
+		s.nextLine();
+		PropertyAPI.deleteProperty(id);
+	}
+	
+	public void removeFavorite(int id) {
+		System.out.println("Please enter the id of the property you wish to remove from your favorites: ");
+		for(Property p : Main.renter.getFavorites()) {
+			System.out.println(p.toString());
+		}
+		int id = s.nextInt();
+		s.nextLine();
+		for(Property p : Main.renter.getFavorites()) {
+			if(p.getID() == id) {
+				Main.renter.removeFavorite(p);
+				return;
+			}
+		}
+		System.out.println("That property was not in your favorites.");
+	}
 }

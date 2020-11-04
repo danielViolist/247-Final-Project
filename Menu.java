@@ -12,9 +12,7 @@ public class Menu {
 	private String giveReviewMenu;
 	private String topPropertiesMenu;
 	private String addFavoriteMenu;
-	private String removeFavoriteMenu;
 	private String addPropertyMenu;
-	private String removePropertyMenu;
 	private String loginSuccessMenu;
 	private String createUserMenu;
 	private String invalidInputMenu;
@@ -32,9 +30,7 @@ public class Menu {
 		setGiveReviewMenu();
 		setTopPropertiesMenu();
 		setAddPropertyMenu();
-		setRemovePropertyMenu();
 		setAddFavoriteMenu();
-		setRemoveFavoriteMenu();
 		setLoginSuccessMenu();
 		setCreateUserMenu();
 		setInvalidInputMenu();
@@ -139,18 +135,6 @@ public class Menu {
 				             + "\t- List of Accepted Payment Methods";
 	}
 
-	private void setRemovePropertyMenu() {
-		this.removePropertyMenu = "Please enter the ID of the property you wish to remove: ";
-	}
-
-	private void setAddFavoriteMenu() {
-		this.addFavoriteMenu = "Please enter the ID of the property you wish to add to your favorites: ";
-	}
-
-	private void setRemoveFavoriteMenu() {
-		this.removeFavoriteMenu = "Please enter the ID of the property you wish to remove from your favorites: ";
-	}
-
 	private void setLoginSuccessMenu() {
 		this.loginSuccessMenu = "\t****** Welcome! ******\n   You have successfully logged in.\n";
 	}
@@ -232,17 +216,5 @@ public class Menu {
 
 	public String getREAOptions() {
 		return REAOptions;
-	}
-
-	public String getRemovePropertyMenu() {
-		return removePropertyMenu;
-	}
-
-	public String getAddFavoriteMenu() {
-		return addFavoriteMenu;
-	}
-
-	public String getRemoveFavoriteMenu() {
-		return removeFavoriteMenu;
 	}
 }

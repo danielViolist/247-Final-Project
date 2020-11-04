@@ -227,7 +227,7 @@ public class UserInterface {
 			for(Room r : p.getRooms()) {
 				boolean hasBeds = false;
 				boolean hasBaths = false;
-				boolean hasAmenity = false;
+				boolean hasNice = false;
 				if(searchQuery.contains("bed ")) {
 					int location = searchQuery.indexOf("bed ");
 					int beds = Integer.parseInt(searchQuery.charAt(location - 2) + "");
@@ -248,10 +248,15 @@ public class UserInterface {
 				}
 				for(String s : r.getAmenities()) {
 					if(searchQuery.contains(s.toLowerCase())) {
-						hasAmenity = true;
+						hasNice = true;
 					}
 				}
-				if(hasBeds && hasBaths && hasAmenity) {
+				for(String s : r.getBonuses()) {
+					if(searchQuery.contains(s.toLowerCase())) {
+						hasNice = true;
+					}
+				}
+				if(hasBeds && hasBaths && hasNice) {
 					if(!ret.contains(p)) {
 						ret.add(p);
 					}

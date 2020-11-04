@@ -112,7 +112,16 @@ public class Main {
 					System.out.print("Enter search keywords: ");
 					String search = s.nextLine();
 					System.out.println();
-					ui.searchProperties(search);
+					ArrayList<Property> results = ui.searchProperties(search);
+					if (results.size() == 0) {
+						System.out.println("\nNo properties found!\n");
+					}
+					if (results.size() > 0) {
+						for (Property prop : rea.getListings()) {
+							System.out.println("\n*************************************************************\n"
+									         + prop);
+						}
+					}
 					break;
 				case 2:
 					//Rent
@@ -154,7 +163,16 @@ public class Main {
 					System.out.print("Enter search keywords: ");
 					String search = s.nextLine();
 					System.out.println();
-					ui.searchProperties(search);
+					ArrayList<Property> results = ui.searchProperties(search);
+					if (results.size() == 0) {
+						System.out.println("\nNo properties found!\n");
+					}
+					if (results.size() > 0) {
+						for (Property prop : rea.getListings()) {
+							System.out.println("\n*************************************************************\n"
+									         + prop);
+						}
+					}
 					break;
 				case 2:
 					//Rent
@@ -212,7 +230,16 @@ public class Main {
 				System.out.print("Enter search keywords: ");
 				String search = s.nextLine();
 				System.out.println();
-				ui.searchProperties(search);
+				ArrayList<Property> results = ui.searchProperties(search);
+				if (results.size() == 0) {
+					System.out.println("\nNo properties found!\n");
+				}
+				if (results.size() > 0) {
+					for (Property prop : rea.getListings()) {
+						System.out.println("\n*************************************************************\n"
+								         + prop);
+					}
+				}
 				break;
 			case 2:
 				// List a property
@@ -257,7 +284,16 @@ public class Main {
 				System.out.print("Enter search keywords: ");
 				String search = s.nextLine();
 				System.out.println();
-				ui.searchProperties(search);
+				ArrayList<Property> results = ui.searchProperties(search);
+				if (results.size() == 0) {
+					System.out.println("\nNo properties found!\n");
+				}
+				if (results.size() > 0) {
+					for (Property prop : rea.getListings()) {
+						System.out.println("\n*************************************************************\n"
+								         + prop);
+					}
+				}
 				break;
 			case 2:
 				// List a property
@@ -300,9 +336,13 @@ public class Main {
 					System.out.println("\nNo properties found!\n");
 				}
 				if (results.size() > 0) {
-				System.out.println("**********************************************************"
-					  + "\n* You must create an account in order to rent a property.*"
-					+ "\n**********************************************************\n\n");
+					for (Property prop : rea.getListings()) {
+						System.out.println("\n*************************************************************\n"
+								         + prop);
+					}
+					System.out.println("**********************************************************"
+							+ "\n* You must create an account in order to rent a property.*"
+							+ "\n**********************************************************\n\n");
 				}
 				break;
 			case 2:

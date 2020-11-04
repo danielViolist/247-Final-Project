@@ -180,7 +180,7 @@ public class UserInterface {
 				}
 			}
 			for (PaymentType payt : payTypes) {
-				prop.addPaymentType(payt);
+				prop.addPaymentTypeDB(payt);
 			}
 			System.out.print("Is the property available to sublease (enter 'yes' or 'no'): ");
 			String subLease = s.next();

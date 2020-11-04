@@ -372,7 +372,7 @@ public class UserInterface {
 			if(roommateID == -1) {
 				break;
 			} else if(DataReader.userExists(roommateID)) {
-				cont = false;
+				break;
 			}
 			if(cont = true) {
 				System.out.println("Please enter a valid user ID.");

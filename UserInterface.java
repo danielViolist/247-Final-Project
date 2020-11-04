@@ -235,6 +235,8 @@ public class UserInterface {
 					if(r.getBeds() == beds) {
 						hasBeds = true;
 					}
+				} else {
+					hasBeds = true;
 				}
 				if(searchQuery.contains("bath")) {
 					int location = searchQuery.indexOf("bath");
@@ -242,6 +244,8 @@ public class UserInterface {
 					if(r.getBaths() == baths) {
 						hasBaths = true;
 					}
+				} else {
+					hasBaths = true;
 				}
 				for(String s : r.getAmenities()) {
 					if(searchQuery.contains(s.toLowerCase())) {

@@ -31,23 +31,22 @@ public class Room {
 	public String toString() {
 		//TODO - Make a toString function
 		String ret = "Room Information: "
-				+ "\n\tRoom ID: " + roomID
-				+ "\n\tRoom Number: " + roomNumber
-				+ "\n\tBed Count: " + beds
-				+ "\n\tBath Count: " + baths
-				+ "\n\tCondition: " + condition
-				+ "\n\tAmenities:\n";
+				+ "\n\t\tRoom Number: " + roomNumber
+				+ "\n\t\tBed Count: " + beds
+				+ "\n\t\tBath Count: " + baths
+				+ "\n\t\tCondition: " + condition
+				+ "\n\t\tAmenities:\n";
 		for (String amenity : amenities) {
-			ret += "\t\t- " + amenity + "\n";
+			ret += "\t\t\t- " + amenity + "\n";
 		}
-		ret += "\tBonuses:\n";
+		ret += "\t\tBonuses:\n";
 		for (String bonus : bonuses) {
-			ret += "\t\t- " + bonus + "\n";
+			ret += "\t\t\t- " + bonus + "\n";
 		}
-		ret += "\tProperty Type: " + propertyType.toString() 
-			+ "\n\tCan sub-lease: " + canSubLease 
-			+ "\n\tCurrently Leased: " + isLeased
-			+ "\n\tPrice per month: " + price;
+		ret += "\t\tProperty Type: " + propertyType.toString() 
+			+ "\n\t\tCan sub-lease: " + canSubLease 
+			+ "\n\t\tCurrently Leased: " + isLeased
+			+ "\n\t\tPrice per month: " + price;
 		return  ret;
 	}
 	

@@ -99,7 +99,7 @@ public class Main {
 			// NOT a renter/seller
 			while(true) {
 				ui.outputMenu("renteroptions");
-				System.out.println("Enter selection: ");
+				System.out.print("Enter selection: ");
 				int selection = s.nextInt();
 				System.out.println();
 				s.nextLine();

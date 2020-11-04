@@ -300,7 +300,9 @@ public class UserInterface {
 			System.out.print("Selection: ");
 			roommateID = s.nextInt();
 			s.nextLine();
-			if(DataReader.userExists(roommateID)) {
+			if(roommateID == -1) {
+				break;
+			} else if(DataReader.userExists(roommateID)) {
 				cont = false;
 			}
 			if(cont = true) {

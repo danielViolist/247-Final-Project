@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -99,7 +97,6 @@ public class Main {
 		int choice;
 		if (renter.getSeller() == null) {
 			// NOT a renter/seller
-			ui.outputMenu("renteroptions");
 			while(true) {
 				ui.outputMenu("renteroptions");
 				System.out.println("Enter selection: ");
@@ -375,7 +372,7 @@ public class Main {
 					}
 				}
 				break;
-			case 2: //TODO
+			case 2:
 				// List a property
 				ui.addPropertyREA();
 				System.out.println("Your property listing has been added!");

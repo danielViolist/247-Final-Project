@@ -18,9 +18,9 @@ public class RoomAPI {
 	
 	public int getNewRoomID() {
 		Random r = new Random();
-		int rand = r.nextInt();
+		int rand = Math.abs(r.nextInt());
 		while (DataReader.roomExists(rand)) 
-			rand = r.nextInt();
+			rand = Math.abs(r.nextInt());
 		return rand;
 	}
 	

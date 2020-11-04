@@ -87,8 +87,9 @@ public class UserAPI {
 	public int getNewUserID() {
 		Random r = new Random();
 		int rand = r.nextInt();
+		rand = Math.abs(rand);
 		while (DataReader.userExists(rand)) {
-			rand = r.nextInt();
+			rand = Math.abs(r.nextInt());
 		}
 		return rand;
 	}

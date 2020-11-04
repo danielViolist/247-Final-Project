@@ -29,13 +29,12 @@ public class PropertyAPI {
 	
 	public int getNewPropertyID() {
 		Random r = new Random();
-		int rand = r.nextInt();
+		int rand = Math.abs(r.nextInt());
 		while (DataReader.propertyExists(rand)) 
-			rand = r.nextInt();
+			rand = Math.abs(r.nextInt());
 		return rand;
 	}
 	
-
 	public Property getProperty(int id) {
 		for(Property p : properties) {
 			if(p.getID() == id) {
@@ -44,7 +43,6 @@ public class PropertyAPI {
 		}
 		return null;
 	}
-
 
 	//TODO
 	public void deleteProperty(int id) {

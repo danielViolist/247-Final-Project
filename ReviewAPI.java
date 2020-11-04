@@ -31,9 +31,9 @@ public class ReviewAPI {
 	
 	public int getNewReviewID() {
 		Random r = new Random();
-		int rand = r.nextInt();
+		int rand = Math.abs(r.nextInt());
 		while (DataReader.reviewExists(rand)) {
-			rand = r.nextInt();
+			rand = Math.abs(r.nextInt());
 		}
 		return rand;
 	}

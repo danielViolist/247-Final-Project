@@ -209,7 +209,7 @@ public class Main {
 					break;
 				case 3:
 					//List a property
-					ui.addPropertyRenter();
+					ui.addProperty();
 					System.out.println("Your property listing has been added!");
 					break;
 				case 4:
@@ -320,7 +320,7 @@ public class Main {
 				break;
 			case 2: 
 				// List a property
-				ui.addPropertySeller();
+				ui.addProperty();
 				System.out.println("Your property listing has been added!");
 				break;
 			case 3: 
@@ -398,7 +398,7 @@ public class Main {
 				break;
 			case 2:
 				// List a property
-				ui.addPropertyREA();
+				ui.addProperty();
 				System.out.println("Your property listing has been added!");
 				break;
 			case 3:
@@ -530,7 +530,7 @@ public class Main {
 					+ "\n\t2. Wanting to list properties for rent"
 					+ "\n\t3. Wanting to list properties as an agent"
 					+ "\n\t4. Wanting to rent and list properties"
-					+ "Selection: ");
+					+ "\nSelection: ");
 			int choice = s.nextInt();
 			System.out.println();
 			s.nextLine();

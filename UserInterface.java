@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -280,4 +281,65 @@ public class UserInterface {
 		}
 	}
 	
+	public void rent() throws FileNotFoundException {
+		System.out.println("Please enter the ID of the room you wish to rent.");
+		boolean cont = true;
+		int roomID = 0;
+		while(cont) {
+			System.out.print("Selection: ");
+			roomID = s.nextInt();
+			s.nextLine();
+			if(DataReader.roomExists(roomID) && !DataReader.getRoom(roomID).isLeased()) {
+				cont = false;
+			}
+		}
+		System.out.println("Please enter the ID of a user you would like to sign the lease with.");
+		cont = true;
+		int roommateID = 0;
+		while(cont) {
+			System.out.print("Selection: ");
+			roommateID = s.nextInt();
+			s.nextLine();
+			if(DataReader.userExists(roommateID)) {
+				cont = false;
+			}
+			if(cont = true) {
+				System.out.println("Please enter a valid user ID.");
+			}
+		}
+		ArrayList<Integer> tenantIDs = new ArrayList<Integer>();
+		tenantIDs.add(Main.renter.getUserID());
+		tenantIDs.add(roommateID);
+		int propertyID = 0;
+		ArrayList<Property> allProperties = Main.propertyApi.getProperties();
+		boolean breakCondition = false;
+		for(Property prop : allProperties) {
+			for(Room room : prop.getRooms()) {
+				if(room.getRoomID() == roomID) {
+					propertyID = prop.getID();
+					breakCondition = true;
+					break;
+				}
+			}
+			if(breakCondition) {
+				break;
+			}
+		}
+		System.out.println("When do you want your lease to begin? Please enter it in the format MM/DD/YY.");
+		System.out.print("Date: ");
+		String date = s.nextLine();
+		int month = Integer.parseInt(date.substring(0, 1));
+		int day = Integer.parseInt(date.substring(3, 4));
+		int year = Integer.parseInt(date.substring(6, 7));
+		Date startDate = new Date(month, day, year);
+		System.out.println("When do you want your lease to end? Please enter it in the format MM/DD/YY.");
+		System.out.print("Date: ");
+		date = s.nextLine();
+		month = Integer.parseInt(date.substring(0, 1));
+		day = Integer.parseInt(date.substring(3, 4));
+		year = Integer.parseInt(date.substring(6, 7));
+		Date endDate = new Date(month, day, year);
+		System.out.println("Generating SignedLease.txt");
+		LeaseWriter.SignLease(tenantIDs, startDate, endDate, propertyID, roomID);
+	}
 }

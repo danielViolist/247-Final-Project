@@ -75,11 +75,11 @@ public class UserInterface {
 		System.out.println();
 		Property prop = null;
 		if (Main.renter != null)
-			prop = new Property(Main.renter.getUserID(), name, address, city, state, zipCode, description);
+			prop = new Property(Main.renter.getUserID(), name, address, zipCode, city, state, description);
 		else if (Main.seller != null)
-			prop = new Property(Main.seller.getUserID(), name, address, city, state, zipCode, description);
+			prop = new Property(Main.seller.getUserID(), name, address, zipCode, city, state, description);
 		else if (Main.rea != null)
-			prop = new Property(Main.rea.getUserID(), name, address, city, state, zipCode, description);
+			prop = new Property(Main.rea.getUserID(), name, address, zipCode, city, state, description);
 		System.out.print("How many rooms would you like to add to this property? ");
 		int choice = s.nextInt();
 		System.out.println();
@@ -148,6 +148,34 @@ public class UserInterface {
 					System.out.println("Invalid value was entered. Please select a valid choice 1 to 3.");
 					break;
 				}
+			}
+			int[] selections = new int[4];
+			System.out.println("Please select all the available payment types (enter each number with a space separating them): ");
+			for (int j = 0; j < selections.length; j++) {
+				if (s.hasNextInt()) {
+					selections[j] = s.nextInt();
+					if (selections[j] < 1 || selections[j] > 4) {
+						System.out.println("Invalid number entered. Try again.");
+						j--;
+					}
+				} else {
+					break;
+				}
+			}
+			ArrayList<PaymentType> payTypes = new ArrayList<PaymentType>();
+			for (int j = 0; j < selections.length; j++) {
+				if (selections[j] == 1) {
+					payTypes.add(PaymentType.CASH);
+				} else if (selections[j] == 2) {
+					payTypes.add(PaymentType.CHECK);
+				} else if (selections[j] == 3) {
+					payTypes.add(PaymentType.CREDIT);
+				} else if (selections[j] == 4) {
+					payTypes.add(PaymentType.DEBIT);
+				}
+			}
+			for (PaymentType payt : payTypes) {
+				prop.addPaymentType(payt);
 			}
 			System.out.print("Is the property available to sublease (enter 'yes' or 'no'): ");
 			String subLease = s.next();

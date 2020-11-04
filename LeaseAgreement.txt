@@ -16,12 +16,12 @@ Subject to the terms and conditions stated below the parties agree as follows:
 7. Signatures
 
 
---------------
+--------------.
 <TENANT1>
 
 
 
---------------
+--------------.
 (TENANT X, this will only appear if applicable)
 
 

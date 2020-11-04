@@ -26,7 +26,6 @@ public class DataWriter extends JSONConstants {
 						contacts.add(cont);
 					}
 					someUser.replace(USERS_CONTACTS, contacts);
-					someUser.remove(USERS_FAVORITES);
 					JSONArray favorites = new JSONArray();
 					ArrayList<Property> renterFavorites = renter.getFavorites();
 					for(Property prop : renterFavorites) {
@@ -35,7 +34,6 @@ public class DataWriter extends JSONConstants {
 					someUser.put(USERS_FAVORITES, favorites);
 					if(renter.getSeller() != null) {
 						someUser.replace(USERS_TYPE, RENTER_SELLER);
-						someUser.remove(USERS_PROPERTIES);
 						Seller seller = renter.getSeller();
 						JSONArray properties = new JSONArray();
 						ArrayList<Property> sellerProperties = seller.getProperties();
@@ -107,14 +105,12 @@ public class DataWriter extends JSONConstants {
 					someUser.replace(USERS_PHONE, seller.getPhoneNumber());
 					someUser.replace(USERS_NAME, seller.getName());
 					someUser.replace(USERS_BIO, seller.getBio());
-					someUser.remove(USERS_CONTACTS);
 					JSONArray contacts = new JSONArray();
 					ArrayList<String> renterContacts = seller.getContactInfo();
 					for(String cont : renterContacts) {
 						contacts.add(cont);
 					}
 					someUser.replace(USERS_CONTACTS, contacts);
-					someUser.remove(USERS_PROPERTIES);
 					JSONArray properties = new JSONArray();
 					ArrayList<Property> sellerProperties = seller.getProperties();
 					for(Property prop : sellerProperties) {
@@ -175,7 +171,6 @@ public class DataWriter extends JSONConstants {
 					someUser.replace(USERS_PHONE, reAgent.getPhoneNumber());
 					someUser.replace(USERS_NAME, reAgent.getName());
 					someUser.replace(USERS_BIO, reAgent.getBio());
-					someUser.remove(USERS_CONTACTS);
 					JSONArray contacts = new JSONArray();
 					ArrayList<String> renterContacts = reAgent.getContactInfo();
 					for(String cont : renterContacts) {
@@ -183,7 +178,6 @@ public class DataWriter extends JSONConstants {
 					}
 					someUser.replace(USERS_CONTACTS, contacts);
 					someUser.replace(USERS_AGENCY, reAgent.getNameOfAgency());
-					someUser.remove(USERS_LISTINGS);
 					JSONArray listings = new JSONArray();
 					ArrayList<Property> reListings = reAgent.getListings();
 					for(Property property : reListings) {

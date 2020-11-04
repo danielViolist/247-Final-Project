@@ -105,14 +105,16 @@ public class Main {
 	public static void runSeller() {
 		while (true) {
 			ui.outputMenu("selleroptions");
-			System.out.println("Enter selection: ");
+			System.out.print("Enter selection: ");
 			int selection = s.nextInt();
+			System.out.println();
 			s.nextLine();
 			switch (selection) {
 			case 1:
 				//Search listings
-				System.out.println("Enter search keywords: ");
+				System.out.print("Enter search keywords: ");
 				String search = s.nextLine();
+				System.out.println();
 				ui.searchProperties(search);
 				break;
 			case 2:
@@ -142,14 +144,16 @@ public class Main {
 	public static void runREA() {
 		while (true) {
 			ui.outputMenu("reaoptions");
-			System.out.println("Enter selection: ");
+			System.out.print("Enter selection: ");
 			int selection = s.nextInt();
+			System.out.println();
 			s.nextLine();
 			switch (selection) {
 			case 1:
 				//Search listings
-				System.out.println("Enter search keywords: ");
+				System.out.print("Enter search keywords: ");
 				String search = s.nextLine();
+				System.out.println();
 				ui.searchProperties(search);
 				break;
 			case 2:
@@ -179,13 +183,15 @@ public class Main {
 	public static void runGuest() {
 		while (true) {
 			ui.outputMenu("guestoptions");
-			System.out.println("Enter selection: ");
+			System.out.print("Enter selection: ");
 			int selection = s.nextInt();
+			System.out.println();
 			s.nextLine();
 			switch (selection) {
 			case 1:
-				System.out.println("Enter search keywords: ");
+				System.out.print("Enter search keywords: ");
 				String search = s.nextLine();
+				System.out.println();
 				ArrayList<Property> results = ui.searchProperties(search);
 				if (results.size() == 0) {
 					System.out.println("\nNo properties found!\n");
@@ -216,23 +222,30 @@ public class Main {
 	 */
 	public static int createUser() {
 		ui.outputMenu("createUser");
-		System.out.println("Name: ");
+		System.out.print("Name: ");
 		String name = s.nextLine();
-		System.out.println("Username: ");
+		System.out.println();
+		System.out.print("Username: ");
 		String username = s.next();
-		s.hasNextLine();
-		System.out.println("Password: ");
+		System.out.println();
+		s.nextLine();
+		System.out.print("Password: ");
 		String password = s.nextLine();
-		System.out.println("Email: ");
+		System.out.println();
+		System.out.print("Email: ");
 		String email = s.next();
+		System.out.println();
 		s.nextLine();
-		System.out.println("Phone number (XXX-XXX-XXXX): ");
+		System.out.print("Phone number (XXX-XXX-XXXX): ");
 		String phoneNum = s.next();
+		System.out.println();
 		s.nextLine();
-		System.out.println("Personal bio (press 'Enter` when finished): ");
+		System.out.print("Personal bio (press 'Enter` when finished): ");
 		String bio = s.nextLine();
-		System.out.println("Enter any additional contact info (separate the info with a tab):");
+		System.out.println();
+		System.out.print("Enter any additional contact info (separate the info with a tab):");
 		String[] contactInfo = s.nextLine().split("\t");
+		System.out.println();
 		ArrayList<String> infoList = new ArrayList<String>();
 		for (String info : contactInfo) {
 			infoList.add(info);
@@ -242,14 +255,17 @@ public class Main {
 					+ "\n\t1. Wanting to rent"
 					+ "\n\t2. Wanting to list properties for rent"
 					+ "\n\t3. Wanting to list properties as an agent"
-					+ "\n\t4. Wanting to rent and list properties");
+					+ "\n\t4. Wanting to rent and list properties"
+					+ "Selection: ");
 			int choice = s.nextInt();
+			System.out.println();
 			s.nextLine();
 			String uscID = "";
 			switch (choice) {
 			case 1:
-				System.out.println("Please enter your USC-ID: ");
+				System.out.print("Please enter your USC-ID: ");
 				uscID = s.next();
+				System.out.println();
 				s.nextLine();
 				renter = new Renter(username, password, email, userApi.getNewUserID(), phoneNum, name, bio, uscID);
 				return 0;
@@ -257,8 +273,9 @@ public class Main {
 				seller = new Seller(username, password, email, userApi.getNewUserID(), phoneNum, name, bio, new ArrayList<Property>());
 				return 1;
 			case 3:
-				System.out.println("Please enter the name of your agency: ");
+				System.out.print("Please enter the name of your agency: ");
 				String agency = s.nextLine();
+				System.out.println();
 				rea = new RealEstateAgent(username, password, email, userApi.getNewUserID(), phoneNum, username, bio, agency, new ArrayList<Property>());
 				return 2;
 			case 4:

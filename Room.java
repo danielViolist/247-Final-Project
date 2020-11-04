@@ -31,7 +31,6 @@ public class Room {
 	public String toString() {
 		//TODO - Make a toString function
 		String ret = "Room Information: "
-				+ "\n\t\tRoom ID: " + roomID
 				+ "\n\t\tRoom Number: " + roomNumber
 				+ "\n\t\tBed Count: " + beds
 				+ "\n\t\tBath Count: " + baths

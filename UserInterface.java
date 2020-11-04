@@ -224,38 +224,38 @@ public class UserInterface {
 				}
 				continue;
 			}
-			room:
 			for(Room r : p.getRooms()) {
-				int beds = 0;
+				boolean hasBeds = false;
+				boolean hasBaths = false;
+				boolean hasAmenity = false;
+				boolean hasBonus = false;
 				if(searchQuery.contains("bed")) {
 					int location = searchQuery.indexOf("bed");
-					beds = Integer.parseInt(searchQuery.charAt(location - 2) + "");
-					if(r.getBeds() != beds) {
-						beds = 0;
+					int beds = Integer.parseInt(searchQuery.charAt(location - 2) + "");
+					if(r.getBeds() == beds) {
+						hasBeds = true;
 					}
 				}
-				int baths = 0;
 				if(searchQuery.contains("bath")) {
 					int location = searchQuery.indexOf("bath");
-					baths = Integer.parseInt(searchQuery.charAt(location - 2) + "");
-					if(r.getBaths() != baths) {
-						baths = 0;
+					int baths = Integer.parseInt(searchQuery.charAt(location - 2) + "");
+					if(r.getBaths() == baths) {
+						hasBaths = true;
 					}
 				}
 				for(String s : r.getAmenities()) {
-					if(searchQuery.contains(s.toLowerCase()) && beds > 0 && baths > 0) {
-						if(!ret.contains(p)) {
-							ret.add(p);
-						}
-						break room;
+					if(searchQuery.contains(s.toLowerCase())) {
+						hasAmenity = true;
 					}
 				}
 				for(String s : r.getBonuses()) {
-					if(searchQuery.contains(s.toLowerCase()) && beds > 0 && baths > 0) {
-						if(!ret.contains(p)) {
-							ret.add(p);
-						}
-						break room;
+					if(searchQuery.contains(s.toLowerCase())) {
+						hasBonus = true;
+					}
+				}
+				if(hasBeds && hasBaths && hasAmenity && hasBonus) {
+					if(!ret.contains(p)) {
+						ret.add(p);
 					}
 				}
 			}

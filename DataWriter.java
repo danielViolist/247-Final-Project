@@ -84,8 +84,10 @@ public class DataWriter extends JSONConstants {
 			}
 			renterJSONObject.put(USERS_PROPERTIES, properties);
 		}
+		JSONArray users = DataReader.getUsersJSON();
+		users.add(renterJSONObject);
 		try (FileWriter file = new FileWriter(USERS_FILE, true)) {
-			file.write(renterJSONObject.toJSONString());
+			file.write(users.toJSONString());
 			file.flush();
 			file.close();
 		} catch(IOException e) {
@@ -150,8 +152,10 @@ public class DataWriter extends JSONConstants {
 			properties.add(prop.getID());
 		}
 		sellerJSONObject.put(USERS_PROPERTIES, properties);
+		JSONArray users = DataReader.getUsersJSON();
+		users.add(sellerJSONObject);
 		try (FileWriter file = new FileWriter(USERS_FILE, true)) {
-			file.write(sellerJSONObject.toJSONString());
+			file.write(users.toJSONString());
 			file.flush();
 			file.close();
 		} catch(IOException e) {
@@ -218,8 +222,10 @@ public class DataWriter extends JSONConstants {
 			listings.add(prop.getID());
 		}
 		agent.put(USERS_LISTINGS, listings);
+		JSONArray users = DataReader.getUsersJSON();
+		users.add(agent);
 		try (FileWriter file = new FileWriter(USERS_FILE, true)) {
-			file.write(agent.toJSONString());
+			file.write(users.toJSONString());
 			file.flush();
 			file.close();
 		} catch(IOException e) {
@@ -287,8 +293,10 @@ public class DataWriter extends JSONConstants {
 			payments.add(pay);
 		}
 		propertyJSONObject.put(PROPERTIES_PAYMENTS, payments);
+		JSONArray properties = DataReader.getPropertiesJSON();
+		properties.add(propertyJSONObject);
 		try (FileWriter file = new FileWriter(PROPERTIES_FILE, true)) {
-			file.write(propertyJSONObject.toJSONString());
+			file.write(properties.toJSONString());
 			file.flush();
 		} catch(IOException e) {
 			e.printStackTrace();
@@ -320,8 +328,10 @@ public class DataWriter extends JSONConstants {
 		review.put(REVIEWS_AUTHOR, r.getAuthorID());
 		review.put(REVIEWS_RATING, r.getRating());
 		review.put(REVIEWS_DESCRIPTION, r.getDescription());
+		JSONArray reviews = DataReader.getReviewsJSON();
+		reviews.add(review);
 		try (FileWriter file = new FileWriter(REVIEWS_FILE, true)) {
-			file.write(review.toJSONString());
+			file.write(reviews.toJSONString());
 			file.flush();
 			file.close();
 		} catch(IOException e) {
@@ -404,8 +414,10 @@ public class DataWriter extends JSONConstants {
 		} else {
 			room.put(ROOM_ISLEASED, 0);
 		}
+		JSONArray rooms = DataReader.getRoomsJSON();
+		rooms.add(room);
 		try (FileWriter file = new FileWriter(ROOM_FILE, true)) {
-			file.write(room.toJSONString());
+			file.write(rooms.toJSONString());
 			file.flush();
 			file.close();
 		} catch(IOException e) {

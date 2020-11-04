@@ -138,7 +138,19 @@ public class Main {
 					ui.removeFavorite();
 					break;
 				case 6:
-					//Delete account
+					// Delete account
+					System.out.println("Please confirm that you wish to delete your account."
+							         + "\nEnter 'YES' to confrim, anything else to cancel."
+							         + "\nWarning: If you delete your account, all of your data will not be recoverable!");
+					String response = s.next();
+					s.nextLine();
+					if (response.equals("YES")) {
+						userApi.deleteUser(renter.getUserID());
+						System.out.println("You account has been deleted."
+								         + "\nThe system is now restarting.");
+						ui.outputMenu("leave");
+						System.exit(0);
+					}
 					break;
 				case 7:
 					//Exit
@@ -203,7 +215,19 @@ public class Main {
 					ui.removeFavorite();
 					break;
 				case 9:
-					//Delete account
+					// Delete account
+					System.out.println("Please confirm that you wish to delete your account."
+							         + "\nEnter 'YES' to confrim, anything else to cancel."
+							         + "\nWarning: If you delete your account, all of your data will not be recoverable!");
+					String response = s.next();
+					s.nextLine();
+					if (response.equals("YES")) {
+						userApi.deleteUser(renter.getUserID());
+						System.out.println("You account has been deleted."
+								         + "\nThe system is now restarting.");
+						ui.outputMenu("leave");
+						System.exit(0);
+					}
 					break;
 				case 10:
 					//Exit
@@ -258,7 +282,19 @@ public class Main {
 				//Remove property
 				break;
 			case 5:
-				//Delete account
+				// Delete account
+				System.out.println("Please confirm that you wish to delete your account."
+						         + "\nEnter 'YES' to confrim, anything else to cancel."
+						         + "\nWarning: If you delete your account, all of your data will not be recoverable!");
+				String response = s.next();
+				s.nextLine();
+				if (response.equals("YES")) {
+					userApi.deleteUser(seller.getUserID());
+					System.out.println("You account has been deleted."
+							         + "\nThe system is now restarting.");
+					ui.outputMenu("leave");
+					System.exit(0);
+				}
 				break;
 			case 6:
 				// Exit
@@ -309,6 +345,24 @@ public class Main {
 				System.out.println("\n*************************************************************\n");
 				break;
 			case 4:
+				// Remove a listing
+				break;
+			case 5:
+				// Delete account
+				System.out.println("Please confirm that you wish to delete your account."
+						         + "\nEnter 'YES' to confrim, anything else to cancel."
+						         + "\nWarning: If you delete your account, all of your data will not be recoverable!");
+				String response = s.next();
+				s.nextLine();
+				if (response.equals("YES")) {
+					userApi.deleteUser(rea.getUserID());
+					System.out.println("You account has been deleted."
+							         + "\nThe system is now restarting.");
+					ui.outputMenu("leave");
+					System.exit(0);
+				}
+				break;
+			case 6:
 				// Exit
 				ui.outputMenu("leave");
 				System.exit(0);

@@ -49,8 +49,7 @@ public class Property {
 				   + "\n\tDescription: " + description
 				   + "\n\tRentable spaces:";
 		for (int i = 0; i < rooms.size(); i++) {
-			ret += "\n*************************************************************\n\t"
-					+ (i+1) + ". \n" + rooms.get(i).toString();
+			ret += "\n\t" + (i+1) + ". " + rooms.get(i).toString();
 		}
 		ret += "\n*************************************************************";
 		return ret;

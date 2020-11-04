@@ -15,7 +15,6 @@ public class Menu {
 	private String loginSuccessMenu;
 	private String createUserMenu;
 	private String invalidInputMenu;
-	private String searchPropertiesMenu;
 	private String guestOptions;
 	private String renterOptions;
 	private String renterSellerOptions;
@@ -33,7 +32,6 @@ public class Menu {
 		setLoginSuccessMenu();
 		setCreateUserMenu();
 		setInvalidInputMenu();
-		setSearchPropertiesMenu();
 		setGuestOptions();
 		setRenterOptions();
 		setSellerOptions();

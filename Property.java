@@ -56,7 +56,7 @@ public class Property {
 	}
 	
 	public boolean equals(Property property) {
-		return DataReader.getUser(this.seller).equals(property.getSeller()) && this.getAddress().equals(property.getAddress()); 
+		return this.getAddress().equals(property.getAddress()); 
 	}
 	
 // =========================================================================================================================

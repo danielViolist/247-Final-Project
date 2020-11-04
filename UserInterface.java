@@ -172,7 +172,7 @@ public class UserInterface {
 		}
 	}
 
-	public void removeProperty(int id) {
+	public void removeProperty() {
 		System.out.println("Please enter the id of the property you wish to remove: ");
 		if(Main.renter == null) {
 			for(Property p : Main.seller.getProperties()) {
@@ -191,7 +191,7 @@ public class UserInterface {
 		PropertyAPI.deleteProperty(id);
 	}
 
-	public void removeListing(int id) {
+	public void removeListing() {
 		System.out.println("Please enter the id of the property you wish to remove: ");
 		for(Property p : Main.rea.getListings()) {
 			System.out.println(p.toString());
@@ -201,7 +201,7 @@ public class UserInterface {
 		PropertyAPI.deleteProperty(id);
 	}
 	
-	public void removeFavorite(int id) {
+	public void removeFavorite() {
 		System.out.println("Please enter the id of the property you wish to remove from your favorites: ");
 		for(Property p : Main.renter.getFavorites()) {
 			System.out.println(p.toString());

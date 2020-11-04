@@ -228,6 +228,12 @@ public class Main {
 				System.out.println("\n*************************************************************\n");
 				break;
 			case 4:
+				//Remove property
+				break;
+			case 5:
+				//Delete account
+				break;
+			case 6:
 				// Exit
 				ui.outputMenu("leave");
 				System.exit(0);

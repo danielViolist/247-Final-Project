@@ -14,7 +14,8 @@ public class Property {
 	private String name;
 	private ArrayList<PaymentType> acceptedPayments;	 
 	
-	public Property(int seller, String address, String zipCode, String city, String state, String description) {
+	public Property(int seller, String name, String address, String zipCode, String city, String state, String description) {
+		this.name = name;
 		this.seller = seller;
 		this.address = address;
 		this.zipCode = zipCode;
@@ -28,7 +29,8 @@ public class Property {
 	}
 	
 	// To be used by the DB:
-	public Property(int seller, String address, String zipCode, String city, String state, String description, int id) {
+	public Property(int seller, String name, String address, String zipCode, String city, String state, String description, int id) {
+		this.name = name;
 		this.seller = seller;
 		this.address = address;
 		this.zipCode = zipCode;
@@ -47,7 +49,8 @@ public class Property {
 				   + "\n\tDescription: " + description
 				   + "\n\tRentable spaces:";
 		for (int i = 0; i < rooms.size(); i++) {
-			ret += "\n\t" + (i+1) + ". " + rooms.get(i).toString();
+			ret += "\n*************************************************************\n\t"
+					+ (i+1) + ". \n" + rooms.get(i).toString();
 		}
 		ret += "\n*************************************************************";
 		return ret;

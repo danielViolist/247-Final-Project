@@ -14,8 +14,8 @@ public class Seller extends User {
 		properties = new ArrayList<Property>();
 	}
 	
-	public void addProperty(String address, String zipCode, String city, String state, String description, String condition, int roomNumber, ArrayList<String> amenities, double price, PropertyType propertyType) {
-		properties.add(new Property(this.getUserID(), address,  zipCode,  city,  state,  description));
+	public void addProperty(String name, String address, String zipCode, String city, String state, String description, String condition, int roomNumber, ArrayList<String> amenities, double price, PropertyType propertyType) {
+		properties.add(new Property(this.getUserID(), name, address,  zipCode,  city,  state,  description));
 		Main.userApi.createSeller(this);
 	}
 	

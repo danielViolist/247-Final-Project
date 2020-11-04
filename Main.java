@@ -291,4 +291,14 @@ public class Main {
 			}
 		}
 	}
-}
+
+	public static void createProperty() {
+		ui.outputMenu("addProperty");
+		ui.createProperty(seller);
+		System.out.println("Current Properties: ");
+		seller.getProperties().get(seller.getProperties().size() - 1);
+	}
+
+	public static void listAProperty() {
+		ui.outputMenu("createListings");
+	}

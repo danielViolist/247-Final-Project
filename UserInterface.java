@@ -170,7 +170,7 @@ public class UserInterface {
 			}
 			int id = s.nextInt();
 			s.nextLine();
-			PropertyAPI.deleteProperty(id);
+			Main.propertyApi.deleteProperty(id);
 			return;
 		}
 		for(Property p : Main.renter.getSeller().getProperties()) {
@@ -178,7 +178,7 @@ public class UserInterface {
 		}
 		int id = s.nextInt();
 		s.nextLine();
-		PropertyAPI.deleteProperty(id);
+		Main.propertyApi.deleteProperty(id);
 	}
 
 	public void removeListing() {
@@ -188,7 +188,7 @@ public class UserInterface {
 		}
 		int id = s.nextInt();
 		s.nextLine();
-		PropertyAPI.deleteProperty(id);
+		Main.propertyApi.deleteProperty(id);
 	}
 	
 	public void removeFavorite() {

@@ -108,10 +108,7 @@ public class Main {
 				switch (selection) {
 				case 1:
 					//Search
-					System.out.print("Enter search keywords: ");
-					String search = s.nextLine();
-					System.out.println();
-					ArrayList<Property> results = ui.searchProperties(search);
+					ArrayList<Property> results = ui.searchProperties();
 					if (results.size() == 0) {
 						System.out.println("\nNo properties found!\n");
 					}
@@ -122,7 +119,7 @@ public class Main {
 						}
 					}
 					break;
-				case 2: //TODO
+				case 2:
 					//Rent
 					ui.rent();
 					break;
@@ -192,21 +189,18 @@ public class Main {
 				switch (selection) {
 				case 1:
 					//Search properties
-					System.out.print("Enter search keywords: ");
-					String search = s.nextLine();
-					System.out.println();
-					ArrayList<Property> results = ui.searchProperties(search);
+					ArrayList<Property> results = ui.searchProperties();
 					if (results.size() == 0) {
 						System.out.println("\nNo properties found!\n");
 					}
 					if (results.size() > 0) {
-						for (Property prop : rea.getListings()) {
+						for (Property prop : results) {
 							System.out.println("\n*************************************************************\n"
 									         + prop);
 						}
 					}
 					break;
-				case 2: //TODO
+				case 2: 
 					//Rent
 					ui.rent();
 					break;
@@ -306,15 +300,12 @@ public class Main {
 			switch (selection) {
 			case 1:
 				//Search listings
-				System.out.print("Enter search keywords: ");
-				String search = s.nextLine();
-				System.out.println();
-				ArrayList<Property> results = ui.searchProperties(search);
+				ArrayList<Property> results = ui.searchProperties();
 				if (results.size() == 0) {
 					System.out.println("\nNo properties found!\n");
 				}
 				if (results.size() > 0) {
-					for (Property prop : rea.getListings()) {
+					for (Property prop : results) {
 						System.out.println("\n*************************************************************\n"
 								         + prop);
 					}
@@ -382,16 +373,13 @@ public class Main {
 			s.nextLine();
 			switch (selection) {
 			case 1:
-				//Search listings
-				System.out.print("Enter search keywords: ");
-				String search = s.nextLine();
-				System.out.println();
-				ArrayList<Property> results = ui.searchProperties(search);
+				// Search 
+				ArrayList<Property> results = ui.searchProperties();
 				if (results.size() == 0) {
 					System.out.println("\nNo properties found!\n");
 				}
 				if (results.size() > 0) {
-					for (Property prop : rea.getListings()) {
+					for (Property prop : results) {
 						System.out.println("\n*************************************************************\n"
 								         + prop);
 					}
@@ -459,15 +447,12 @@ public class Main {
 			s.nextLine();
 			switch (selection) {
 			case 1:
-				System.out.print("Enter search keywords: ");
-				String search = s.nextLine();
-				System.out.println();
-				ArrayList<Property> results = ui.searchProperties(search);
+				ArrayList<Property> results = ui.searchProperties();
 				if (results.size() == 0) {
 					System.out.println("\nNo properties found!\n");
 				}
 				if (results.size() > 0) {
-					for (Property prop : rea.getListings()) {
+					for (Property prop : results) {
 						System.out.println("\n*************************************************************\n"
 								         + prop);
 					}

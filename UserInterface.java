@@ -211,55 +211,115 @@ public class UserInterface {
 			Main.rea.listProperty(prop);
 	}
 	
-	public ArrayList<Property> searchProperties(String query) {
-		//First, search through everything related to the complex
-		String searchQuery = query.toLowerCase();
-		ArrayList<Property> props = Main.propertyApi.getProperties();
-		//These have something that the user is searching for
+	public ArrayList<Property> searchProperties() {
+		System.out.println("Please fill in the following information (enter '-1' to disregard question):");
+		System.out.print("Number of beds: ");
+		int numBed = s.nextInt();
+		s.nextLine();
+		System.out.println();
+		System.out.print("Number of bathrooms: ");
+		int numBath = s.nextInt();
+		s.nextLine();
+		System.out.println();
+		System.out.println("Select from the following:"
+				+ "\n\t1. Apartament"
+				+ "\n\t2. Condo"
+				+ "\n\t3. House\n");
+		System.out.print("Selection: ");
+		int type = s.nextInt();
+		s.nextLine();
+		System.out.println();
+		PropertyType ptype = PropertyType.APARTMENT;
+		if (type == 2)
+			ptype = PropertyType.CONDO;
+		else if (type == 3)
+			ptype = PropertyType.HOUSE;
+		ArrayList<String> amenities = new ArrayList<String>();
+		System.out.println("Enter any amenities/bonuses you want (enter 'done' when finished):");
+		String amenity = s.nextLine();
+		while (!amenity.equalsIgnoreCase("done")) {
+			amenities.add(amenity);
+			amenity = s.nextLine();
+		}
+		System.out.print("Max price per month: $");
+		int price = s.nextInt();
+		s.nextLine();
+		boolean wantsBeds = false;
+		boolean wantsBaths = false;
+		boolean wantsType = false;
+		boolean wantsAmen = false;
+		boolean wantsPrice = false;
+		if (numBed > 0) 
+			wantsBeds = true;
+		if (numBath > 0)
+			wantsBaths = true;
+		if (type >= 1 && type <= 3)
+			wantsType = true;
+		if (amenities.size() >= 1)
+			wantsAmen = true;
+		if (price >= 0)
+			wantsPrice = true;
 		ArrayList<Property> ret = new ArrayList<Property>();
-		for(Property p : props) {
-			if(searchQuery.contains(p.getAddress().toLowerCase()) || searchQuery.contains(p.getCity().toLowerCase()) || searchQuery.contains(p.getZipCode()) || searchQuery.contains(p.getName().toLowerCase())) {
-				if(!ret.contains(p)) {
-					ret.add(p);
+		ArrayList<Property> bedRooms = new ArrayList<Property>();
+		ArrayList<Property> bathRooms = new ArrayList<Property>();
+		ArrayList<Property> typeRooms = new ArrayList<Property>();
+		ArrayList<Property> amenRooms = new ArrayList<Property>();
+		ArrayList<Property> priceRooms = new ArrayList<Property>();
+		for (Property prop : Main.propertyApi.getProperties()) {
+			for (Room room : prop.getRooms()) {
+				if(wantsBeds) {
+					if(room.getBeds() == numBed) {
+						bedRooms.add(prop);
+					}
 				}
-				continue;
+				if(wantsBaths) {
+					if(room.getBaths() == numBath) {
+						bathRooms.add(prop);
+					}
+				}
+				if(wantsType) {
+					if(room.getPropertyType() == ptype) {
+						typeRooms.add(prop);
+					}
+				}
+				if(wantsAmen) {
+					for(String s : room.getAmenities()) {
+						for(String s2 : amenities) {
+							if(s.equalsIgnoreCase(s2)) {
+								amenRooms.add(prop);
+							}
+						}
+					}
+					for(String s : room.getBonuses()) {
+						for(String s2 : amenities) {
+							if(s.equalsIgnoreCase(s2)) {
+								if(!amenRooms.contains(prop)) {
+									amenRooms.add(prop);
+								}
+							}
+						}
+					}
+				}
+				if(wantsPrice) {
+					if(room.getPrice() <= price) {
+						priceRooms.add(prop);
+					}
+				}
 			}
-			for(Room r : p.getRooms()) {
-				boolean hasBeds = false;
-				boolean hasBaths = false;
-				boolean hasNice = false;
-				if(searchQuery.contains("bed ")) {
-					int location = searchQuery.indexOf("bed ");
-					int beds = Integer.parseInt(searchQuery.charAt(location - 2) + "");
-					if(r.getBeds() == beds) {
-						hasBeds = true;
-					}
-				} else {
-					hasBeds = true;
-				}
-				if(searchQuery.contains("bath ")) {
-					int location = searchQuery.indexOf("bath ");
-					int baths = Integer.parseInt(searchQuery.charAt(location - 2) + "");
-					if(r.getBaths() == baths) {
-						hasBaths = true;
-					}
-				} else {
-					hasBaths = true;
-				}
-				for(String s : r.getAmenities()) {
-					if(searchQuery.contains(s.toLowerCase())) {
-						hasNice = true;
-					}
-				}
-				for(String s : r.getBonuses()) {
-					if(searchQuery.contains(s.toLowerCase())) {
-						hasNice = true;
-					}
-				}
-				if(hasBeds && hasBaths && hasNice) {
-					if(!ret.contains(p)) {
-						ret.add(p);
-					}
+		}
+		if(bathRooms.size() < 1) {
+			bathRooms = bedRooms;
+		}
+		if(typeRooms.size() < 1) {
+			typeRooms = bedRooms;
+		}
+		if(priceRooms.size() < 1) {
+			priceRooms = bedRooms;
+		}
+		for(Property prop : amenRooms) {
+			if(bedRooms.contains(prop) && bathRooms.contains(prop) && typeRooms.contains(prop) && priceRooms.contains(prop)) {
+				if(!ret.contains(prop)) {
+					ret.add(prop);
 				}
 			}
 		}

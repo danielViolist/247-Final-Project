@@ -26,9 +26,11 @@ public class Main {
 		
 		int currentUserType = -1;
 		ui.outputMenu("welcome");
+		System.out.print("Selection: ");
 		int selection;
 		while(true) {
 			selection = s.nextInt();
+			System.out.println();
 			s.nextLine();
 			switch (selection) {
 			case 1:
@@ -83,7 +85,7 @@ public class Main {
 				ui.outputMenu("leave");
 				System.exit(0);
 			default:
-				System.out.println("Invalid selection was entered. Please select a number from 1-5.");
+				System.out.print("\nInvalid selection was entered. Please select a number from 1-5.\nSelection: ");
 				break;
 			}
 		}

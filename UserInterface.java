@@ -150,6 +150,10 @@ public class UserInterface {
 				}
 			}
 			int[] selections = new int[4];
+			System.out.println("\t1. Cash"
+			         + "\n\t2. Check"
+			         + "\n\t3. Credit"
+			         + "\n\t4. Debit");
 			System.out.println("Please select all the available payment types (enter each number with a space separating them): ");
 			for (int j = 0; j < selections.length; j++) {
 				if (s.hasNextInt()) {

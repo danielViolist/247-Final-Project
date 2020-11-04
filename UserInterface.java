@@ -242,7 +242,25 @@ public class UserInterface {
 						break room;
 					}
 				}
-				if(searchQuery.contains(r.getBaths() + "") || searchQuery.contains(r.getBeds() + "") || searchQuery.contains(r.getCondition().toLowerCase())) {
+				if(searchQuery.contains("bed")) {
+					int location = searchQuery.indexOf("bed");
+					int beds = Integer.parseInt(searchQuery.charAt(location - 2) + "");
+					if(r.getBeds() == beds) {
+						if(!ret.contains(p)) {
+							ret.add(p);	
+						}
+					}
+				}
+				if(searchQuery.contains("bath")) {
+					int location = searchQuery.indexOf("bath");
+					int baths = Integer.parseInt(searchQuery.charAt(location - 2) + "");
+					if(r.getBaths() == baths) {
+						if(!ret.contains(p)) {
+							ret.add(p);	
+						}
+					}
+				}
+				if(searchQuery.contains(r.getCondition().toLowerCase())) {
 					if(!ret.contains(p)) {
 						ret.add(p);
 					}

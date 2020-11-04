@@ -19,7 +19,6 @@ public class DataWriter extends JSONConstants {
 					someUser.replace(USERS_PHONE, renter.getPhoneNumber());
 					someUser.replace(USERS_NAME, renter.getName());
 					someUser.replace(USERS_BIO, renter.getBio());
-					someUser.remove(USERS_CONTACTS);
 					JSONArray contacts = new JSONArray();
 					ArrayList<String> renterContacts = renter.getContactInfo();
 					for(String cont : renterContacts) {

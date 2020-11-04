@@ -110,7 +110,6 @@ public class UserInterface {
 				menus.getInvalidInputMenu();
 			}
 		}
-
 		Main.propertyApi.createProperty(new Property(sellerUser.getUserID(), address, city, state, zipCode, description));
 	}
 	

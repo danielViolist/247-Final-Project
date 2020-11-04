@@ -86,7 +86,7 @@ public class DataWriter extends JSONConstants {
 		}
 		JSONArray users = DataReader.getUsersJSON();
 		users.add(renterJSONObject);
-		try (FileWriter file = new FileWriter(USERS_FILE, true)) {
+		try (FileWriter file = new FileWriter(USERS_FILE)) {
 			file.write(users.toJSONString());
 			file.flush();
 			file.close();
@@ -154,7 +154,7 @@ public class DataWriter extends JSONConstants {
 		sellerJSONObject.put(USERS_PROPERTIES, properties);
 		JSONArray users = DataReader.getUsersJSON();
 		users.add(sellerJSONObject);
-		try (FileWriter file = new FileWriter(USERS_FILE, true)) {
+		try (FileWriter file = new FileWriter(USERS_FILE)) {
 			file.write(users.toJSONString());
 			file.flush();
 			file.close();
@@ -224,7 +224,7 @@ public class DataWriter extends JSONConstants {
 		agent.put(USERS_LISTINGS, listings);
 		JSONArray users = DataReader.getUsersJSON();
 		users.add(agent);
-		try (FileWriter file = new FileWriter(USERS_FILE, true)) {
+		try (FileWriter file = new FileWriter(USERS_FILE)) {
 			file.write(users.toJSONString());
 			file.flush();
 			file.close();
@@ -295,7 +295,7 @@ public class DataWriter extends JSONConstants {
 		propertyJSONObject.put(PROPERTIES_PAYMENTS, payments);
 		JSONArray properties = DataReader.getPropertiesJSON();
 		properties.add(propertyJSONObject);
-		try (FileWriter file = new FileWriter(PROPERTIES_FILE, true)) {
+		try (FileWriter file = new FileWriter(PROPERTIES_FILE)) {
 			file.write(properties.toJSONString());
 			file.flush();
 		} catch(IOException e) {
@@ -330,7 +330,7 @@ public class DataWriter extends JSONConstants {
 		review.put(REVIEWS_DESCRIPTION, r.getDescription());
 		JSONArray reviews = DataReader.getReviewsJSON();
 		reviews.add(review);
-		try (FileWriter file = new FileWriter(REVIEWS_FILE, true)) {
+		try (FileWriter file = new FileWriter(REVIEWS_FILE)) {
 			file.write(reviews.toJSONString());
 			file.flush();
 			file.close();
@@ -416,7 +416,7 @@ public class DataWriter extends JSONConstants {
 		}
 		JSONArray rooms = DataReader.getRoomsJSON();
 		rooms.add(room);
-		try (FileWriter file = new FileWriter(ROOM_FILE, true)) {
+		try (FileWriter file = new FileWriter(ROOM_FILE)) {
 			file.write(rooms.toJSONString());
 			file.flush();
 			file.close();

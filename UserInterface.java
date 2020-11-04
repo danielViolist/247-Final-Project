@@ -228,8 +228,8 @@ public class UserInterface {
 				boolean hasBeds = false;
 				boolean hasBaths = false;
 				boolean hasNice = false;
-				if(searchQuery.contains("bed ")) {
-					int location = searchQuery.indexOf("bed ");
+				if(searchQuery.contains("bed ") || searchQuery.contains("beds ")) {
+					int location = searchQuery.indexOf("bed");
 					int beds = Integer.parseInt(searchQuery.charAt(location - 2) + "");
 					if(r.getBeds() == beds) {
 						hasBeds = true;
@@ -237,8 +237,8 @@ public class UserInterface {
 				} else {
 					hasBeds = true;
 				}
-				if(searchQuery.contains("bath ")) {
-					int location = searchQuery.indexOf("bath ");
+				if(searchQuery.contains("bath ") || searchQuery.contains("baths ")) {
+					int location = searchQuery.indexOf("bath");
 					int baths = Integer.parseInt(searchQuery.charAt(location - 2) + "");
 					if(r.getBaths() == baths) {
 						hasBaths = true;

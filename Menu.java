@@ -54,7 +54,9 @@ public class Menu {
 				+ "\n\t1. Search listings"
 				+ "\n\t2. Rent a listing"
 				+ "\n\t3. Add to favorite"
-				+ "\n\t4. Exit";	
+				+ "\n\t4. Remove a favorite"
+				+ "\n\t5. Delete your account"
+				+ "\n\t6. Exit";	
 	}
 	
 	public void setRenterSellerOptions() {
@@ -62,7 +64,10 @@ public class Menu {
 				+ "\n\t1. Search listings"
 				+ "\n\t2. Rent a listing"
 				+ "\n\t3. List a property"
-				+ "\n\t4. Exit";
+				+ "\n\t4. Show your listed properties"
+				+ "\n\t5. Remove a listed property"
+				+ "\n\t6. Delete your account"
+				+ "\n\t7. Exit";;
 	}
 	
 	public void setSellerOptions() {
@@ -70,7 +75,9 @@ public class Menu {
 				+ "\n\t1. Search listings"
 				+ "\n\t2. List a property"
 				+ "\n\t3. Show your listed properties"
-				+ "\n\t4. Exit";
+				+ "\n\t4. Remove a listed property"
+				+ "\n\t5. Delete your account"
+				+ "\n\t6. Exit";
 	}
 	
 	public void setREAOptions () {
@@ -78,7 +85,9 @@ public class Menu {
 				+ "\n\t1. Search listings"
 				+ "\n\t2. List a property"
 				+ "\n\t3. Show your listings"
-				+ "\n\t4. Exit";
+				+ "\n\t4. Remove a listing"
+				+ "\n\t5. Delete your account"
+				+ "\n\t6. Exit";
 	}
 	
 	private void setLoginMenu() {

@@ -220,8 +220,20 @@ public class Main {
 					}
 					System.out.println("\n*************************************************************\n");
 					break;
-				case 5: //TODO
-					//Remove a listed property
+				case 5:
+					// Remove a listing
+					System.out.println("Please enter the propert ID of the property to remove."
+							         + "\nIf you do not know the ID, enter -1 to cancel, then view your listings which has the IDs listed."
+							         + "\nWarning: If you delete a property all of the property's data will not be recoverable!");
+					System.out.print("ID: ");
+					choice = s.nextInt();
+					s.nextLine();
+					System.out.println();
+					if (choice < 0) {
+						break;
+					}
+					ui.removeListing(choice);
+					System.out.println("If that property was in your listings, it has been deleted.\n");
 					break;
 				case 6:
 					// Add a favorite
@@ -319,8 +331,20 @@ public class Main {
 				}
 				System.out.println("\n*************************************************************\n");
 				break;
-			case 4: //TODO
-				//Remove property
+			case 4: 
+				// Remove a listing
+				System.out.println("Please enter the propert ID of the property to remove."
+						         + "\nIf you do not know the ID, enter -1 to cancel, then view your listings which has the IDs listed."
+						         + "\nWarning: If you delete a property all of the property's data will not be recoverable!");
+				System.out.print("ID: ");
+				int choice = s.nextInt();
+				s.nextLine();
+				System.out.println();
+				if (choice < 0) {
+					break;
+				}
+				ui.removeListing(choice);
+				System.out.println("If that property was in your listings, it has been deleted.\n");
 				break;
 			case 5:
 				// Delete account
@@ -385,8 +409,20 @@ public class Main {
 				}
 				System.out.println("\n*************************************************************\n");
 				break;
-			case 4: //TODO
+			case 4: 
 				// Remove a listing
+				System.out.println("Please enter the propert ID of the property to remove."
+						         + "\nIf you do not know the ID, enter -1 to cancel, then view your listings which has the IDs listed."
+						         + "\nWarning: If you delete a property all of the property's data will not be recoverable!");
+				System.out.print("ID: ");
+				int choice = s.nextInt();
+				s.nextLine();
+				System.out.println();
+				if (choice < 0) {
+					break;
+				}
+				ui.removeListing(choice);
+				System.out.println("If that property was in your listings, it has been deleted.\n");
 				break;
 			case 5:
 				// Delete account

@@ -413,25 +413,6 @@ public class UserInterface {
 		}
 	}
 
-	public void removeProperty() {
-		System.out.println("Please enter the id of the property you wish to remove: ");
-		if(Main.renter == null) {
-			for(Property p : Main.seller.getProperties()) {
-				System.out.println(p.toString());
-			}
-			int id = s.nextInt();
-			s.nextLine();
-			Main.propertyApi.deleteProperty(id);
-			return;
-		}
-		for(Property p : Main.renter.getSeller().getProperties()) {
-			System.out.println(p.toString());
-		}
-		int id = s.nextInt();
-		s.nextLine();
-		Main.propertyApi.deleteProperty(id);
-	}
-
 	public void removeListing(int id) {
 		Main.propertyApi.deleteProperty(id);
 	}

@@ -542,20 +542,24 @@ public class Main {
 				System.out.println();
 				s.nextLine();
 				renter = new Renter(username, password, email, userApi.getNewUserID(), phoneNum, name, bio, uscID);
+				userApi.createRenter(renter);
 				return 0;
 			case 2:
 				seller = new Seller(username, password, email, userApi.getNewUserID(), phoneNum, name, bio, new ArrayList<Property>());
+				userApi.createSeller(seller);
 				return 1;
 			case 3:
 				System.out.print("Please enter the name of your agency: ");
 				String agency = s.nextLine();
 				System.out.println();
 				rea = new RealEstateAgent(username, password, email, userApi.getNewUserID(), phoneNum, username, bio, agency, new ArrayList<Property>());
+				userApi.createRE(rea);
 				return 2;
 			case 4:
 				Renter rent = new Renter(username, password, email, userApi.getNewUserID(), phoneNum, name, bio, uscID);
 				rent.makeSeller();
 				renter = rent;
+				userApi.createRenter(rent);
 				return 3;
 			default:
 				System.out.println("You entered an invalid value.");

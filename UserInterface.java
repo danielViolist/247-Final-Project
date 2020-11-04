@@ -167,6 +167,7 @@ public class UserInterface {
 		}
 		for (Room room : rooms) {
 			prop.addRoomDB(room);
+			Main.roomApi.createRoom(room);
 		}
 		Main.propertyApi.createProperty(prop);
 		if (Main.renter != null)

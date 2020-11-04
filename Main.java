@@ -210,8 +210,10 @@ public class Main {
 				case 2: //TODO
 					//Rent
 					break;
-				case 3: //TODO
+				case 3:
 					//List a property
+					ui.addPropertyRenter();
+					System.out.println("Your property listing has been added!");
 					break;
 				case 4:
 					//Show listed properties
@@ -307,10 +309,10 @@ public class Main {
 					}
 				}
 				break;
-			case 2: //TODO
+			case 2: 
 				// List a property
-				// Need help with this. 
-				// See runREA comments in case 2.
+				ui.addPropertySeller();
+				System.out.println("Your property listing has been added!");
 				break;
 			case 3: 
 				// Show own's listings
@@ -375,8 +377,8 @@ public class Main {
 				break;
 			case 2: //TODO
 				// List a property
-				// Need help with this por favor
-				// Needs to be like how it is described in the scenario (create a property, then add rooms to it)
+				ui.addPropertyREA();
+				System.out.println("Your property listing has been added!");
 				break;
 			case 3:
 				// Show their own listings

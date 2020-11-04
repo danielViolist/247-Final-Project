@@ -115,30 +115,23 @@ public class UserInterface {
 		Main.propertyApi.createProperty(p);
 	}
 	
-	public ArrayList<Property> searchProperties(String searchQuery) {
+	public ArrayList<Property> searchProperties(String query) {
 		//First, search through everything related to the complex
+		String searchQuery = query.toLowerCase();
 		ArrayList<Property> props = Main.propertyApi.getProperties();
 		//These have something that the user is searching for
 		ArrayList<Property> ret = new ArrayList<Property>();
 		for(Property p : props) {
-			if(searchQuery.contains(p.getAddress()) || searchQuery.contains(p.getCity()) || searchQuery.contains(p.getZipCode()) || searchQuery.contains(p.getName())) {
-				for(Room r : p.getRooms()) {
-					System.out.println(p.toString());
-					System.out.println(r.toString());
-					System.out.println("-------------------------");
-					if(!ret.contains(p)) {
-						ret.add(p);
-					}
+			if(searchQuery.contains(p.getAddress().toLowerCase()) || searchQuery.contains(p.getCity().toLowerCase()) || searchQuery.contains(p.getZipCode()) || searchQuery.contains(p.getName().toLowerCase())) {
+				if(!ret.contains(p)) {
+					ret.add(p);
 				}
 				continue;
 			}
 			room:
 			for(Room r : p.getRooms()) {
 				for(String s : r.getAmenities()) {
-					if(searchQuery.contains(s)) {
-						System.out.println(p.toString());
-						System.out.println(r.toString());
-						System.out.println("-------------------------");
+					if(searchQuery.contains(s.toLowerCase())) {
 						if(!ret.contains(p)) {
 							ret.add(p);
 						}
@@ -146,20 +139,14 @@ public class UserInterface {
 					}
 				}
 				for(String s : r.getBonuses()) {
-					if(searchQuery.contains(s)) {
-						System.out.println(p.toString());
-						System.out.println(r.toString());
-						System.out.println("-------------------------");
+					if(searchQuery.contains(s.toLowerCase())) {
 						if(!ret.contains(p)) {
 							ret.add(p);
 						}
 						break room;
 					}
 				}
-				if(searchQuery.contains(r.getBaths() + "") || searchQuery.contains(r.getBeds() + "") || searchQuery.contains(r.getCondition())) {
-					System.out.println(p.toString());
-					System.out.println(r.toString());
-					System.out.println("-------------------------");
+				if(searchQuery.contains(r.getBaths() + "") || searchQuery.contains(r.getBeds() + "") || searchQuery.contains(r.getCondition().toLowerCase())) {
 					if(!ret.contains(p)) {
 						ret.add(p);
 					}

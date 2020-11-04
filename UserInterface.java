@@ -55,18 +55,24 @@ public class UserInterface {
 	}
 
 	public void addProperty() {
-		System.out.println("Name: ");
+		System.out.print("Name: ");
 		String name = s.nextLine();
-		System.out.println("Street Address: ");
+		System.out.println();
+		System.out.print("Street Address: ");
 		String address = s.nextLine();
-		System.out.println("Zip Code: ");
+		System.out.println();
+		System.out.print("Zip Code: ");
 		String zipCode = s.nextLine();
-		System.out.println("City: ");
+		System.out.println();
+		System.out.print("City: ");
 		String city = s.nextLine();
-		System.out.println("State: ");
+		System.out.println();
+		System.out.print("State: ");
 		String state = s.nextLine();
-		System.out.println("Description: ");
+		System.out.println();
+		System.out.print("Description: ");
 		String description = s.nextLine();
+		System.out.println();
 		Property prop = null;
 		if (Main.renter != null)
 			prop = new Property(Main.renter.getUserID(), name, address, city, state, zipCode, description);
@@ -74,8 +80,9 @@ public class UserInterface {
 			prop = new Property(Main.seller.getUserID(), name, address, city, state, zipCode, description);
 		else if (Main.rea != null)
 			prop = new Property(Main.rea.getUserID(), name, address, city, state, zipCode, description);
-		System.out.println("How many rooms would you like to add to this property?");
+		System.out.print("How many rooms would you like to add to this property? ");
 		int choice = s.nextInt();
+		System.out.println();
 		s.nextLine();
 		if (choice < 1) {
 			System.out.println("Invalid value entered.");
